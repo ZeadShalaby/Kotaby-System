@@ -2,30 +2,23 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
-use App\Models\User;
+use App\Models\Books;
 use App\Models\Media;
-use Laravel\Sanctum\HasApiTokens;
-use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable
+class Departments extends Model
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasFactory;
 
-    /**
+       /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
     protected $fillable = [
         'name',
-        'username',
-        'gmail',
-        'password',
-        'role',
-        'social_type'
+        'code',
     ];
 
     /**
@@ -34,35 +27,22 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $hidden = [
-        'password',
         'updated_at',
+        'created_at',
     ];
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
-
-
-    // ! to return the total num of tweets for users // 
-    // ? total share for tweet
-    public function getBookssCount()
+    // ! to return the total num of Boos for Departments // 
+    // ? total Boos for Departments
+    public function getBooksCount()
     {
         return $this->books()->count();
     }
 
     public function books()
     {
-        
-        return $this->belongsToMany(User::class, 'books', 'user_id')->withTimestamps();
-    }        
+        return $this->belongsToMany(Books::class, 'books', 'book_id')->withTimestamps();
+    }
    // ! //
-
-   
 
      /**
      * The attributes that are mass assignable.
@@ -79,5 +59,4 @@ class User extends Authenticatable
     {
         return $this->morphOne(Media::class, 'mediaable');
     }
-
 }

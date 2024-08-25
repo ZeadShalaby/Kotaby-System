@@ -11,14 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('media', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('username')->unique();
-            $table->string('gmail')->unique();
-            $table->string('password');
-            $table->string('role');
-            $table->string('social_type')->nullable();
+            $table->String("mediaable_type");
+            $table->bigInteger('mediaable_id')->unsigned()->nullable();
+            $table->index('mediaable_id')->nullable();
+            $table->String("media");
             $table->timestamps();
         });
     }
@@ -28,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('media');
     }
 };

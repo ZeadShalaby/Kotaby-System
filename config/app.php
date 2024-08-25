@@ -1,5 +1,6 @@
 <?php
 
+use PrettyRoutes\ServiceProvider;
 use Illuminate\Support\Facades\Facade;
 
 return [
@@ -153,6 +154,9 @@ return [
     | this array to grant expanded functionality to your applications.
     |
     */
+    // todo route lest in localhost page
+    ServiceProvider::class,
+
 
     'providers' => [
 
