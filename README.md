@@ -1,7 +1,7 @@
 <br/>
 <p align="center">
   <a href="https://github.com/ZeadShalaby/Kotaby-System">
-          <img src="https://imgur.com/c5wCVCV.png?w=1600" alt="Logo" width="380" height="350">
+          <img src="https://imgur.com/YWTzKoF.png?w=1600" alt="Logo" width="380" height="350">
     
   </a>
 
