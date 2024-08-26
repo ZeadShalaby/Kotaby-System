@@ -79,7 +79,7 @@ https://github.com/ZeadShalaby/Kotaby-System
 Go to the project directory
 
 ```bash
-  cd Twitter-Web--System
+  cd Kotaby-System
 ```
 
 Install dependencies
