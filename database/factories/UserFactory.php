@@ -73,7 +73,7 @@ class UserFactory extends Factory
     {
         
         return $this->afterCreating(function (User $user) {
-            $img = ["images/users/kk.png","images/users/sunset.png","images/users/byden.png","images/users/tweet.png"];
+            $img = ["images/users/user0.png","images/users/user1.png","images/users/user2.png","images/users/user3.png","images/users/user5.png"];
             $increment = random_int(0,3);
                 $user->media()->create([
                     'media' => $img[$increment],

@@ -1,0 +1,39 @@
+h3 {
+
+    font-family: Almarai;
+    font-size: 20px;
+    font-weight: bold;
+    font-weight: 700px;
+    line-height: 21px;
+    color: #1B3764;
+}
+
+
+
+#login {
+    border-radius: 32px;
+    width: 466px;
+    height: 40px;
+}
+
+.form-group .form-control {
+    width: 466px;
+    height: 40px;
+    padding: 8px 20px;
+    border-radius: 32px;
+    border: 1px solid #ced4da;
+}
+
+
+#social {
+    margin: 10px;
+    margin-left: 60px;
+}
+
+#social .item {
+    margin-right: 50px;
+}
+
+#social img {
+    width: 40px;
+}

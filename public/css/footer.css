@@ -1,0 +1,99 @@
+.footer {
+    padding: 30px 0;
+    background-color: #D9D9D9;
+    background-image: url("../images/img/wave00.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: auto;
+    color: #2f2f2f;
+}
+
+.shape {
+    height: 115px;
+    max-width: 996px;
+    background-color: #1B3764;
+    margin: 10px auto;
+    border-radius: 10px;
+}
+
+.legal {
+    margin-top: 20px;
+    color: #1B3764;
+    font-family: 'Almarai', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.8;
+}
+
+.social a:hover {
+    opacity: 0.9;
+}
+
+.footer a {
+    color: #1B3764;
+}
+
+.footer p {
+    margin-top: 10px;
+}
+
+.list-inline {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+
+.list-inline .list-inline-item {
+    margin-left: 30px;
+    /* Adjusted spacing between icons */
+}
+
+.text-items {
+    display: flex;
+    gap: 80px;
+    /* Increase the gap between text items */
+    margin-right: 260px;
+    /* Move text items closer to icons */
+    flex-wrap: wrap;
+    /* Allows wrapping on smaller screens */
+}
+
+.text-item {
+    margin: 0;
+    /* Remove margin-right for better spacing control */
+}
+
+.d-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    /* Ensure items wrap on smaller screens */
+}
+
+.custom-line {
+    width: 1000px;
+    margin: 20px auto;
+    border: 1px solid #ccc;
+}
+
+@media (max-width: 768px) {
+    .text-items {
+        flex-direction: column;
+        /* Stack text items vertically on smaller screens */
+        align-items: center;
+        margin-right: 0;
+        /* Remove margin on smaller screens */
+    }
+
+    .list-inline {
+        justify-content: center;
+        /* Center icons on smaller screens */
+    }
+
+    .custom-line {
+        width: 90%;
+        /* Adjust line width for smaller screens */
+    }
+}

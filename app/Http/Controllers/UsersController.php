@@ -11,17 +11,22 @@ class UsersController extends Controller
 {
     //
 
-    
    // todo profile page
    public function index()
    {
-
+      
    }
 
     // todo login page
     function loginindex()
     {
         return view('Auth.login');
+    }
+
+    // todo login page
+    function home()
+    {
+        return view('section.home');
     }
 
     // todo Login Users

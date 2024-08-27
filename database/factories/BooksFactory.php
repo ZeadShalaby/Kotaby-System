@@ -45,7 +45,7 @@ class BooksFactory extends Factory
     {
         
         return $this->afterCreating(function (Books $book) {
-            $img = ["images/books/kk.png","images/books/sunset.png","images/books/byden.png","images/books/tweet.png","images/books/tweet.png"];
+            $img = ["images/books/book1.png","images/books/book2.png","images/books/book3.png","images/books/book4.png","images/books/book5.png","images/books/book8.png"];
             $increment = random_int(0,4);
                 $book->media()->create([
                     'media' => $img[$increment],

@@ -33,7 +33,7 @@ class DepartmentsFactory extends Factory
     {
         
         return $this->afterCreating(function (Departments $department) {
-            $img = ["images/departments/kk.png","images/departments/sunset.png","images/departments/byden.png","images/departments/tweet.png","images/departments/tweet.png"];
+            $img = ["images/departments/dep0.png","images/departments/dep1.png","images/departments/dep4.png","images/departments/dep8.png","images/departments/dep9.png"];
             $increment = random_int(0,4);
                 $department->media()->create([
                     'media' => $img[$increment],
