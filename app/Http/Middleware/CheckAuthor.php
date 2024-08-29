@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use App\Models\Role;
+use App\Enums\GuardEnums;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -19,12 +20,12 @@ class CheckAuthor
     {
         if(isset(auth()->user()->role)){
             $role = auth()->user()->role;
-        if($role!= Role::AUTHOR) {
-            return view('error.403');
+        if($role!= GuardEnums::AUTHOR->value) {
+            abort(403, 'Unauthorized');
         }
         return $next($request);
         }
-        return view('error.401');
+        return view('errors.401');
     }
 }
 

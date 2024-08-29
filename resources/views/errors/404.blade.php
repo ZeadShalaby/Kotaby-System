@@ -69,7 +69,7 @@
 
 
 
-    <a target="_blank" href="#">
+    <a href="{{ route('users.loginindex') }}">
         <div class="container">
             <div class="row">
                 <div class="col-sm-12 col-md-12 mt-5 mb-5">
@@ -283,8 +283,8 @@
                                             <path id="Vector_60" opacity="0.25" d="M551.7 208.2L550.3 238"
                                                 stroke="white" stroke-width="0.4635" stroke-linecap="round"
                                                 stroke-linejoin="round" stroke-dasharray="1.39 1.39" />
-                                            <path id="Vector_61" opacity="0.25" d="M550.2 238.7V239.4"
-                                                stroke="white" stroke-width="0.4635" stroke-linecap="round"
+                                            <path id="Vector_61" opacity="0.25" d="M550.2 238.7V239.4" stroke="white"
+                                                stroke-width="0.4635" stroke-linecap="round"
                                                 stroke-linejoin="round" />
                                         </g>
                                     </g>

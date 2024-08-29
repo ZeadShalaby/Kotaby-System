@@ -5,8 +5,10 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\Role;
 use App\Models\User;
+use App\Models\Admin;
 use App\Models\Books;
 use App\Models\Reviews;
+use App\Enums\GuardEnums;
 use App\Models\Locations;
 use App\Models\Favourites;
 use App\Models\Departments;
@@ -21,30 +23,30 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         
-        $defAdmin = User::factory()->create([
+        $defAdmin = Admin::factory()->create([
             'username' => 'admin',
-            'gmail' => 'admin@gmail.com',
+            'email' => 'admin@gmail.com',
             'password' => Hash::make('admin'), 
-            'role' => Role::ADMIN,
+            'role' => GuardEnums::ADMIN->value,
         ]); 
         
         // authors
         $defAuthor = User::factory()->create([
             'username' => 'author',
-            'gmail' => 'author@gmail.com',
+            'email' => 'author@gmail.com',
             'password' => Hash::make('author'), 
-            'role' => Role::AUTHOR,
+            'role' => GuardEnums::AUTHOR->value,
         ]); 
         // ? users
         $defUser = User::factory()->create([
             'username' => 'user',
-            'gmail' => 'user@gmail.com',
+            'email' => 'user@gmail.com',
             'password' => Hash::make('user'), 
-            'role' => Role::USER,
+            'role' => GuardEnums::USER->value,
         ]); 
   
         //? Create 10 Admin
-        $admins = User::factory()
+        $admins = Admin::factory()
         ->admin()
         ->count(4)
         ->create();

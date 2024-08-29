@@ -62,3 +62,28 @@
     color: #6c757d;
     /* لون الأيقونة يمكن تعديله */
 }
+
+
+/* تحسين الاستجابة على الأجهزة الصغيرة */
+@media (max-width: 576px) {
+    .dropdown-menu {
+        width: 100%;
+        /* اجعل القائمة المنسدلة تمتد بعرض كامل */
+    }
+}
+
+/* تخصيص عام */
+.dropdown-menu {
+    background-color: #fff;
+    /* يمكنك تخصيص لون الخلفية */
+    border-radius: 0.25rem;
+    /* إضافة حواف دائرية */
+    padding: 10px;
+}
+
+.dropdown-item:hover {
+    background-color: #f8f9fa;
+    /* تغيير لون الخلفية عند المرور */
+    color: #000;
+    /* تغيير لون النص عند المرور */
+}

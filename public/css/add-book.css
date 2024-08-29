@@ -1,0 +1,112 @@
+body {
+    background-color: #f8f9fa;
+    font-family: 'Tajawal', sans-serif;
+}
+
+.form-container {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin: auto;
+    margin-top: 40px;
+}
+
+.form-control {
+    border-radius: 20px;
+}
+
+.form-label {
+    font-weight: bold;
+    font-family: Almarai;
+    color: #002244;
+}
+
+#title {
+    font-weight: bold;
+    font-family: Almarai;
+    color: #002244;
+}
+
+.custom-file-upload {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    padding: 10px;
+    cursor: pointer;
+    background-color: #f1f1f1;
+    border: 1px solid #ddd;
+    transition: background-color 0.3s ease;
+}
+
+.custom-file-upload:hover {
+    background-color: #e2e2e2;
+}
+
+.custom-file-upload i {
+    margin-right: 8px;
+    color: #003366;
+}
+
+.custom-file-upload input[type="file"] {
+    display: none;
+}
+
+.share {
+    background-color: #003366;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    font-size: 18px;
+}
+
+.share:hover {
+    background-color: #002244;
+}
+
+.form-text {
+    text-align: right;
+}
+
+.location-option {
+    text-align: right;
+    margin-top: 10px;
+}
+
+.location-option button {
+    background-color: #003366;
+    border: none;
+    border-radius: 20px;
+    padding: 5px 10px;
+    font-size: 14px;
+    color: #ffffff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.location-option button:hover {
+    background-color: #002244;
+}
+
+.location-option button {
+    background-color: #003366;
+    border: none;
+    border-radius: 10px;
+    padding: 5px;
+    font-size: 18px;
+    /* تأكد من ضبط حجم الأيقونة حسب الحاجة */
+    color: #ffffff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.location-option button:hover {
+    background-color: #002244;
+}
+
+.location-option i {
+    font-size: 18px;
+    /* تأكد من ضبط حجم الأيقونة حسب الحاجة */
+}

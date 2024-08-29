@@ -24,9 +24,18 @@
 
 
         </div>
-        <a href="{{ route('loginindex') }}" id="btn-enter" class="btn btn-primary my-2 my-sm-0 ml-2">دخول</a>
-        <!-- Added ml-2 for spacing -->
-        <a href="#" class="btn btn-warning my-2 my-sm-0">حساب جديد</a>
+        @if (!Auth::user() != null)
+            <a href="{{ route('users.loginindex') }}" id="btn-enter" class="btn btn-primary my-2 my-sm-0 ml-2">دخول</a>
+            <!-- Added ml-2 for spacing -->
+            <a href="{{ route('users.registindex') }}" class="btn btn-warning my-2 my-sm-0">حساب جديد</a>
+        @else
+            <button type="button" id="btn-enter" class="btn btn-primary my-2 my-sm-0 ml-2" data-toggle="modal"
+                data-target="#sidebarModal">
+                Setting
+            </button>
+            <a href="{{ route('users.logout') }}" class="btn btn-warning my-2 my-sm-0"> تسجيل الخروج</a>
+            <!-- Button to trigger modal -->
+        @endif
     </div>
 
 </nav>

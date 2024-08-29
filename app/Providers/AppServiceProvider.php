@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\User;
+use App\Models\Admin;
 use App\Models\Books;
 use App\Models\Departments;
 use Illuminate\Support\ServiceProvider;
@@ -27,7 +28,8 @@ class AppServiceProvider extends ServiceProvider
         Relation::enforceMorphMap([
             'Books'       => Books::class,
             'User'        => User::class,
-            'Departments' => Departments::class
+            'Departments' => Departments::class,
+            'Admin'       => Admin::class
         ]);
     }
 }

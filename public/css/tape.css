@@ -1,0 +1,27 @@
+.breadcrumb {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    max-width: 1080px;
+    margin: 0 auto 25px;
+}
+
+.breadcrumb a {
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+}
+
+.breadcrumb a:last-child {
+    color: #ff9800;
+    margin-right: 5px;
+}
+
+.breadcrumb span {
+    margin: 0 5px;
+    color: #333;
+}

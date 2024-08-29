@@ -3,30 +3,35 @@
     <main>
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-md-6">
-                    <div class="card p-4 mt-5">
-                        <h3 class="text-center ">تسجيل الدخول</h3>
-                        <form>
-                            <div class="form-group">
+                <div class="col-12 col-sm-10 col-md-8 col-lg-6">
+                    <div class="card p-4 mt-5"> <!-- تقليل البادينج هنا من 4 إلى 3 -->
+                        <h3 class="text-center">انشاء حساب جديد</h3>
+                        <form class="rounded p-4" action="{{ route('users.register') }}" method="POST">
+                            {{ csrf_field() }}
+                            <!-- إضافة بادينج هنا بقيمة 2 -->
+                            {{-- <div class="form-group">
                                 <label for="name" class="text-right d-block">الاسم</label>
-                                <input type="text" class="form-control" id="name"
-                                    placeholder=" محمد فتح الله عبدالحميد">
+                                <input type="text" class="form-control w-100" id="name"
+                                    placeholder="محمد فتح الله عبدالحميد" name="name" value={{ old('name') }}>
                             </div>
                             <div class="form-group">
                                 <label for="email" class="text-right d-block">البريد الإلكتروني</label>
-                                <input type="email" class="form-control" id="email" placeholder="mohamed@gmail.com">
+                                <input type="email" class="form-control w-100" id="email"
+                                    placeholder="mohamed@gmail.com" name="email" value={{ old('email') }}>
                             </div>
+                            <div class="form-group">
+                                <label for="password" class="text-right d-block">كلمة المرور</label>
+                                <input type="password" class="form-control w-100" placeholder="*****" id="password"
+                                    name="password" value={{ old('password') }}>
+                            </div> --}}
+                            @component('components.edit-regist-input')
+                            @endcomponent
                             <div class="text-right">
-                                <a href="#" class="text-primary">نسيت كلمة المرور؟</a>
+                                <a href="{{ route('users.loginindex') }}" class="text-primary">لديك حساب بلفعل؟</a>
                             </div>
-                            <button type="submit" class="btn btn-warning btn-block mt-3" id="login">تسجيل
-                                الدخول</button>
-                            <div class="text-center mt-3">أو</div>
-                            <button type="button" class="btn btn-light btn-block mt-3">
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png"
-                                    alt="Google logo" style="width:20px; height:20px; margin-right:10px;">
-                                التسجيل بالبريد الالكتروني
-                            </button>
+                            <button type="submit" class="btn btn-warning btn-block mt-3 w-100" id="login">انشاء
+                                حساب</button>
+
                         </form>
                     </div>
                 </div>

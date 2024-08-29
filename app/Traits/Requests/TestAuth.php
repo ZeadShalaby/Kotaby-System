@@ -8,7 +8,7 @@ trait TestAuth
 {  
 
     // todo rules of login for users
-    protected function rulesLogin($field){
+    protected function rulesAuthLogin($field){
       if($field == "email"){
       return [
         "field" => "required|exists:users,email",
@@ -21,6 +21,21 @@ trait TestAuth
     ];
     }
     }
+
+    // todo rules of login for admins
+    protected function rulesAdminLogin($field){
+      if($field == "email"){
+      return [
+        "field" => "required|exists:admins,email",
+        "password" => "required"
+    ];}
+    else{
+      return [
+        "field" => "required|exists:admins,username",
+        "password" => "required"
+    ];
+        }
+    }
   
     
     // todo rules of users registers
@@ -28,21 +43,18 @@ trait TestAuth
       return [
         'name' => 'required|min:4|max:20',
         'password' => 'required|min:4',
-        'birthday' => 'required|date',
-        'gender' => ['required', new Enum(GenderEnums::class)],
         'email' => 'required|email|unique:users,email',
     ];
     }
 
-        // todo rules of users Edit
-        protected function rulesUpdate(){
-          return [
-            'name' => 'required|min:4|max:20',
-            'password' => 'required|min:4',
-            'birthday' => 'required|date',
-            'email' => 'required|email|unique:users,email',
-        ];
-        }
+    // todo rules of users Edit
+    protected function rulesUpdate(){
+      return [
+        'name' => 'required|min:4|max:20',
+        'password' => 'required|min:4',
+        'email' => 'required|email|unique:users,email',
+    ];
+    }
     
 
 

@@ -1,13 +1,30 @@
 <footer class="footer mt-5">
     <div class="container-fluid">
+
         <div class="row">
             <div class="col-12 col-lg-12">
-                <div class="shape p-3 p-md-4 p-lg-5" id="shape"></div>
+                <div class="shape p-3 p-md-4 p-lg-5" id="shape">
+                    <div class="d-flex flex-column justify-content-center align-items-center text-center p-4">
+                        <div class="d-flex align-items-center justify-content-center"
+                            style="max-width: 800px; width: 100%;">
+                            <h1 class="display-4 mb-0 mr-3">انضم الينا لنشر كتاباتك</h1>
+                            <div class="input-group">
+                                <input type="text" class="form-control"
+                                    placeholder="ادخل البريد الالكتروني الخاص بك" />
+                                <div class="input-group-append">
+                                    <button class="btn btn-warning">اشتراك</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
+
+
         <div class="row text-center">
             <!-- Column -->
-            <div class="col-md-10 d-flex justify-content-between align-items-center">
+            <div class="col-md-10 d-flex justify-content-between align-items-center" id="text-icon">
                 <div class="text-items d-flex">
                     <span class="text-item">الأقسام</span>
                     <span class="text-item">المؤلفين</span>
@@ -47,10 +64,5 @@
                 </div>
             </div>
         </div>
-
-
     </div>
 </footer>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>

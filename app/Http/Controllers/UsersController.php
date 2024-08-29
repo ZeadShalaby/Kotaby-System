@@ -3,13 +3,25 @@
 namespace App\Http\Controllers;
 
 use Exception;
+use App\Models\Role;
+use App\Models\User;
+use App\Models\Admin;
+use App\Enums\GuardEnums;
+use App\Traits\ImageTrait;
+use App\Traits\MethodTrait;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Traits\ResponseTrait;
+use App\Traits\Requests\TestAuth;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use App\Traits\validator\ValidatorTrait;
 
 class UsersController extends Controller
 {
-    //
+    use ImageTrait , ValidatorTrait , TestAuth , ResponseTrait,MethodTrait;
+
 
    // todo profile page
    public function index()
@@ -26,32 +38,34 @@ class UsersController extends Controller
     // todo login page
     function home()
     {
-        return view('section.home');
+        return view('Users.best');
     }
 
     // todo Login Users
     public function login(Request $request){
         try{
-        $infofield = $this->CheckField($request);
-        // ! valditaion
-        $rules = $this->rulesLogin($infofield['fields']);    
-        $validator = $this->validate($request,$rules);
-        if($validator !== true){return back()->with('error', $validator);}
-
-        $auth = Auth::attempt($infofield['credentials']);
-        if(!$auth)
-        return back()->with('error', "information not valid.");
-        }
-        catch(Exception $ex){
-            return $ex->getMessage();
+            $infofield = $this->CheckField($request);
+            // ! valditaion
+            $rules = $this->rulesAuthLogin($infofield['fields']);    
+            $validator = $this->validate($request,$rules);
+            if($validator !== true){return back()->with('error', $validator);}
+            $auth = Auth::attempt($infofield['credentials']);
+            return view('Users.home');
+            if(!$auth)
+            return $this->AuthAdmin($infofield);
+            }
+            catch(Exception $ex){
+                return $ex->getMessage();
         }
     }
+
 
     // todo register page
     function registerIndex()
     {
-        return view('Auth.register');
+        return view('Auth.regist');
     }
+
 
 
     // todo add new account
@@ -65,13 +79,13 @@ class UsersController extends Controller
         $customer = User::create([
             'name'     => $request->name,
             'username' => Str::slug($request->name) . '_' . strtoupper(Str::random(3)),
-            'gmail'    => $request->gmail,
+            'email'    => $request->email,
             'password' => Hash::make($request->password),
+            'role'     => GuardEnums::USER->value
         ]);
-        $this->Addmedia($customer , "/images/users/users.png");
-         
+        $this->Addmedia($customer , "/images/users/users.png"); 
         if($customer){
-            return redirect('/users/login')->with('status', "Welcome : ".$customer->username);}
+            return redirect('/users/login')->with('success', "Welcome : ".$customer->username);}
             else{return back()->with('error', "Some Thing Wrong .");}
     }
 
@@ -80,7 +94,8 @@ class UsersController extends Controller
      */
     public function edit(User $user)
     {
-
+         $user = $user->load('media_one');
+         return view('Auth.edit',compact('user'));
     }
 
     // todo profile page
@@ -99,6 +114,6 @@ class UsersController extends Controller
     function logout()
     {
         Auth::logout();
-        return redirect('/');
+        return redirect('/users/login');
     }
 }

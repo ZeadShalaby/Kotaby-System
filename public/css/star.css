@@ -1,0 +1,115 @@
+.modal-dialog {
+    max-width: 600px;
+    /* تحديد أقصى عرض للمودال */
+    margin: 1.75rem auto;
+    /* ضبط المسافة العلوية والسفلية للمودال */
+    width: 90%;
+    /* تحديد عرض المودال كـ 90% من عرض الشاشة */
+}
+
+.modal-content {
+    border-radius: 0.75rem;
+    border: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.modal-header {
+    border-bottom: none;
+    background-color: #f8f9fa;
+    padding: 1rem 1.5rem;
+    text-align: right;
+    /* محاذاة النصوص إلى اليمين في رأس المودال */
+}
+
+.modal-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin: 0;
+    /* إزالة الهوامش الافتراضية */
+}
+
+.btn-close {
+    font-size: 1.25rem;
+    background: none;
+    border: none;
+    color: #6c757d;
+}
+
+.modal-body {
+    padding: 1.5rem;
+    text-align: right;
+    /* محاذاة النصوص إلى اليمين في جسم المودال */
+}
+
+.form-label {
+    font-weight: 500;
+    color: #495057;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.stars {
+    display: flex;
+    justify-content: flex-end;
+    /* محاذاة النجوم إلى اليمين */
+    margin-bottom: 1rem;
+}
+
+.stars input {
+    display: none;
+}
+
+.stars label {
+    font-size: 2rem;
+    color: #ccc;
+    cursor: pointer;
+    transition: color 0.2s ease-in-out;
+}
+
+.stars input:checked~label,
+.stars input:checked~label~label {
+    color: #ffcc00;
+}
+
+.stars label:hover,
+.stars label:hover~label {
+    color: #ffcc00;
+}
+
+
+.form-control {
+    border-radius: 0.375rem;
+}
+
+.form-control.textarea {
+    width: 100%;
+    /* عرض الـ textarea ليأخذ المساحة الكاملة */
+    height: 150px;
+    /* تعيين ارتفاع مبدئي */
+    resize: vertical;
+    /* السماح بتغيير الحجم عمودياً فقط */
+}
+
+.modal-footer {
+    border-top: none;
+    background-color: #f8f9fa;
+    padding: 1rem 1.5rem;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    border-color: #6c757d;
+    color: #fff;
+}
+
+.btn-primary {
+    background-color: #1B3764;
+    border-color: #1B3764;
+    ;
+    color: #fff;
+}
+
+.btn-primary:hover,
+.btn-secondary:hover {
+    opacity: 0.9;
+}

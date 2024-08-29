@@ -11,24 +11,30 @@
                     <div class="cricle"></div>
                 </li>
                 <li class="nav-item" id="nav-item">
-                    <a class="nav-link" href="#">الافضل</a>
+                    <a class="nav-link" href="{{ view('Users.best') }}">الافضل</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="authorsDropdown" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         الأقسام
                     </a>
-                    <div class="dropdown-menu" aria-labelledby="authorsDropdown">
-                        <a class="dropdown-item" href="#">مؤلف 1</a>
-                        <a class="dropdown-item" href="#">مؤلف 2</a>
-                    </div>
+                    <ul class="dropdown-menu" aria-labelledby="authorsDropdown">
+                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    </ul>
+                </li>
+
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">المؤلفين</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="btn custom-button my-2 my-sm-0" style="border: 2px solid #1B3764"
-                        type="button">
+                    <a href="{{ route('bookindex') }}" class="btn custom-button my-2 my-sm-0"
+                        style="border: 2px solid #1B3764" type="button">
                         <img src="{{ asset('images/img/open-book.png') }}" style="width: 20px">
                         انشر كتابك
                     </a>
@@ -38,8 +44,3 @@
         </div>
     </div>
 </nav>
-
-<!-- Bootstrap JS, Popper.js, and jQuery -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

@@ -1,0 +1,58 @@
+/* Style the modal to appear as a sidebar */
+.modal-dialog {
+    position: fixed;
+    top: 0;
+    right: 0;
+    margin: 0;
+    height: 100vh;
+    max-width: 300px;
+    /* Adjust width as needed */
+}
+
+.modal-content {
+    height: 100%;
+    border: none;
+}
+
+.modal-body {
+    overflow-y: auto;
+    /* Scrollable content */
+}
+
+.modal-header,
+.modal-footer {
+    border: none;
+}
+
+.card {
+    border-radius: 15px;
+}
+
+.list-group-item {
+    border: none;
+    padding: 15px 20px;
+    font-size: 1.1rem;
+    color: #2c3e50;
+}
+
+.list-group-item i {
+    color: #2c3e50;
+    font-size: 1.4rem;
+}
+
+.icon-margin {
+    margin-left: 10px;
+    /* المسافة بين الأيقونة والنص */
+}
+
+.custom-modal-header {
+    position: relative;
+}
+
+.custom-close-button {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 0.75rem 1.25rem;
+    margin: 0;
+}

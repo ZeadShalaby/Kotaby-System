@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Role;
 use App\Models\User;
+use App\Enums\GuardEnums;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -22,29 +23,17 @@ class UserFactory extends Factory
         return [
             'name' => $this->faker->name(),
             'username' => Str::slug($this->faker->name()) . '_' . strtoupper(Str::random(3)),           
-            'gmail' => fake()->unique()->safeEmail(),
+            'email' => fake()->unique()->safeEmail(),
         ];
     }
 
-    // ? create admin fun  
-    public function admin()
-    {
-        return $this->state(function (array $attributes) {
-            return [
-                
-                'role' => Role::ADMIN,
-                'password' => bcrypt('admin'), //? Default password
-
-            ];
-        });
-    }
     
     // ? create author fun
     public function author()
     {
         return $this->state(function (array $attributes) {
             return [
-                'role' => Role::AUTHOR,
+                'role' => GuardEnums::AUTHOR,
                 'password' => bcrypt('author'), //? Default password
 
             ];
@@ -56,7 +45,7 @@ class UserFactory extends Factory
     {
         return $this->state(function (array $attributes) {
             return [
-                'role' => Role::USER,
+                'role' => GuardEnums::USER,
                 'password' => bcrypt('user'), //? Default password
 
             ];

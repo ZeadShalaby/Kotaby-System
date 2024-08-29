@@ -2,6 +2,7 @@
 
 use PrettyRoutes\ServiceProvider;
 use Illuminate\Support\Facades\Facade;
+use Laravel\Socialite\Facades\Socialite;
 
 return [
 
@@ -155,7 +156,7 @@ return [
     |
     */
     // todo route lest in localhost page
-    ServiceProvider::class,
+    PrettyRoutes\ServiceProvider::class,
 
 
     'providers' => [
@@ -213,7 +214,9 @@ return [
     */
 
     'aliases' => Facade::defaultAliases()->merge([
-        // 'ExampleClass' => App\Example\ExampleClass::class,
+        // 'Example' => App\Facades\Example::class,
+        'Socialite' => Socialite::class,
     ])->toArray(),
+
 
 ];

@@ -8,8 +8,6 @@ h3 {
     color: #1B3764;
 }
 
-
-
 #login {
     border-radius: 32px;
     width: 466px;
@@ -36,4 +34,64 @@ h3 {
 
 #social img {
     width: 40px;
+}
+
+.form-control,
+.card {
+    border-radius: 15px;
+}
+
+/* تحسين الاستجابة على الأجهزة الصغيرة */
+@media (max-width: 576px) {
+    .dropdown-menu {
+        width: 100%;
+        /* اجعل القائمة المنسدلة تمتد بعرض كامل */
+    }
+}
+
+/* تخصيص عام */
+.dropdown-menu {
+    background-color: #fff;
+    /* يمكنك تخصيص لون الخلفية */
+    border-radius: 0.25rem;
+    /* إضافة حواف دائرية */
+    padding: 10px;
+}
+
+.dropdown-item:hover {
+    background-color: #f8f9fa;
+    /* تغيير لون الخلفية عند المرور */
+    color: #000;
+    /* تغيير لون النص عند المرور */
+}
+
+/* Custom styling for radio buttons */
+.form-check-input:checked {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.form-check-label {
+    font-weight: bold;
+}
+
+/* Custom radio button layout */
+.radio-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.radio-item {
+    flex: 1 1 45%;
+    /* Adjust the width of each radio item */
+    min-width: 200px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.radio-item:hover {
+    border-color: #007bff;
 }

@@ -9,12 +9,67 @@
 }
 
 .shape {
-    height: 115px;
+    height: 125px;
     max-width: 996px;
     background-color: #1B3764;
     margin: 10px auto;
     border-radius: 10px;
+    position: relative;
+
 }
+
+.display-4 {
+    color: #FFFFFF;
+    font-size: 1.5rem;
+    margin-right: 20px;
+    font-family: Almarai;
+    font-weight: 400;
+    line-height: 36px;
+    text-align: right;
+
+}
+
+.d-flex .display-4 {
+    margin-left: 20px;
+}
+
+.input-group {
+    background-color: #FFFFFF;
+}
+
+.shape .d-flex.flex-column {
+    transform: translateY(-30px);
+    /* رفع العناصر بمقدار أكبر */
+}
+
+
+@media (max-width: 768px) {
+    .shape .d-flex.flex-column {
+        transform: translateY(-20px);
+        /* تقليل التحريك للأعلى على الشاشات الصغيرة */
+    }
+
+    .display-4 {
+        font-size: 1.25rem;
+        text-align: center;
+        margin-bottom: 15px;
+        /* تقليل المسافة على الشاشات الصغيرة */
+    }
+
+    .d-flex.align-items-center {
+        flex-direction: column;
+    }
+
+    .input-group {
+        width: 100%;
+    }
+
+    .input-group .form-control,
+    .input-group .btn-warning {
+        border-radius: 4px;
+    }
+}
+
 
 .legal {
     margin-top: 20px;
@@ -53,7 +108,7 @@
     display: flex;
     gap: 80px;
     /* Increase the gap between text items */
-    margin-right: 260px;
+    margin-right: 225px;
     /* Move text items closer to icons */
     flex-wrap: wrap;
     /* Allows wrapping on smaller screens */
@@ -70,6 +125,10 @@
     align-items: center;
     flex-wrap: wrap;
     /* Ensure items wrap on smaller screens */
+}
+
+#text-icon {
+    margin: 20px;
 }
 
 .custom-line {

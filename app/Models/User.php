@@ -22,7 +22,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'username',
-        'gmail',
+        'email',
         'password',
         'role',
         'social_type'
@@ -36,6 +36,7 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'updated_at',
+        'social_type'
     ];
 
     /**

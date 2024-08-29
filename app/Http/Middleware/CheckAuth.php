@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
 class CheckAuth
@@ -17,7 +18,8 @@ class CheckAuth
     {
         $auth = auth()->user();
         if(!$auth){
-            abort(401, 'Unauthorized');
+            if(!Auth::guard('admin')->check()){
+            abort(401, 'Unauthentication');}
         }
         return $next($request);
     }
