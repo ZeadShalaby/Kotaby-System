@@ -103,7 +103,7 @@ Install dependencies
      ```
 3. **Configure Mail Settings**:
    - Open the `.env` file in a text editor.
-   - Set the following variables to match your database setup:
+   - Set the following variables to match your MAIL setup:
      ```plaintext
       MAIL_MAILER=smtp
       MAIL_HOST=smtp.gmail.com
