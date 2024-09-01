@@ -8,6 +8,7 @@ use App\Traits\ResponseTrait;
 trait ValidatorTrait
 
 {  
+    use ResponseTrait;
   
     //todo check validate done or not
     public function validate($request, array $rules, array $messages = [], array $attributes = []){

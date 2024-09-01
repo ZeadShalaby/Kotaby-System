@@ -7,19 +7,16 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="<?php echo e(asset('css/footer.css')); ?>">
     <link rel="stylesheet" href="<?php echo e(asset('css/nav.css')); ?>">
     <link rel="stylesheet" href="<?php echo e(asset('css/nav-bootom.css')); ?>">
-    <link rel="stylesheet" href="<?php echo e(asset('css/home.css')); ?>">
     <link rel="stylesheet" href="<?php echo e(asset('css/login.css')); ?>">
     <link rel="stylesheet" href="<?php echo e(asset('css/session.css')); ?>">
     <link rel="stylesheet" href="<?php echo e(asset('css/edit.css')); ?>">
-    <link rel="stylesheet" href="<?php echo e(asset('css/user-dashboard.css')); ?>">
     <link rel="stylesheet" href="<?php echo e(asset('css/tape.css')); ?>"> <!-- شريط البريدكرمب -->
-
+    <link rel="stylesheet" href="<?php echo e(asset('css/card.css')); ?>">
     <title>Kotaby-System</title>
 </head>
 
@@ -38,10 +35,17 @@
 
 
 
+    <script src="<?php echo e(asset('js/star.js')); ?>"></script>
+
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Add FontAwesome for icons -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 

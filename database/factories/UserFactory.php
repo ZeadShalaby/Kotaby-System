@@ -6,6 +6,7 @@ use App\Models\Role;
 use App\Models\User;
 use App\Enums\GuardEnums;
 use Illuminate\Support\Str;
+use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -24,6 +25,7 @@ class UserFactory extends Factory
             'name' => $this->faker->name(),
             'username' => Str::slug($this->faker->name()) . '_' . strtoupper(Str::random(3)),           
             'email' => fake()->unique()->safeEmail(),
+            'email_verified_at' => Carbon::now(),
         ];
     }
 

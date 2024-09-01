@@ -26,6 +26,7 @@ return new class extends Migration
             $table->index('star');
             $table->bigInteger('view')->unsigned()->nullable();
             $table->index('view');
+            $table->string('locations')->nullable();
             $table->timestamps();
         });
     }

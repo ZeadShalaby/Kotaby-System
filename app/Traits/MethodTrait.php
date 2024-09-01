@@ -2,27 +2,20 @@
 
 namespace App\Traits;
 
-use App\Models\Role;
 use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 
 trait MethodTrait
 
 {   
 
-/**
-     * todo Display the specified resource.
-     */
-    public function notFollow($num)
+    // todo check login with username or email //
+    protected function CheckField($request)
     {
-        $followingIds = auth()->user()->following->pluck('id')->toArray();
-        $usersNotFollowing = User::whereNotIn('id', $followingIds)->where('id', '!=', auth()->user()->id)->with('media_one')->take($num)->get();
-        return $usersNotFollowing;
-    }
-
-     // todo check login with username or email //
-     protected function CheckField($request)
-     {
      
          // ?login with phone number or email
          $field = filter_var($request->input('field'),FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
@@ -35,15 +28,45 @@ trait MethodTrait
             'fields' => $field 
         );
                   
-     }
-     
-     // todo add new media 
-     protected function Addmedia($info , $media)
-     {
-         $info->media()->create([
-             'media' => $media
-           ]);
-     }
+    }
+
+    // todo check gmail and return code to do forget pass //
+    protected function checkmail($email)
+    {
+        $id = User::where('email', $email)->value('id');
+        // Store a value in localStorage
+        $user = User::find($id);
+        if ($user) {
+            $user->code = random_int(100000, 999999);
+            return $user;
+        }
+        return null;
+    }
+
+    // todo check if user login or not use social account 
+    protected function checkAuth($socialiteUser){
+        $user = User::where('email', $socialiteUser->email)->first();
+        if ($user) {
+            Auth::guard('web')->login($user);
+            return redirect()->route('homeindex');
+        } else { 
+        // ? sent request to method register create new user
+        $request = new Request([
+            'name'     => $socialiteUser->name,
+            'email'    => $socialiteUser->email,
+            'img'      => $socialiteUser->avatar
+        ]);
+        return $request;}
+    }
+    
+
+    // todo add new media 
+    protected function Addmedia($info , $media)
+    {
+        $info->media()->create([
+            'media' => $media
+        ]);
+    }
 
 
 }

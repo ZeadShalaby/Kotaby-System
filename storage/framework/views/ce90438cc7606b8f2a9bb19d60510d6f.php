@@ -1,9 +1,20 @@
-@extends('layouts.app')
-@section('content')
-    <link rel="stylesheet" href="{{ asset('css/card.css') }}"> <!-- شريط البريدكرمب -->
 
-    @component('components.section-tape')
-    @endcomponent
+<?php $__env->startSection('content'); ?>
+    <!-- Hero Section -->
+    <!-- Hero Section -->
+    <div class="hero d-flex flex-column justify-content-center align-items-center text-center p-4">
+        <h1 class="display-4">كتبي... سافر بكُتبك إلى عالم آخر.</h1>
+        <div class="d-flex">
+            <input type="text" class="form-control custom-input me-2" placeholder="ابحث عن كتاب أو مؤلف أو قسم كتاب"
+                style="width: 632px;" />
+            <button class="btn btn-warning">ابحث</button>
+        </div>
+    </div>
+
+    <!--- input Edit --->
+    <?php $__env->startComponent('components.setting-right'); ?>
+    <?php echo $__env->renderComponent(); ?>
+
     <div class="container">
         <div class="row">
 
@@ -13,31 +24,28 @@
 
                     <p class="author">أدهم شرقاوي</p>
                 </div>
-                <img src="{{ asset('images/books/book1.png') }}" alt="رسائل من القرآن">
+                <img src="<?php echo e(asset('images/books/book1.png')); ?>" alt="رسائل من القرآن">
                 <div class="rating-stars">
 
                     <p class="title">كتاب رسائل من القرآن</p>
-                    <a href="{{ route('users.loginindex') }}"><i class="save-icon fas fa-bookmark"></i></a>
+                    <a href="<?php echo e(route('users.loginindex')); ?>"><i class="save-icon fas fa-bookmark"></i></a>
                 </div>
                 <div class="rating-stars">
                     <p class="stars">&#9733; &#9733; &#9733; &#9733; &#9734;</p>
                     <p class="rating">234 تقييم</p>
                 </div>
-                {{-- <div class="rating-stars">
-                    <a href="#"><i class="fas fa-edit edit-icon"></i></a> <!-- Edit Icon -->
-                    <a href="#" style="color: red"><i class="fas fa-trash delete-icon"></i></a> <!-- Delete Icon -->
-                </div> --}}
+                
             </div>
             <div class="book-card">
                 <div class="author-container">
                     <i class="save-icon">&#x1F516;</i>
                     <p class="author">أدهم شرقاوي</p>
                 </div>
-                <img src="{{ asset('images/books/book1.png') }}" alt="رسائل من القرآن">
+                <img src="<?php echo e(asset('images/books/book1.png')); ?>" alt="رسائل من القرآن">
                 <div class="rating-stars">
 
                     <p class="title">كتاب رسائل من القرآن</p>
-                    <a href="{{ route('users.loginindex') }}"><i class="save-icon fas fa-bookmark"></i></a>
+                    <a href="<?php echo e(route('users.loginindex')); ?>"><i class="save-icon fas fa-bookmark"></i></a>
                 </div>
                 <div class="rating-stars">
                     <p class="stars">&#9733; &#9733; &#9733; &#9733; &#9734;</p>
@@ -49,7 +57,7 @@
                     <i class="save-icon">&#x1F516;</i>
                     <p class="author">أدهم شرقاوي</p>
                 </div>
-                <img src="{{ asset('images/books/book1.png') }}" alt="رسائل من القرآن">
+                <img src="<?php echo e(asset('images/books/book1.png')); ?>" alt="رسائل من القرآن">
                 <div class="rating-stars">
 
                     <p class="title">كتاب رسائل من القرآن</p>
@@ -65,7 +73,7 @@
                     <i class="save-icon">&#x1F516;</i>
                     <p class="author">أدهم شرقاوي</p>
                 </div>
-                <img src="{{ asset('images/books/book1.png') }}" alt="رسائل من القرآن">
+                <img src="<?php echo e(asset('images/books/book1.png')); ?>" alt="رسائل من القرآن">
                 <div class="rating-stars">
 
                     <p class="title">كتاب رسائل من القرآن</p>
@@ -84,9 +92,43 @@
             <div class="book-card">
                 <div class="author-container">
                     <i class="save-icon">&#x1F516;</i>
+
                     <p class="author">أدهم شرقاوي</p>
                 </div>
-                <img src="{{ asset('images/books/book1.png') }}" alt="رسائل من القرآن">
+                <img src="<?php echo e(asset('images/books/book1.png')); ?>" alt="رسائل من القرآن">
+                <div class="rating-stars">
+
+                    <p class="title">كتاب رسائل من القرآن</p>
+                    <a href="<?php echo e(route('users.loginindex')); ?>"><i class="save-icon fas fa-bookmark"></i></a>
+                </div>
+                <div class="rating-stars">
+                    <p class="stars">&#9733; &#9733; &#9733; &#9733; &#9734;</p>
+                    <p class="rating">234 تقييم</p>
+                </div>
+                
+            </div>
+            <div class="book-card">
+                <div class="author-container">
+                    <i class="save-icon">&#x1F516;</i>
+                    <p class="author">أدهم شرقاوي</p>
+                </div>
+                <img src="<?php echo e(asset('images/books/book1.png')); ?>" alt="رسائل من القرآن">
+                <div class="rating-stars">
+
+                    <p class="title">كتاب رسائل من القرآن</p>
+                    <a href="<?php echo e(route('users.loginindex')); ?>"><i class="save-icon fas fa-bookmark"></i></a>
+                </div>
+                <div class="rating-stars">
+                    <p class="stars">&#9733; &#9733; &#9733; &#9733; &#9734;</p>
+                    <p class="rating">234 تقييم</p>
+                </div>
+            </div>
+            <div class="book-card">
+                <div class="author-container">
+                    <i class="save-icon">&#x1F516;</i>
+                    <p class="author">أدهم شرقاوي</p>
+                </div>
+                <img src="<?php echo e(asset('images/books/book1.png')); ?>" alt="رسائل من القرآن">
                 <div class="rating-stars">
 
                     <p class="title">كتاب رسائل من القرآن</p>
@@ -102,39 +144,7 @@
                     <i class="save-icon">&#x1F516;</i>
                     <p class="author">أدهم شرقاوي</p>
                 </div>
-                <img src="{{ asset('images/books/book1.png') }}" alt="رسائل من القرآن">
-                <div class="rating-stars">
-
-                    <p class="title">كتاب رسائل من القرآن</p>
-                    <a href="#"><i class="save-icon fas fa-bookmark"></i></a>
-                </div>
-                <div class="rating-stars">
-                    <p class="stars">&#9733; &#9733; &#9733; &#9733; &#9734;</p>
-                    <p class="rating">234 تقييم</p>
-                </div>
-            </div>
-            <div class="book-card">
-                <div class="author-container">
-                    <i class="save-icon">&#x1F516;</i>
-                    <p class="author">أدهم شرقاوي</p>
-                </div>
-                <img src="{{ asset('images/books/book1.png') }}" alt="رسائل من القرآن">
-                <div class="rating-stars">
-
-                    <p class="title">كتاب رسائل من القرآن</p>
-                    <a href="#"><i class="save-icon fas fa-bookmark"></i></a>
-                </div>
-                <div class="rating-stars">
-                    <p class="stars">&#9733; &#9733; &#9733; &#9733; &#9734;</p>
-                    <p class="rating">234 تقييم</p>
-                </div>
-            </div>
-            <div class="book-card">
-                <div class="author-container">
-                    <i class="save-icon">&#x1F516;</i>
-                    <p class="author">أدهم شرقاوي</p>
-                </div>
-                <img src="{{ asset('images/books/book1.png') }}" alt="رسائل من القرآن">
+                <img src="<?php echo e(asset('images/books/book1.png')); ?>" alt="رسائل من القرآن">
                 <div class="rating-stars">
 
                     <p class="title">كتاب رسائل من القرآن</p>
@@ -147,5 +157,8 @@
             </div>
 
         </div>
+
     </div>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\my projects\company task\hash-studio\Library-System\resources\views/Users/home.blade.php ENDPATH**/ ?>

@@ -1,10 +1,5 @@
 /* Container for book cards */
 .container-card {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
-    /* Space between cards */
     margin-top: 20px;
     margin-bottom: 20px;
     max-width: 1200px;
@@ -22,41 +17,32 @@
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    /* Enhanced shadow */
     padding: 10px;
     text-align: center;
     position: relative;
-    max-width: 220px;
     width: 100%;
-    margin: 0 auto;
     box-sizing: border-box;
     overflow: hidden;
-    /* Ensure the image does not overflow the card */
     transition: box-shadow 0.3s, transform 0.3s;
-    /* Animation on hover */
 }
 
 /* Card hover effect */
 .book-card:hover {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-    /* Darker shadow on hover */
     cursor: pointer;
-    /* Slightly scale up the card */
 }
 
 /* Image styling */
 .book-card img {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
     cursor: pointer;
-
     border-radius: 10px;
-    transition: transform 0.3s;    /* Animation for the image */
+    transition: transform 0.3s;
 }
 
 /* Image hover effect */
 .book-card:hover img {
     transform: scale(1.1);
-    /* Slightly enlarge the image on hover */
 }
 
 /* Save icon styling */
@@ -79,9 +65,7 @@
 .book-card .author-container {
     display: flex;
     justify-content: space-between;
-    /* Space between icon and name */
     align-items: center;
-    /* Center items vertically */
     margin-bottom: 10px;
     text-align: right;
 }
@@ -105,12 +89,10 @@
 .book-card .stars {
     color: #ff9800;
     margin-left: 20px;
-    /* Space between stars and rating text */
 }
 
 /* Rating text styling */
 .book-card .rating {
     font-size: 16px;
-    /* Adjust font size if needed */
     color: #777;
 }

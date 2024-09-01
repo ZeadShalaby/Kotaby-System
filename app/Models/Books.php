@@ -26,6 +26,7 @@ class Books extends Model
         'user_id',
         'star',
         'view',
+        'locations'
     ];
 
     /**

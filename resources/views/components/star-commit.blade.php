@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="{{ asset('css/star.css') }}">
+
 <div class="container">
     <div class="modal fade" id="rateModal" tabindex="-1" aria-labelledby="rateModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -34,5 +36,5 @@
         </div>
     </div>
 
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#rateModal">أضف تقييم</button>
+
 </div>

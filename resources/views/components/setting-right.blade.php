@@ -15,7 +15,7 @@
                 <h5 class="mb-3">Nada Nasr</h5>
                 <ul class="list-group small align-items-start text-left">
                     <li class="list-group-item d-flex align-items-center cursor-pointer">
-                        <a href="#">
+                        <a href="{{ route('users.index') }}">
 
                             <i class="fas fa-user icon-margin"></i>
                             <span>الصفحة الشخصية</span>

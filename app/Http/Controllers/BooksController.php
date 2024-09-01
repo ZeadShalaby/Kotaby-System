@@ -39,7 +39,8 @@ class BooksController extends Controller
      */
     public function show(Request $request , Books $book)
     {
-
+        //   $book->with('user')->load('media_one');
+          return view('Auth.Books.show');
     }
 
      /**

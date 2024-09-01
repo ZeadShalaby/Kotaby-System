@@ -2,6 +2,8 @@
 namespace App\Traits\Requests;
 
 use App\Enums\GenderEnums;
+use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rules\Enum;
 
 trait TestAuth
@@ -42,7 +44,7 @@ trait TestAuth
     protected function rulesRegist(){
       return [
         'name' => 'required|min:4|max:20',
-        'password' => 'required|min:4',
+        'password' => 'nullable|min:4',
         'email' => 'required|email|unique:users,email',
     ];
     }
@@ -52,8 +54,8 @@ trait TestAuth
       return [
         'name' => 'required|min:4|max:20',
         'password' => 'required|min:4',
-        'email' => 'required|email|unique:users,email',
-    ];
+        'email' => ['required','email',Rule::unique('users', 'email')->ignore(Auth::user()->id),],
+      ];
     }
     
 

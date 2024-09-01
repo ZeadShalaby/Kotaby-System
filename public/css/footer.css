@@ -2,11 +2,14 @@
     padding: 30px 0;
     background-color: #D9D9D9;
     background-image: url("../images/img/wave00.png");
-    background-size: cover;
+
+    background-size: 100% 140%;
+    /* تغيير الحجم */
     background-repeat: no-repeat;
     height: auto;
     color: #2f2f2f;
 }
+
 
 .shape {
     height: 125px;

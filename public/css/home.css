@@ -1,12 +1,10 @@
 .hero {
     background-color: #FFCA4229;
     width: 100%;
-    max-width: 1040px;
+    max-width: 1110px;
     height: auto;
-    /* Adjust height automatically */
     min-height: 326px;
     margin: 20px auto;
-    /* Center horizontally with margin and small gap */
     box-sizing: border-box;
 }
 
@@ -23,28 +21,32 @@
 }
 
 .hero input[type="text"] {
-    margin-bottom: 15px;
     padding: 10px;
-    max-width: 500px;
+    width: 70%;
+    height: 45px;
+    max-width: 700px;
     border: 1px solid #ced4da;
-    border-radius: 5px;
+    border-radius: 5px 0 0 5px;
+    /* Rounded corners only on the left side */
+    margin-bottom: 0;
+    box-sizing: border-box;
+    /* Ensure padding doesn't affect the width */
 }
 
 .hero button {
     padding: 10px 20px;
     max-width: 150px;
+    height: 45px;
+    /* Match the input field height */
+    align-self: flex-start;
+    border-radius: 0 5px 5px 0;
+    /* Rounded corners only on the right side */
+    margin-left: -1px;
+    /* Remove the gap between input and button */
 }
 
-@media (min-width: 768px) {
-    .hero h1 {
-        font-size: 3rem;
-    }
-
-    .hero input[type="text"] {
-        width: 60%;
-    }
-
-    .hero button {
-        width: auto;
-    }
+.hero {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

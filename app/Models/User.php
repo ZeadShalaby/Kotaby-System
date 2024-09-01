@@ -7,10 +7,11 @@ use App\Models\User;
 use App\Models\Media;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -25,7 +26,8 @@ class User extends Authenticatable
         'email',
         'password',
         'role',
-        'social_type'
+        'social_type',
+        'email_verified_at'
     ];
 
     /**
@@ -36,7 +38,8 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'updated_at',
-        'social_type'
+        'social_type',
+        'email_verified_at'
     ];
 
     /**

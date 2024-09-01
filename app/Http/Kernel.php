@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\verified;
 use App\Http\Middleware\CheckAuth;
 use App\Http\Middleware\Checkuser;
 use App\Http\Middleware\CheckAdmin;
@@ -70,6 +71,7 @@ class Kernel extends HttpKernel
         'Auth'        => CheckAuth::class,
         'auth.admin'  => CheckAdmin::class,
         'auth.author' => CheckAuthor::class,
-        'auth.user'   => Checkuser::class
+        'auth.user'   => Checkuser::class,
+        'verified'    => verified::class
     ];
 }

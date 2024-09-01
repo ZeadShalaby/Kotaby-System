@@ -1,0 +1,24 @@
+.card {
+    border-radius: 15px;
+    border: 1px solid #e5e5e5;
+}
+
+.card-title {
+    font-weight: bold;
+    color: #263859;
+}
+
+.card-text {
+    font-size: 1rem;
+    color: #263859;
+    align-items: center
+}
+
+.card i {
+    font-size: 1.5rem;
+    color: #263859;
+}
+
+h2 {
+    color: #263859;
+}

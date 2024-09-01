@@ -1,10 +1,10 @@
-@extends('layouts.app')
-@section('content')
-    <link rel="stylesheet" href="{{ asset('css/add-book.css') }}">
+
+<?php $__env->startSection('content'); ?>
+    <link rel="stylesheet" href="<?php echo e(asset('css/add-book.css')); ?>">
 
     <!--- input Edit --->
-    @component('components.setting-right')
-    @endcomponent
+    <?php $__env->startComponent('components.setting-right'); ?>
+    <?php echo $__env->renderComponent(); ?>
     <div class="container form-container">
         <h2 class="text-center mb-4" id="title">أنشر كتابك على مكتبة كتبي</h2>
         <form>
@@ -81,5 +81,7 @@
             </div>
         </form>
     </div>
-    <script src="{{ asset('js/add-book.js') }}"></script>
-@endsection
+    <script src="<?php echo e(asset('js/add-book.js')); ?>"></script>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\my projects\company task\hash-studio\Library-System\resources\views/Author/add-book.blade.php ENDPATH**/ ?>

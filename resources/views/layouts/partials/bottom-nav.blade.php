@@ -11,26 +11,25 @@
                     <div class="cricle"></div>
                 </li>
                 <li class="nav-item" id="nav-item">
-                    <a class="nav-link" href="{{ view('Users.best') }}">الافضل</a>
+                    <a class="nav-link" href="{{ route('commonindex') }}">الافضل</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="authorsDropdown" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="{{ route('dep.index') }}" role="button">
                         الأقسام
                     </a>
-                    <ul class="dropdown-menu" aria-labelledby="authorsDropdown">
+                    {{-- <ul class="dropdown-menu" aria-labelledby="authorsDropdown">
                         <li><a class="dropdown-item" href="#">Action</a></li>
                         <li><a class="dropdown-item" href="#">Another action</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
                         <li><a class="dropdown-item" href="#">Something else here</a></li>
-                    </ul>
+                    </ul> --}}
                 </li>
 
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">المؤلفين</a>
+                    <a class="nav-link" href="{{ route('users.authors') }}">المؤلفين</a>
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('bookindex') }}" class="btn custom-button my-2 my-sm-0"

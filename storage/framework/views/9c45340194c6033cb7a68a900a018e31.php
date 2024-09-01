@@ -11,26 +11,18 @@
                     <div class="cricle"></div>
                 </li>
                 <li class="nav-item" id="nav-item">
-                    <a class="nav-link" href="<?php echo e(view('Users.best')); ?>">الافضل</a>
+                    <a class="nav-link" href="<?php echo e(route('commonindex')); ?>">الافضل</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="authorsDropdown" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="<?php echo e(route('dep.index')); ?>" role="button">
                         الأقسام
                     </a>
-                    <ul class="dropdown-menu" aria-labelledby="authorsDropdown">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                    </ul>
+                    
                 </li>
 
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">المؤلفين</a>
+                    <a class="nav-link" href="<?php echo e(route('users.authors')); ?>">المؤلفين</a>
                 </li>
                 <li class="nav-item">
                     <a href="<?php echo e(route('bookindex')); ?>" class="btn custom-button my-2 my-sm-0"
