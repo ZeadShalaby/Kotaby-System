@@ -57,11 +57,10 @@ class Reviews extends Model
     *
     * @var array<int, string>
     */
-    public function book()
+    public function books()
     {
         return $this->belongsTo(Books::class, 'book_id')->with('meida_one');
     }
-
 
     
 }

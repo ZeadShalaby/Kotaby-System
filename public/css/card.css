@@ -21,7 +21,7 @@
     text-align: center;
     position: relative;
     width: 100%;
-    box-sizing: border-box;
+    min-width: 100%;
     overflow: hidden;
     transition: box-shadow 0.3s, transform 0.3s;
 }
@@ -55,7 +55,8 @@
 /* Author styling */
 .book-card .author {
     font-weight: bold;
-    color: #555;
+    font-size: 13px;
+    color: #263859;
     margin-bottom: 5px;
     display: inline-block;
     vertical-align: middle;
@@ -72,8 +73,9 @@
 
 /* Title styling */
 .book-card .title {
-    font-size: 16px;
-    color: #333;
+    font-weight: bold;
+    font-size: 15px;
+    color: #263859;
     margin-bottom: 10px;
 }
 

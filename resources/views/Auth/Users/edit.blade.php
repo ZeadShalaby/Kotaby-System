@@ -21,6 +21,15 @@
                         @component('components.edit-regist-input', ['user' => $user])
                         @endcomponent
 
+                        <!-- about textarea -->
+                        <div class="form-group">
+                            <label for="about" class="text-right d-block">نبذة عن الكاتب </label>
+                            <textarea
+                                class="dark:text-white text-gray-900 placeholder-gray-400 w-full bg-transparent border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 resize-none w-100 p-2 opacity-70 transition-opacity duration-300 ease-in-out"
+                                name="about" rows="4" placeholder="اكتب نبذة عنك هنا...">{{ $user->about }}</textarea>
+                        </div>
+
+
                         <button type="submit" class="btn save-btn btn-block">حفظ التغييرات</button>
                     </form>
                 </div>

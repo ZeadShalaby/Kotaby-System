@@ -36,7 +36,7 @@
                         </a>
                     </li>
                     <li class="list-group-item d-flex align-items-center cursor-pointer">
-                        <a href="{{ route('users.edit', Auth::user()->id) }}">
+                        <a href="{{ Auth::check() && Auth::user()->id ? route('users.edit', Auth::user()->id) : '#' }}">
 
                             <i class="fas fa-cog icon-margin"></i>
                             <span>تعديل الحساب</span>

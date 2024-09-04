@@ -57,14 +57,14 @@ class DatabaseSeeder extends Seeder
         ->author()
         ->count(9)
         ->create();
-        $admins->push($defAuthor);
+        $authors->push($defAuthor);
        
         //? Create 10 Users
         $users = User::factory()
         ->user()
         ->count(9)
         ->create();
-        $admins->push($defUser);
+        $users->push($defUser);
 
 
         //? Create 10 Departments
@@ -72,7 +72,7 @@ class DatabaseSeeder extends Seeder
 
  
         //? Create 10 Books
-        $books = Books::factory()->count(20)->create();
+        $books = Books::factory()->count(50)->create();
 
         //? Create 10 Location
         $location = Locations::factory()->count(20)->create();

@@ -4,12 +4,14 @@ namespace App\Models;
 
 use App\Models\Books;
 use App\Models\Media;
+use App\Models\Departments;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Departments extends Model
 {
-    use HasFactory;
+    use HasFactory , SoftDeletes ;
 
        /**
      * The attributes that are mass assignable.
@@ -29,20 +31,40 @@ class Departments extends Model
     protected $hidden = [
         'updated_at',
         'created_at',
+        'deleted_at'
     ];
 
-    // ! to return the total num of Boos for Departments // 
-    // ? total Boos for Departments
+
+    //! ////////
+    
+    // todo Method to get the count of books for this department
     public function getBooksCount()
     {
         return $this->books()->count();
     }
-
+    //todo Define the one-to-many relationship with books
     public function books()
     {
-        return $this->belongsToMany(Books::class, 'books', 'book_id')->withTimestamps();
+        return $this->hasMany(Books::class, 'dep_id');
     }
-   // ! //
+
+    // ! ///////
+
+
+        //! ////////
+    
+    // todo Method to get the count of books for this department
+    public function getstarCount()
+    {
+        return $this->stars()->count();
+    }
+    //todo Define the one-to-many relationship with books
+    public function stars()
+    {
+        return $this->hasMany(Books::class, 'stars');
+    }
+
+    // ! ///////
 
      /**
      * The attributes that are mass assignable.

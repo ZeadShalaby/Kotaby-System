@@ -27,8 +27,18 @@
             <div class="col-lg-3 col-md-6 mb-4">
                 <div class="card text-center shadow-sm">
                     <div class="card-body">
+                        <h5 class="card-title">قراءات</h5>
+                        <p class="card-text">{{ Auth::user()->getCountView() }} قراءات <i class="fas fa-book"></i></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mb-4">
+                <div class="card text-center shadow-sm">
+                    <div class="card-body">
                         <h5 class="card-title">مراجعاتي</h5>
-                        <p class="card-text">0 مراجعة <i class="fas fa-book"></i></p>
+                        <p class="card-text">{{ Auth::user()->getCountMyReview() }} مراجعة <i
+                                class="fas fa-star icon-margin"></i>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -41,14 +51,7 @@
                 </div>
             </div>
 
-            <div class="col-lg-3 col-md-6 mb-4">
-                <div class="card text-center shadow-sm">
-                    <div class="card-body">
-                        <h5 class="card-title">قراءات</h5>
-                        <p class="card-text">0 قراءات <i class="fas fa-book"></i></p>
-                    </div>
-                </div>
-            </div>
+
         </div>
     </div>
 @endsection

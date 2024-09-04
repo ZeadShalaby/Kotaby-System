@@ -18,7 +18,7 @@ class DepartmentsFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => $this->faker->company,
+            'name' => substr($this->faker->name(), 0, 50), // Limit name to 30 characters
             'code' => $this->faker->unique()->regexify('[A-Z]{3}'),
         ];
     }

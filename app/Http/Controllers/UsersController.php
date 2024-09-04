@@ -6,6 +6,7 @@ use Exception;
 use App\Models\Role;
 use App\Models\User;
 use App\Models\Admin;
+use App\Models\Books;
 use App\Events\MailCode;
 use App\Mail\Codemailer;
 use App\Mail\VerfiyMail;
@@ -44,29 +45,22 @@ class UsersController extends Controller
     // todo login page
     function home()
     {
-        return view('Auth.Users.home');
+        $title = 'الشائع';
+        $book = Books::orderBy('view', 'desc')->with('media_one','department','user')->get();
+        $books = $book->map(function ($book) {
+            $book->stars = $book->getTypeStars();
+            return $book;
+        });
+        return view('Auth.Users.home',compact('title','books'));
     }
-    // todo login page
-    function common()
-    {
-        return view('Auth.Books.common');
-    }
+
     // todo register page
     function registerIndex()
     {
         return view('Auth.Users.regist');
     }
     // todo register page
-    function authors()
-    {
-        return view('Auth.Users.authors-card');
-    }
 
-    // todo register page
-    function depIndex()
-    {
-        return view('Auth.Departments.index');
-    }
 
     // todo verify Email
     public function verfiy(User $user)
@@ -140,7 +134,7 @@ class UsersController extends Controller
          return view('Auth.Users.edit',compact('user'));
     }
 
-    // todo profile page
+    // todo profile page update info
     public function update(Request $request,User $user)
     {
          // ! valditaion
@@ -153,6 +147,7 @@ class UsersController extends Controller
              'name'     => $request->name,
              'username' => Str::slug($request->name) . '_' . strtoupper(Str::random(3)),
              'email'    => $request->email,
+             'about'    => $request->about,
              'password' => Hash::make($request->password),
          ]);
          if($customer){
@@ -231,6 +226,32 @@ class UsersController extends Controller
         else {return back()->with('error', 'Authentication failed. Please try again.');}
             
     }
+
+    // todo change pass for user 
+    public function authors(Request $request){
+        $title = 'المؤلفين';
+        $author = User::where('role',GuardEnums::AUTHOR->value)->get();
+        $authors = $author->map(function ($author) {
+            $author->stars = $author->getTypeStars();
+            return $author;
+        });
+        return view('Auth.Users.authors-card',compact('authors','title'));   
+    }
+
+    // todo show info for user 
+    public function show(Request $request  , User $user){
+        $title = ' المؤلفين > معلومات الكاتب';
+        $authors = $user->load('media_one');
+        $authors->stars = $authors->getTypeStars();
+        $book = Books::where('user_id', $user->id)->with('media_one','department','user')->get();
+        $books = $book->map(function ($book) {
+            $book->stars = $book->getTypeStars();
+            return $book;
+        });
+        return view('Auth.Users.show',compact('authors','title','books'));
+        
+    }
+
 
     
 

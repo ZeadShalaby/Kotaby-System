@@ -1,180 +1,58 @@
 
 
 <?php $__env->startSection('content'); ?>
-    <!--- input Edit --->
+    <!--- setting  --->
     <?php $__env->startComponent('components.setting-right'); ?>
     <?php echo $__env->renderComponent(); ?>
     <!--- tape top --->
-    <?php $__env->startComponent('components.section-tape'); ?>
+    <?php $__env->startComponent('components.section-tape', ['title' => $title]); ?>
     <?php echo $__env->renderComponent(); ?>
 
     <link rel="stylesheet" href="<?php echo e(asset('css/user-dashboard.css')); ?>">
+    <link rel="stylesheet" href="<?php echo e(asset('css/author-card.css')); ?>">
 
 
-    <style>
-        .profile-card {
-            border-radius: 15px;
-            border: 1px solid #e5e5e5;
-            background-color: #fff;
-            padding: 20px;
-            text-align: center;
-        }
-
-        .profile-card img {
-            border-radius: 50%;
-            width: 100px;
-            height: 100px;
-            margin-bottom: 15px;
-        }
-
-        .profile-card h5 {
-            font-weight: bold;
-            color: #263859;
-            margin-bottom: 10px;
-        }
-
-        .profile-card .rating,
-        .profile-card .book-count {
-            color: #263859;
-            font-size: 0.9rem;
-        }
-
-        .profile-card .rating i {
-            color: #f4c542;
-            /* Star color */
-        }
-    </style>
 
     <div class="container my-5">
         <div class="row">
-            
-            <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
-                <div class="profile-card shadow-sm">
-                    <img src="<?php echo e(asset('images/users/user1.png')); ?>" alt="ييي">
-                    <h5>نؤيؤي</h5>
-                    <p class="rating">
-                        <i class="fas fa-star"></i><i class="fas fa-star"></i> <i class="fas fa-star"></i><i
-                            class="fas fa-star"></i><i class="fas fa-star"></i>(24 تقييم)
-                    </p>
-                    <p class="book-count">
-                        <i class="fas fa-book"></i> 124 كتاب
-                    </p>
-                </div>
-            </div>
-            
 
-            
-            <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
-                <div class="profile-card shadow-sm">
-                    <img src="<?php echo e(asset('images/users/user1.png')); ?>" alt="ييي">
-                    <h5>نؤيؤي</h5>
-                    <p class="rating">
-                        <i class="fas fa-star"></i><i class="fas fa-star"></i> <i class="fas fa-star"></i><i
-                            class="fas fa-star"></i><i class="fas fa-star"></i>(24 تقييم)
-                    </p>
-                    <p class="book-count">
-                        <i class="fas fa-book"></i> 124 كتاب
-                    </p>
-                </div>
-            </div>
-            
+            <?php $__currentLoopData = $authors; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $author): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
+                    <a href="<?php echo e(route('users.show', $author->id)); ?>" style="text-decoration: none">
+                        <div class="profile-card shadow-sm">
+                            <img src="<?php echo e(asset($author->media_one->media)); ?>" alt="<?php echo e($author->name); ?>">
+                            <h5><?php echo e($author->username); ?></h5>
 
-            
-            <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
-                <div class="profile-card shadow-sm">
-                    <img src="<?php echo e(asset('images/users/user1.png')); ?>" alt="ييي">
-                    <h5>نؤيؤي</h5>
-                    <p class="rating">
-                        <i class="fas fa-star"></i><i class="fas fa-star"></i> <i class="fas fa-star"></i><i
-                            class="fas fa-star"></i><i class="fas fa-star"></i>(24 تقييم)
-                    </p>
-                    <p class="book-count">
-                        <i class="fas fa-book"></i> 124 كتاب
-                    </p>
-                </div>
-            </div>
-            
+                            <p class="rating">
+                                
+                                <?php for($i = 1; $i <= $author->stars['fullStars']; $i++): ?>
+                                    <?php if($i <= 5): ?>
+                                        <i class="fas fa-star filled"></i>
+                                    <?php else: ?>
+                                    <?php endif; ?>
+                                <?php endfor; ?>
 
-            
-            <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
-                <div class="profile-card shadow-sm">
-                    <img src="<?php echo e(asset('images/users/user1.png')); ?>" alt="ييي">
-                    <h5>نؤيؤي</h5>
-                    <p class="rating">
-                        <i class="fas fa-star"></i><i class="fas fa-star"></i> <i class="fas fa-star"></i><i
-                            class="fas fa-star"></i><i class="fas fa-star"></i>(24 تقييم)
-                    </p>
-                    <p class="book-count">
-                        <i class="fas fa-book"></i> 124 كتاب
-                    </p>
-                </div>
-            </div>
-            
+                                
+                                <?php if($author->stars['hasHalfStar']): ?>
+                                    <i class="fas fa-star-half-alt half-filled"></i>
+                                <?php endif; ?>
 
-            
-            <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
-                <div class="profile-card shadow-sm">
-                    <img src="<?php echo e(asset('images/users/user1.png')); ?>" alt="ييي">
-                    <h5>نؤيؤي</h5>
-                    <p class="rating">
-                        <i class="fas fa-star"></i><i class="fas fa-star"></i> <i class="fas fa-star"></i><i
-                            class="fas fa-star"></i><i class="fas fa-star"></i>(24 تقييم)
-                    </p>
-                    <p class="book-count">
-                        <i class="fas fa-book"></i> 124 كتاب
-                    </p>
-                </div>
-            </div>
-            
+                                
+                                <?php for($i = 1; $i <= $author->stars['emptyStars']; $i++): ?>
+                                    <img src="<?php echo e(asset('images/img/empty-star.png')); ?>" class="empty-star" alt="Empty Star">
+                                <?php endfor; ?>
 
-            
-            <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
-                <div class="profile-card shadow-sm">
-                    <img src="<?php echo e(asset('images/users/user1.png')); ?>" alt="ييي">
-                    <h5>نؤيؤي</h5>
-                    <p class="rating">
-                        <i class="fas fa-star"></i><i class="fas fa-star"></i> <i class="fas fa-star"></i><i
-                            class="fas fa-star"></i><i class="fas fa-star"></i>(24 تقييم)
-                    </p>
-                    <p class="book-count">
-                        <i class="fas fa-book"></i> 124 كتاب
-                    </p>
+                                (<?php echo e(number_format($author->getAverageRating(), 1)); ?> تقييم)
+                            </p>
+                            <p class="book-count">
+                                <i class="fas fa-book"></i> <?php echo e($author->getBookssCount($author->id)); ?> كتاب
+                            </p>
+                        </div>
+                    </a>
                 </div>
-            </div>
-            
-
-            
-            <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
-                <div class="profile-card shadow-sm">
-                    <img src="<?php echo e(asset('images/users/user1.png')); ?>" alt="ييي">
-                    <h5>نؤيؤي</h5>
-                    <p class="rating">
-                        <i class="fas fa-star"></i><i class="fas fa-star"></i> <i class="fas fa-star"></i><i
-                            class="fas fa-star"></i><i class="fas fa-star"></i>(24 تقييم)
-                    </p>
-                    <p class="book-count">
-                        <i class="fas fa-book"></i> 124 كتاب
-                    </p>
-                </div>
-            </div>
-            
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
 
-            
-            <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
-                <div class="profile-card shadow-sm">
-                    <img src="<?php echo e(asset('images/users/user1.png')); ?>" alt="ييي">
-                    <h5>نؤيؤي</h5>
-                    <p class="rating">
-                        <i class="fas fa-star"></i><i class="fas fa-star"></i> <i class="fas fa-star"></i><i
-                            class="fas fa-star"></i><i class="fas fa-star"></i> ( 24 تقييم)
-                    </p>
-                    <p class="book-count">
-                        <i class="fas fa-book"></i> 124 كتاب
-                    </p>
-                </div>
-            </div>
-            
 
         </div>
     </div>

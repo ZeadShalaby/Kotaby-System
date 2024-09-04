@@ -1,180 +1,58 @@
 @extends('layouts.app')
 
 @section('content')
-    <!--- input Edit --->
+    <!--- setting  --->
     @component('components.setting-right')
     @endcomponent
     <!--- tape top --->
-    @component('components.section-tape')
+    @component('components.section-tape', ['title' => $title])
     @endcomponent
 
     <link rel="stylesheet" href="{{ asset('css/user-dashboard.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/author-card.css') }}">
 
 
-    <style>
-        .profile-card {
-            border-radius: 15px;
-            border: 1px solid #e5e5e5;
-            background-color: #fff;
-            padding: 20px;
-            text-align: center;
-        }
-
-        .profile-card img {
-            border-radius: 50%;
-            width: 100px;
-            height: 100px;
-            margin-bottom: 15px;
-        }
-
-        .profile-card h5 {
-            font-weight: bold;
-            color: #263859;
-            margin-bottom: 10px;
-        }
-
-        .profile-card .rating,
-        .profile-card .book-count {
-            color: #263859;
-            font-size: 0.9rem;
-        }
-
-        .profile-card .rating i {
-            color: #f4c542;
-            /* Star color */
-        }
-    </style>
 
     <div class="container my-5">
         <div class="row">
-            {{-- @foreach ($users as $user) --}}
-            <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
-                <div class="profile-card shadow-sm">
-                    <img src="{{ asset('images/users/user1.png') }}" alt="ييي">
-                    <h5>نؤيؤي</h5>
-                    <p class="rating">
-                        <i class="fas fa-star"></i><i class="fas fa-star"></i> <i class="fas fa-star"></i><i
-                            class="fas fa-star"></i><i class="fas fa-star"></i>(24 تقييم)
-                    </p>
-                    <p class="book-count">
-                        <i class="fas fa-book"></i> 124 كتاب
-                    </p>
-                </div>
-            </div>
-            {{-- @endforeach --}}
 
-            {{-- @foreach ($users as $user) --}}
-            <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
-                <div class="profile-card shadow-sm">
-                    <img src="{{ asset('images/users/user1.png') }}" alt="ييي">
-                    <h5>نؤيؤي</h5>
-                    <p class="rating">
-                        <i class="fas fa-star"></i><i class="fas fa-star"></i> <i class="fas fa-star"></i><i
-                            class="fas fa-star"></i><i class="fas fa-star"></i>(24 تقييم)
-                    </p>
-                    <p class="book-count">
-                        <i class="fas fa-book"></i> 124 كتاب
-                    </p>
-                </div>
-            </div>
-            {{-- @endforeach --}}
+            @foreach ($authors as $author)
+                <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
+                    <a href="{{ route('users.show', $author->id) }}" style="text-decoration: none">
+                        <div class="profile-card shadow-sm">
+                            <img src="{{ asset($author->media_one->media) }}" alt="{{ $author->name }}">
+                            <h5>{{ $author->username }}</h5>
 
-            {{-- @foreach ($users as $user) --}}
-            <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
-                <div class="profile-card shadow-sm">
-                    <img src="{{ asset('images/users/user1.png') }}" alt="ييي">
-                    <h5>نؤيؤي</h5>
-                    <p class="rating">
-                        <i class="fas fa-star"></i><i class="fas fa-star"></i> <i class="fas fa-star"></i><i
-                            class="fas fa-star"></i><i class="fas fa-star"></i>(24 تقييم)
-                    </p>
-                    <p class="book-count">
-                        <i class="fas fa-book"></i> 124 كتاب
-                    </p>
-                </div>
-            </div>
-            {{-- @endforeach --}}
+                            <p class="rating">
+                                {{-- Display full stars --}}
+                                @for ($i = 1; $i <= $author->stars['fullStars']; $i++)
+                                    @if ($i <= 5)
+                                        <i class="fas fa-star filled"></i>
+                                    @else
+                                    @endif
+                                @endfor
 
-            {{-- @foreach ($users as $user) --}}
-            <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
-                <div class="profile-card shadow-sm">
-                    <img src="{{ asset('images/users/user1.png') }}" alt="ييي">
-                    <h5>نؤيؤي</h5>
-                    <p class="rating">
-                        <i class="fas fa-star"></i><i class="fas fa-star"></i> <i class="fas fa-star"></i><i
-                            class="fas fa-star"></i><i class="fas fa-star"></i>(24 تقييم)
-                    </p>
-                    <p class="book-count">
-                        <i class="fas fa-book"></i> 124 كتاب
-                    </p>
-                </div>
-            </div>
-            {{-- @endforeach --}}
+                                {{-- Display half star if applicable --}}
+                                @if ($author->stars['hasHalfStar'])
+                                    <i class="fas fa-star-half-alt half-filled"></i>
+                                @endif
 
-            {{-- @foreach ($users as $user) --}}
-            <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
-                <div class="profile-card shadow-sm">
-                    <img src="{{ asset('images/users/user1.png') }}" alt="ييي">
-                    <h5>نؤيؤي</h5>
-                    <p class="rating">
-                        <i class="fas fa-star"></i><i class="fas fa-star"></i> <i class="fas fa-star"></i><i
-                            class="fas fa-star"></i><i class="fas fa-star"></i>(24 تقييم)
-                    </p>
-                    <p class="book-count">
-                        <i class="fas fa-book"></i> 124 كتاب
-                    </p>
-                </div>
-            </div>
-            {{-- @endforeach --}}
+                                {{-- Display empty stars --}}
+                                @for ($i = 1; $i <= $author->stars['emptyStars']; $i++)
+                                    <img src="{{ asset('images/img/empty-star.png') }}" class="empty-star" alt="Empty Star">
+                                @endfor
 
-            {{-- @foreach ($users as $user) --}}
-            <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
-                <div class="profile-card shadow-sm">
-                    <img src="{{ asset('images/users/user1.png') }}" alt="ييي">
-                    <h5>نؤيؤي</h5>
-                    <p class="rating">
-                        <i class="fas fa-star"></i><i class="fas fa-star"></i> <i class="fas fa-star"></i><i
-                            class="fas fa-star"></i><i class="fas fa-star"></i>(24 تقييم)
-                    </p>
-                    <p class="book-count">
-                        <i class="fas fa-book"></i> 124 كتاب
-                    </p>
+                                ({{ number_format($author->getAverageRating(), 1) }} تقييم)
+                            </p>
+                            <p class="book-count">
+                                <i class="fas fa-book"></i> {{ $author->getBookssCount($author->id) }} كتاب
+                            </p>
+                        </div>
+                    </a>
                 </div>
-            </div>
-            {{-- @endforeach --}}
-
-            {{-- @foreach ($users as $user) --}}
-            <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
-                <div class="profile-card shadow-sm">
-                    <img src="{{ asset('images/users/user1.png') }}" alt="ييي">
-                    <h5>نؤيؤي</h5>
-                    <p class="rating">
-                        <i class="fas fa-star"></i><i class="fas fa-star"></i> <i class="fas fa-star"></i><i
-                            class="fas fa-star"></i><i class="fas fa-star"></i>(24 تقييم)
-                    </p>
-                    <p class="book-count">
-                        <i class="fas fa-book"></i> 124 كتاب
-                    </p>
-                </div>
-            </div>
-            {{-- @endforeach --}}
+            @endforeach
 
 
-            {{-- @foreach ($users as $user) --}}
-            <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
-                <div class="profile-card shadow-sm">
-                    <img src="{{ asset('images/users/user1.png') }}" alt="ييي">
-                    <h5>نؤيؤي</h5>
-                    <p class="rating">
-                        <i class="fas fa-star"></i><i class="fas fa-star"></i> <i class="fas fa-star"></i><i
-                            class="fas fa-star"></i><i class="fas fa-star"></i> ( 24 تقييم)
-                    </p>
-                    <p class="book-count">
-                        <i class="fas fa-book"></i> 124 كتاب
-                    </p>
-                </div>
-            </div>
-            {{-- @endforeach --}}
 
         </div>
     </div>

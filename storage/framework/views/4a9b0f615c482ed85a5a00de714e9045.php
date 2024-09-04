@@ -43,7 +43,7 @@
                         </div>
                     </div>
                     <div class="col-md-4 d-flex justify-content-center align-items-center">
-                        <img src="<?php echo e(asset('images/books/book1.png')); ?>" class="img-fluid book-image" alt="Book Cover">
+                        <img src="<?php echo e(asset('images/books/img/book1.png')); ?>" class="img-fluid book-image" alt="Book Cover">
                     </div>
                 </div>
             </div>

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BooksController;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\DepartmentsController;
 use App\Http\Controllers\Social\SocialController;
 
 /*
@@ -40,6 +41,7 @@ Route::prefix('users')->name('users.')->group(function (){
     Route::POST('/verfiy/code', [UsersController::class, 'codeverify'])->name('verify.code');
     Route::view('/re-send/code','Auth.Users.verfiy-code')->name('verfiyindex'); 
     Route::PUT('/edit/password/{user}', [UsersController::class, 'Updatepass'])->name('edit.pass');
+    Route::POST('/favourites/{id}', [UsersController::class, 'forget'])->name('favourites');
 
 });
 
@@ -56,17 +58,23 @@ Route::prefix('users')->name('users.')->group(function (){
 
 
 
+    Route::get('/home', [UsersController::class, 'home'])->name('homeindex');
+    Route::get('/common/books', [BooksController::class, 'common'])->name('commonindex');
+    Route::get('/users/authors',[UsersController::class, 'authors'])->name('users.authors'); 
+    Route::get('/author/show/{user}', [UsersController::class, 'show'])->name('users.show');
+    Route::get('/departments/index',[DepartmentsController::class, 'index'])->name('dep.index'); 
+    Route::get('/departments/show/{department}',[DepartmentsController::class, 'show'])->name('dep.show'); 
+    Route::get('/show/book',[BooksController::class, 'show'])->name('books.show'); 
+
+
 //?start// must be Authenticate
 Route::middleware('Auth','verified')->group(function () {
-    Route::get('/home', [UsersController::class, 'home'])->name('homeindex');
-    Route::get('/common/books', [UsersController::class, 'common'])->name('commonindex');
+    Route::get('/users/profile',[UsersController::class, 'index'])->name('users.index'); 
     Route::get('/edit-user/{user}', [UsersController::class, 'edit'])->name('users.edit');
     Route::PUT('/edit-user/{user}', [UsersController::class, 'update'])->name('users.update');
-    Route::view('/new/book','Auth.Books.add-book')->name('bookindex'); 
-    Route::get('/show/book',[BooksController::class, 'show'])->name('books.show'); 
-    Route::get('/users/profile',[UsersController::class, 'index'])->name('users.index'); 
-    Route::get('/users/authors',[UsersController::class, 'authors'])->name('users.authors'); 
-    Route::get('/departments/index',[UsersController::class, 'depIndex'])->name('dep.index'); 
+    Route::get('/new/book',[BooksController::class, 'create'])->name('bookindex'); 
+    Route::POST('/add/books', [BooksController::class, 'store'])->name('books.store');
+
 });
 //?end//
 

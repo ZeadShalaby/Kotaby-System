@@ -68,5 +68,14 @@ trait MethodTrait
         ]);
     }
 
+    // todo add new media  for book
+    protected function AddmediaBook($info , $mediaCover , $mediaFile)
+    {
+        $info->media()->create([
+            'media' => $mediaCover,
+            'pdf' => $mediaFile
+        ]);
+    }
+
 
 }

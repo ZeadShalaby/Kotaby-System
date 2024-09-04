@@ -24,7 +24,7 @@ class BooksFactory extends Factory
 
         return [
             //
-            'name' => $this->faker->company,
+            'title'       => $this->faker->company,
             'description' => $this->faker->text(),
             'user_id'     => $this->faker->randomElement($userIds),
             'dep_id'      => $this->faker->randomElement($departmentIds),
@@ -45,7 +45,7 @@ class BooksFactory extends Factory
     {
         
         return $this->afterCreating(function (Books $book) {
-            $img = ["images/books/book1.png","images/books/book2.png","images/books/book3.png","images/books/book4.png","images/books/book5.png","images/books/book8.png"];
+            $img = ["images/books/img/book1.png","images/books/img/book2.png","images/books/img/book3.png","images/books/img/book4.png","images/books/img/book5.png","images/books/img/book8.png"];
             $increment = random_int(0,4);
                 $book->media()->create([
                     'media' => $img[$increment],

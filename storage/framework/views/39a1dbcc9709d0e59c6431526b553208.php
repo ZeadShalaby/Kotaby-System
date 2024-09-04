@@ -1,59 +1,35 @@
 
 
 <?php $__env->startSection('content'); ?>
-    <style>
-        /* Custom styles for the cards */
-        .book-card {
-            border-radius: 15px;
-            border: 1px solid #e5e5e5;
-            padding: 15px;
-            display: flex;
-            align-items: center;
-            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
-        }
+    <!--- input Edit --->
+    <?php $__env->startComponent('components.setting-right'); ?>
+    <?php echo $__env->renderComponent(); ?>
+    <!--- tape top --->
+    <?php $__env->startComponent('components.section-tape', ['title' => $title]); ?>
+    <?php echo $__env->renderComponent(); ?>
 
-        .book-card img {
-            width: 80px;
-            height: 80px;
-            border-radius: 8px;
-            margin-right: 15px;
-        }
+    <link rel="stylesheet" href="<?php echo e(asset('css/user-dashboard.css')); ?>">
+    <link rel="stylesheet" href="<?php echo e(asset('css/dep-card.css')); ?>">
 
-        .book-card-title {
-            font-weight: bold;
-            color: #263859;
-            margin-bottom: 5px;
-        }
-
-        .book-card-text {
-            font-size: 1rem;
-            color: #f0a500;
-            margin-bottom: 0;
-        }
-
-        .book-card-icon {
-            font-size: 1.2rem;
-            color: #f0a500;
-            margin-left: 5px;
-        }
-    </style>
 
     <div class="container my-5">
         <div class="row">
-            <?php for($i = 0; $i < 18; $i++): ?>
+            <?php $__currentLoopData = $departments; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
-                    <div class="book-card">
-                        <img src="<?php echo e(asset('images/books/book1.png')); ?>" alt="Book Image">
-                        <div>
-                            <h5 class="book-card-title">الفكر والثقافة العامة</h5>
-                            <p class="book-card-text">
-                                123 كتاب
-                                <i class="fas fa-book book-card-icon"></i>
-                            </p>
+                    <a href="<?php echo e(route('dep.show', $item->id)); ?>" style="text-decoration: none">
+                        <div class="book-card">
+                            <img src="<?php echo e(asset($item->media_one->media)); ?>" alt="<?php echo e($item->media_one->media); ?>">
+                            <div>
+                                <h5 class="book-card-title"><?php echo e($item->name); ?></h5>
+                                <p class="book-card-text">
+                                    <?php echo e($item->getBooksCount($item->id)); ?> كتاب
+                                    <i class="fas fa-book book-card-icon"></i>
+                                </p>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
-            <?php endfor; ?>
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         </div>
     </div>
 <?php $__env->stopSection(); ?>

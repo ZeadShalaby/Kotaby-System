@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\User;
 use App\Models\Media;
+use App\Models\Reviews;
 use App\Models\Departments;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -18,7 +19,8 @@ class Books extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'author_name',
+        'title',
         'description',
         'language',
         'num_pages',
@@ -26,7 +28,7 @@ class Books extends Model
         'user_id',
         'star',
         'view',
-        'locations'
+        'locations',
     ];
 
     /**
@@ -45,7 +47,45 @@ class Books extends Model
          return $this->created_at->format('d-m'); // Format as day-month
      }
 
-     
+
+      // todo return Type of stars rating
+    public function getTypeStars()
+    {
+
+        $averageRating = $this->getTotalRating() ?? 0; //? Default to 0 if averageRating is null
+        $fullStars = floor($averageRating);
+        $halfStar = $averageRating - $fullStars >= 0.5 ? 1 : 0;
+        $emptyStars = 5 - ($fullStars + ($halfStar ? 1 : 0));
+        
+        return [
+            'fullStars'     => $fullStars,
+            'halfStar'      => $halfStar,
+            'emptyStars'    => $emptyStars,
+            'averageRating' => $averageRating
+        ];
+
+
+    }
+
+    //? Calculate total rating of books
+    public function getTotalRating()
+    {
+        //? Assuming 'stars' is the rating column in reviews
+        $totalRating = $this->reviews()->sum('star');
+        
+        return $totalRating;
+    }
+
+    // Relationship to reviews
+    public function reviews()
+    {
+        return $this->hasMany(Reviews::class, 'book_id'); //? Adjust 'book_id' to your foreign key
+    }
+
+    public function stars()
+    {
+        return $this->hasMany(Reviews::class,'book_id'); //? Assuming you have a Star model for ratings
+    }
     
     /**
      * The attributes that are mass assignable.
@@ -54,7 +94,7 @@ class Books extends Model
      */
     public function user()
     {
-        return $this->belongsTo(User::class, 'user_id')->with('meida_one');
+        return $this->belongsTo(User::class, 'user_id')->with('media_one');
     }
 
     /**
@@ -80,7 +120,7 @@ class Books extends Model
     }
     // ! //
 
-     // ! to return the total num of favourite for tweet // 
+    // ! to return the total num of favourite for tweet // 
     // ? total favorites for tweet
     public function getFavoritesCount()
     {

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->bigInteger('mediaable_id')->unsigned()->nullable();
             $table->index('mediaable_id')->nullable();
             $table->String("media");
+            $table->String("pdf")->nullable();
             $table->timestamps();
         });
     }

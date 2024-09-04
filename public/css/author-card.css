@@ -1,0 +1,82 @@
+.profile-card {
+    border-radius: 15px;
+    border: 1px solid #e5e5e5;
+    background-color: #fff;
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    /* Smooth transition for transform and box-shadow */
+}
+
+
+.profile-card img {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    margin-bottom: 15px;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+    /* Smooth transition for image scaling */
+}
+
+.span-author {
+    margin-right: 30px;
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 17.86px;
+    text-align: left;
+    color: #EBBB3F;
+}
+
+.profile-card h5 {
+    font-weight: bold;
+    font-size: 15px;
+    color: #263859;
+    margin-bottom: 10px;
+}
+
+.profile-card .rating,
+.profile-card .book-count {
+    color: #263859;
+    font-size: 0.9rem;
+
+}
+
+.profile-card .rating i {
+    color: #f4c542;
+    /* Star color */
+}
+
+/* Hover effect */
+.profile-card:hover {
+    transform: translateY(-10px);
+    /* Lift the card up */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    /* Add a shadow effect */
+}
+
+.profile-card:hover img {
+    transform: scale(1.1);
+    /* Slightly increase the image size */
+}
+
+.filled {
+    color: #ffcc00;
+    /* Yellow color for filled stars */
+}
+
+.half-filled {
+    color: #ffcc00;
+    /* Yellow color for half stars */
+}
+
+.rating img.empty-star {
+    margin-top: 12px;
+    width: 1.09em;
+    /* Match the size of Font Awesome stars */
+    height: auto;
+    /* Maintain aspect ratio */
+    vertical-align: middle;
+    /* Align with text */
+}

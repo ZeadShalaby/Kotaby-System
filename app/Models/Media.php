@@ -18,6 +18,7 @@ class Media extends Model
         'mediaable_type',
         'mediaable_id',
         'media',
+        'pdf',
         'created_at',
         'updated_at'
     ];
