@@ -101,8 +101,23 @@ Install dependencies
      ```bash
      php artisan key:generate
      ```
+3. **Configure Mail Settings**:
+   - Open the `.env` file in a text editor.
+   - Set the following variables to match your MAIL setup:
+     ```plaintext
+      MAIL_MAILER=smtp
+      MAIL_HOST=smtp.gmail.com
+      MAIL_PORT=465
+      MAIL_USERNAME="example@gmail.com"
+      MAIL_PASSWORD=examplepassword01
+      MAIL_ENCRYPTION=ssl
+      MAIL_FROM_ADDRESS="example@gmail.com"
+      MAIL_FROM_NAME="${APP_NAME}"
+     ```
+   - Adjust `MAIL_FROM_ADDRESS` and `MAIL_PASSWORD` .
 
-3. **Configure Database Settings**:
+     
+4. **Configure Database Settings**:
    - Open the `.env` file in a text editor.
    - Set the following variables to match your database setup:
      ```plaintext
