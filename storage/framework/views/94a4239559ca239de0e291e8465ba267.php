@@ -9,6 +9,9 @@
     <!----======== CSS ======== -->
     <link rel="stylesheet" href="<?php echo e(asset('css/dashboard.css')); ?>" />
     <!----===== Boxicons CSS ===== -->
+
+
+
     <link href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css" rel="stylesheet" />
 
     <title>Dashboard Admin</title>
@@ -16,12 +19,20 @@
 
 <body>
 
+
+
+
     <?php echo $__env->make('layouts.dashboard.partials.dashboard-left', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
     
     <?php echo $__env->yieldContent('content-admin'); ?>
 
     <script src="<?php echo e(asset('js/dashboard.js')); ?>"></script>
+
+
+
+
+
 </body>
 
 </html>

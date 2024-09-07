@@ -5,14 +5,24 @@
                 <i class="save-icon">&#x1F516;</i>
                 <p class="author"><?php echo e($item->user->username); ?></p>
             </div>
-            <a href="<?php echo e(route('books.show')); ?>">
+            <a href="<?php echo e(route('books.show', $item->id)); ?>">
                 <img src="<?php echo e(asset($item->media_one->media)); ?>" alt="<?php echo e($item->title); ?>">
             </a>
+
+            </form>
+
             <div class="rating-stars">
                 <p class="title"><?php echo e($item->title); ?></p>
-                <a href="<?php echo e(route('users.favourites', $item->id)); ?>"><i class="save-icon fas fa-bookmark"
-                        style="color: <?php echo e(Auth::check() && $item->isFavoritedBy(Auth::user()) ? '#ff0000' : '#000000'); ?>"></i>
-                </a>
+                <form action="<?php echo e(route('favourite.store', ['book_id' => $item->id])); ?>" method="POST">
+                    <?php echo e(csrf_field()); ?>
+
+                    <button style="background: none; border: none" id = 'toggleButton'>
+
+                        <a href="<?php echo e(route('users.favourites', $item->id)); ?>"><i class="save-icon fas fa-bookmark"
+                                style="color: <?php echo e(Auth::check() && $item->isFavoritedBy(Auth::user()) ? '#ff0000' : '#1B3764'); ?>"></i>
+                        </a>
+                    </button>
+                </form>
             </div>
             <div class="rating-stars">
 

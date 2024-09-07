@@ -3,10 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\Books;
+use App\Models\Reviews;
+use App\Models\Favourites;
 use App\Traits\ImageTrait;
+use App\Events\BooksReport;
+use App\Events\BookVieweer;
 use App\Models\Departments;
 use App\Traits\MethodTrait;
 use Illuminate\Http\Request;
+use App\Events\DownloadBooks;
 use App\Traits\Requests\TestAuth;
 use App\Http\Controllers\Controller;
 use App\Traits\validator\ValidatorTrait;
@@ -17,11 +22,18 @@ class BooksController extends Controller
 
     /**
      * todo Display a listing of the resource.
-     */
+     *///? my books
     public function index()
     {
-
+        $title = 'كتبي';
+        $book = Books::where('user_id',auth()->user()->id)->with('media_one','user','department')->get();
+        $books = $book->map(function ($book) {
+            $book->stars = $book->getTypeStars();
+            return $book;
+        });
+        return view('Auth.Books.common',compact('title','books'));
     }
+
 
     // todo book common page
     public function common()
@@ -84,8 +96,53 @@ class BooksController extends Controller
      */
     public function show(Request $request , Books $book)
     {
-        //   $book->with('user')->load('media_one');
-          return view('Auth.Books.show');
+          $title = ' معلومات > كتاب >'.$book->title ;
+          $book->load('media_one', 'user', 'department');
+          $book->stars = $book->getTypeStars();
+          $reviews = Reviews::where('book_id', $book->id)->with('book')->get();
+          return view('Auth.Books.show',compact('book','title','reviews'));
+    }
+
+    public function showpdf(Request $request,Books $book)
+    {
+        $title = ' معلومات > كتاب >';
+        event(new BookVieweer($book));
+        return view('PDF.show-pdf',compact('title'));
+    }
+
+    public function downloadpdf(Request $request, Books $book)
+    {
+        $book->load('media_one');
+        event(new DownloadBooks($book));
+        //? Check if the PDF exists
+        if ($book->media_one && $book->media_one->pdf) {
+            //? Check and confirm the file path
+            $filePath = public_path($book->media_one->pdf);
+    
+            //? Check if the file exists in the given path
+            if (file_exists($filePath)) {
+                 return response()->download($filePath, $book->title . '.pdf', [
+                    'Content-Type' => 'application/pdf',
+                ]); //? Serve the file for download
+            } else {
+                return redirect()->back()->with('error', 'الملف غير موجود');
+            }
+        }
+
+        return redirect()->back()->with('error', 'الكتاب لا يحتوي على ملف PDF');
+    }
+    
+    
+
+     /**
+     * todo Display the specified resource.
+     */
+    public function report(Request $request , Books $book)
+    {
+        //
+        event(new BooksReport($book));
+        return back()->with('error', "Report Sent Success ."); 
+
     }
 
      /**

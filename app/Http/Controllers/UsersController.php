@@ -71,11 +71,6 @@ class UsersController extends Controller
     }
     
 
-////////////////////////////////////// ? /////////////////////////////////////////////////////////
-////////////////////////////////////// ? /////////////////////////////////////////////////////////
-////////////////////////////////////// ? /////////////////////////////////////////////////////////
-////////////////////////////////////// ? /////////////////////////////////////////////////////////
-
 
     // todo Login Users
     public function login(Request $request){
@@ -134,6 +129,7 @@ class UsersController extends Controller
          return view('Auth.Users.edit',compact('user'));
     }
 
+
     // todo profile page update info
     public function update(Request $request,User $user)
     {
@@ -155,10 +151,23 @@ class UsersController extends Controller
              else{return back()->with('error', "Some Thing Wrong .");}
     }
 
+
     // todo change image of users 
     public function changeimg(Request $request)
     {
-
+        //? Validate the request if needed
+        $request->validate(['media' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', ]);
+        //? Get the user's media
+        $user_media = Media::where('mediaable_type', 'User')->where('mediaable_id', auth()->user()->id)->first(); 
+        if ($request->hasFile('media')) {
+            //? Save the new image
+            $path = $this->saveimage($request->file('media'), 'images/users/');
+            //? Update the media record
+            $user_media->update(['media' => $path]);
+            return back()->with('success', "Photo changed successfully.");
+        } else {
+            return back()->with('error', "No image file selected.");
+        }
     }
 
 

@@ -22,14 +22,21 @@
                         </a>
                     </li>
                     <li class="list-group-item d-flex align-items-center cursor-pointer">
-                        <a href="#">
+                        <a href="<?php echo e(route('books.index')); ?>" style="text-decoration: none">
 
                             <i class="fas fa-book icon-margin"></i>
                             <span>مكتبتى</span>
                         </a>
                     </li>
                     <li class="list-group-item d-flex align-items-center cursor-pointer">
-                        <a href="#">
+                        <a href="<?php echo e(route('favourite.index')); ?>" style="text-decoration: none">
+
+                            <i class="fas fa-star icon-margin"></i>
+                            <span>المفضلة</span>
+                        </a>
+                    </li>
+                    <li class="list-group-item d-flex align-items-center cursor-pointer">
+                        <a href="<?php echo e(route('reviews.index')); ?>" style="text-decoration: none">
 
                             <i class="fas fa-star icon-margin"></i>
                             <span>مراجعاتى</span>

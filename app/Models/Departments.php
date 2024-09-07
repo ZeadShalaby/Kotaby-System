@@ -51,8 +51,7 @@ class Departments extends Model
     // ! ///////
 
 
-        //! ////////
-    
+    //! ////////
     // todo Method to get the count of books for this department
     public function getstarCount()
     {

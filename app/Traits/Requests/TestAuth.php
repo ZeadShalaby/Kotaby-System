@@ -96,6 +96,15 @@ trait TestAuth
     ];
     }
 
+    // todo rules Add Books  
+    protected function rulesReviews(){
+      return [
+            'book_id' => 'required|exists:books,id',
+            'comment' => 'required|string|min:1|max:200',
+            'star'    => 'required|integer|max:5',
+          ];
+        }
+
 
 }
 

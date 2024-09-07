@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Exception;
 use App\Models\Admin;
 use App\Traits\ImageTrait;
+use App\Models\Departments;
 use App\Traits\MethodTrait;
 use Illuminate\Http\Request;
 use App\Traits\ResponseTrait;
@@ -28,12 +29,12 @@ class AdminController extends Controller
             $rules = $this->rulesAdminLogin($infofield['fields']);    
             $validator = $this->validate($request,$rules);
             if($validator !== true){return back()->with('error', $validator);}
-
+            $title = 'الصفحه الرائيسية';
             $credentials = $infofield['credentials'];
             $admin = Admin::where('username', $credentials['username'])->first();
             if ($admin && Hash::check($credentials['password'], $admin->password)) {
                 Auth::guard('admin')->login($admin);
-                return redirect()->route('admin.home');
+                return view('Admin.home', compact('title'));
             }
             return redirect()->back()->with('error', 'Invalid information, please try again.');
             }
@@ -48,5 +49,6 @@ class AdminController extends Controller
         Auth::guard('admin')->logout();
         return redirect()->route('admin.loginindex');
     }
+
 
 }

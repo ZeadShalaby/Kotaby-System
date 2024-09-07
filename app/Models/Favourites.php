@@ -38,7 +38,28 @@ class Favourites extends Model
      */
     public function book()  
     {
+        //? Load the book relationship along with 'media_one'
         return $this->belongsTo(Books::class, 'book_id')->with('media_one');
+     
+    }
+
+    // todo return Type of stars rating
+    public function getTypeStars()
+    {
+
+        $averageRating = $this->getTotalRating() ?? 0; //? Default to 0 if averageRating is null
+        $fullStars = floor($averageRating);
+        $halfStar = $averageRating - $fullStars >= 0.5 ? 1 : 0;
+        $emptyStars = 5 - ($fullStars + ($halfStar ? 1 : 0));
+        
+        return [
+            'fullStars'     => $fullStars,
+            'halfStar'      => $halfStar,
+            'emptyStars'    => $emptyStars,
+            'averageRating' => $averageRating
+        ];
+
+
     }
 
      /**

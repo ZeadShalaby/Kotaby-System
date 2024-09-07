@@ -41,11 +41,25 @@ class Books extends Model
         'created_at',
     ];
 
-     //? format data to day & month
-     public function getCreationDateFormattedAttribute()
-     {
-         return $this->created_at->format('d-m'); // Format as day-month
-     }
+    //? format data to day & month &year
+    public function getCreationDateFormattedAttribute()
+    {
+        return $this->created_at->format('d-m-y'); // Format as day-month
+    }
+
+
+    //? Define a scope to filter non-null 'report_at' columns
+    public function scopeReported($query)
+    {
+        return $query->whereNotNull('report_at');
+    }
+
+    //? Define a method to reset the 'report_at' column to null
+    public function resetReportAt()
+    {
+        $this->report_at = null;
+        $this->save();
+    }
 
 
       // todo return Type of stars rating

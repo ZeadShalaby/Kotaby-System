@@ -46,9 +46,12 @@ class BooksFactory extends Factory
         
         return $this->afterCreating(function (Books $book) {
             $img = ["images/books/img/book1.png","images/books/img/book2.png","images/books/img/book3.png","images/books/img/book4.png","images/books/img/book5.png","images/books/img/book8.png"];
+            $pdf = ["images/books/pdf/pdf.pdf","images/books/pdf/pdf1.pdf","images/books/pdf/pdf2.pdf","images/books/pdf/pdf3.pdf","images/books/pdf/pdf4.pdf","images/books/pdf/pdf5.pdf"];
+
             $increment = random_int(0,4);
                 $book->media()->create([
                     'media' => $img[$increment],
+                    'pdf'   => $pdf[$increment],
                 ]);
         });
     }

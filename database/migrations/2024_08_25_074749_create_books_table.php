@@ -1,8 +1,9 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 return new class extends Migration
 {
@@ -27,7 +28,12 @@ return new class extends Migration
             $table->index('star');
             $table->bigInteger('view')->unsigned()->nullable();
             $table->index('view');
+            $table->bigInteger('download')->unsigned()->nullable();
+            $table->index('download');
             $table->string('locations')->nullable();
+            $table->bigInteger('report')->unsigned()->nullable();
+            $table->index('report');
+            $table->timestamp('report_at')->nullable()->default(null);
             $table->timestamps();
         });
     }

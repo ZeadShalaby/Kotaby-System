@@ -5,14 +5,23 @@
                 <i class="save-icon">&#x1F516;</i>
                 <p class="author">{{ $item->user->username }}</p>
             </div>
-            <a href="{{ route('books.show') }}">
+            <a href="{{ route('books.show', $item->id) }}">
                 <img src="{{ asset($item->media_one->media) }}" alt="{{ $item->title }}">
             </a>
+
+            </form>
+
             <div class="rating-stars">
                 <p class="title">{{ $item->title }}</p>
-                <a href="{{ route('users.favourites', $item->id) }}"><i class="save-icon fas fa-bookmark"
-                        style="color: {{ Auth::check() && $item->isFavoritedBy(Auth::user()) ? '#ff0000' : '#000000' }}"></i>
-                </a>
+                <form action="{{ route('favourite.store', ['book_id' => $item->id]) }}" method="POST">
+                    {{ csrf_field() }}
+                    <button style="background: none; border: none" id = 'toggleButton'>
+
+                        <a href="{{ route('users.favourites', $item->id) }}"><i class="save-icon fas fa-bookmark"
+                                style="color: {{ Auth::check() && $item->isFavoritedBy(Auth::user()) ? '#ff0000' : '#1B3764' }}"></i>
+                        </a>
+                    </button>
+                </form>
             </div>
             <div class="rating-stars">
 

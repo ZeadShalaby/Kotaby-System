@@ -19,6 +19,21 @@
     height: 85%;
     border-radius: 8px 0 0 0;
     opacity: 1;
+    overflow: hidden;
+    transition: box-shadow 0.3s, transform 0.3s;
+    transition: transform 0.3s;
+
+    cursor: pointer;
+
+}
+
+
+.book-image:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    transform: scale(1.1);
+
+    /* Slightly increase the image size */
 }
 
 .btn-container {
@@ -189,4 +204,44 @@
     height: 50px;
     border-radius: 50%;
     background-color: #e0e0e0;
+}
+
+.card-body ul {
+    padding-left: 0;
+    font-family: 'Almarai', sans-serif;
+    font-size: 16px;
+    color: #2f2f2f;
+}
+
+.book-image {
+    width: 100%;
+    height: auto;
+    max-width: 85%;
+    border-radius: 8px;
+}
+
+.card-title {
+    font-size: 24px;
+}
+
+.btn-container {
+    margin-top: 20px;
+}
+
+.btn {
+    max-width: 150px;
+}
+
+@media (max-width: 768px) {
+    .card-body ul {
+        text-align: right;
+    }
+
+    .book-image {
+        max-width: 70%;
+    }
+
+    .btn-container {
+        justify-content: center;
+    }
 }

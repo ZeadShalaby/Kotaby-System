@@ -16,12 +16,12 @@ class BookVieweer
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $books;
+    public $views;
     public function __construct(Books $book)
     {
         //
         $this -> views = $book;
-        $this -> updateVieweer($this -> books);
+        $this -> updateVieweer($this -> views);
 
     }
 

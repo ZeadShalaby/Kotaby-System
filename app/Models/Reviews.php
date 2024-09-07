@@ -19,8 +19,8 @@ class Reviews extends Model
     protected $fillable = [
         'comment',
         'user_id',
-        'num_pages',
-        'bock_id',
+        'book_id',
+        'comment',
         'star',
     ];
 
@@ -34,11 +34,12 @@ class Reviews extends Model
         'created_at',
     ];
 
-     //? format data to day & month
-     public function getCreationDateFormattedAttribute()
-     {
-         return $this->created_at->format('d-m'); // Format as day-month
-     }
+    //? format data to day & month &year
+    public function getCreationDateFormattedAttribute()
+    {
+        return $this->created_at->format('d-m-y'); // Format as day-month
+    }
+
 
      
     
@@ -49,7 +50,7 @@ class Reviews extends Model
      */
     public function user()
     {
-        return $this->belongsTo(User::class, 'user_id')->with('meida_one');
+        return $this->belongsTo(User::class, 'user_id')->with('media_one');
     }
    
    /*
@@ -57,9 +58,9 @@ class Reviews extends Model
     *
     * @var array<int, string>
     */
-    public function books()
+    public function book()
     {
-        return $this->belongsTo(Books::class, 'book_id')->with('meida_one');
+        return $this->belongsTo(Books::class, 'book_id')->with('media_one');
     }
 
     

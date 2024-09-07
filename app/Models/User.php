@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Books;
 use App\Models\Media;
 use App\Models\Reviews;
+use App\Models\Favourites;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -62,12 +63,21 @@ class User extends Authenticatable implements MustVerifyEmail
         })->count();
     }
 
+    //? Function to get the total number of downloads for a user's books
+    public function getCountDownload()
+    {
+        //? Sum the 'download' column in the related 'books' table
+        $totalDownloads = $this->books()->sum('download');
 
+        //? Return the total number of downloads (no rounding needed if integer)
+        return $totalDownloads;
+    }
+
+    //? Relationship: A user has many books
     public function books()
     {
         return $this->hasMany(Books::class);
     }
-
 
 
     // ! to return the total num of books for users // 
@@ -81,10 +91,22 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany(Books::class, 'user_id');
     }        
-   // ! //
+    // ! //
 
-   
 
+
+    // ! to return the total num of books for users // 
+    // ? total share for tweet
+    public function getCountFav()
+    {
+        return $this->fav()->count();
+    }
+    
+    public function fav()
+    {
+        return $this->hasMany(Favourites::class, 'user_id');
+    }        
+    // ! //
 
     // todo return Type of stars rating
     public function getTypeStars()

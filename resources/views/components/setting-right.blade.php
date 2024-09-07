@@ -22,14 +22,21 @@
                         </a>
                     </li>
                     <li class="list-group-item d-flex align-items-center cursor-pointer">
-                        <a href="#">
+                        <a href="{{ route('books.index') }}" style="text-decoration: none">
 
                             <i class="fas fa-book icon-margin"></i>
                             <span>مكتبتى</span>
                         </a>
                     </li>
                     <li class="list-group-item d-flex align-items-center cursor-pointer">
-                        <a href="#">
+                        <a href="{{ route('favourite.index') }}" style="text-decoration: none">
+
+                            <i class="fas fa-star icon-margin"></i>
+                            <span>المفضلة</span>
+                        </a>
+                    </li>
+                    <li class="list-group-item d-flex align-items-center cursor-pointer">
+                        <a href="{{ route('reviews.index') }}" style="text-decoration: none">
 
                             <i class="fas fa-star icon-margin"></i>
                             <span>مراجعاتى</span>

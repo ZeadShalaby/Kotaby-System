@@ -23,16 +23,16 @@
 
             <ul class="menu-links">
                 <li class="nav-link">
-                    <a href="#">
+                    <a href="{{ route('admin.home') }}">
                         <i class="bx bx-home-alt icon"></i>
-                        <span class="text nav-text">Dashboard</span>
+                        <span class="text nav-text">Home</span>
                     </a>
                 </li>
 
                 <li class="nav-link">
-                    <a href="#">
+                    <a href="{{ route('dep.index') }}">
                         <i class="bx bx-bar-chart-alt-2 icon"></i>
-                        <span class="text nav-text">Revenue</span>
+                        <span class="text nav-text">Departments</span>
                     </a>
                 </li>
 
@@ -44,9 +44,9 @@
                 </li>
 
                 <li class="nav-link">
-                    <a href="#">
+                    <a href="{{ route('admin.report.index') }}">
                         <i class="bx bx-pie-chart-alt icon"></i>
-                        <span class="text nav-text">Analytics</span>
+                        <span class="text nav-text">Report-Books</span>
                     </a>
                 </li>
 
@@ -58,9 +58,9 @@
                 </li>
 
                 <li class="nav-link">
-                    <a href="#">
-                        <i class="bx bx-wallet icon"></i>
-                        <span class="text nav-text">Wallets</span>
+                    <a href="{{ route('admin.dep.trash') }}">
+                        <i class="bx bx-trash icon"></i>
+                        <span class="text nav-text">Trash</span>
                     </a>
                 </li>
             </ul>
