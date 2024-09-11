@@ -8,7 +8,6 @@
     <x-section-tape :title="$title" />
 
 
-    <link rel="stylesheet" href="{{ asset('css/user-dashboard.css') }}">
     <link rel="stylesheet" href="{{ asset('css/author-card.css') }}">
 
 
@@ -46,12 +45,24 @@
                                         <span class="span-author"> ({{ $authors->getCountView() }} المشاهدات)</span>
 
                                     </p>
+                                    <div class="btn-container d-flex justify-content-center mt-3"
+                                        style="margin-right: 200px">
+
+                                        <a href="#" class="btn" style="border: 2px solid #1B3764"
+                                            data-bs-toggle="modal" data-bs-target="#rateModals"><i class="fas fa-warning"
+                                                style="color: #1B3764; margin-left: 2px"></i>
+                                            التبليغ عنه</a>
+
+                                    </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <!--- Author report --->
+    <x-report-author-commit :userid="$authors->id" />
+
 
     <!--- tape top --->
 

@@ -154,7 +154,7 @@
                         <a href="<?php echo e(route('books.pdf', $book->id)); ?>" class="btn" style="border: 2px solid #1B3764"><i
                                 class="fas fa-book" style="color: #1B3764; margin-left: 2px"></i> تصفح الكتاب</a>
                         <a href="#" class="btn" style="border: 2px solid #1B3764" data-bs-toggle="modal"
-                            data-bs-target="#rateModal"><i class="fas fa-warning"
+                            data-bs-target="#rateModals"><i class="fas fa-warning"
                                 style="color: #1B3764; margin-left: 2px"></i> التبليغ عنه</a>
 
                     </div>
@@ -164,6 +164,7 @@
     </div>
 
     <!--- star commit --->
+
     <?php if (isset($component)) { $__componentOriginal3081b591c5c0fc447e238f246914a486 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal3081b591c5c0fc447e238f246914a486 = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.star-commit','data' => ['bookid' => $book->id]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>
@@ -185,6 +186,26 @@
 <?php unset($__componentOriginal3081b591c5c0fc447e238f246914a486); ?>
 <?php endif; ?>
 
+    <?php if (isset($component)) { $__componentOriginal4306b978481ea8d55223ceb5ca234559 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal4306b978481ea8d55223ceb5ca234559 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.report-book-commit','data' => ['bookid' => $book->id]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>
+<?php $component->withName('report-book-commit'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag && $constructor = (new ReflectionClass(Illuminate\View\AnonymousComponent::class))->getConstructor()): ?>
+<?php $attributes = $attributes->except(collect($constructor->getParameters())->map->getName()->all()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['bookid' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($book->id)]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal4306b978481ea8d55223ceb5ca234559)): ?>
+<?php $attributes = $__attributesOriginal4306b978481ea8d55223ceb5ca234559; ?>
+<?php unset($__attributesOriginal4306b978481ea8d55223ceb5ca234559); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal4306b978481ea8d55223ceb5ca234559)): ?>
+<?php $component = $__componentOriginal4306b978481ea8d55223ceb5ca234559; ?>
+<?php unset($__componentOriginal4306b978481ea8d55223ceb5ca234559); ?>
+<?php endif; ?>
 
     <div class="container mt-5">
         <div class="summary-section">

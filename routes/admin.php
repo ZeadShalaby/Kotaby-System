@@ -36,6 +36,14 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/refused/report/{book}', [BooksController::class, 'report'])->name('refused.report');
         Route::DELETE('/destroy/books/{book}', [BooksController::class, 'destroy'])->name('destroy.report');
 
+        Route::get('/report/authors', [AdminController::class, 'reportauthor'])->name('report.author.index');
+        Route::get('/refused/report/authors/{user}', [AdminController::class, 'reauthor'])->name('refused.author.report');
+        Route::DELETE('/destroy/authors/{user}', [AdminController::class, 'authordestroy'])->name('destroy.author');
+
+        Route::get('/report/reviews', [BooksController::class, 'reportreview'])->name('report.review.index');
+        Route::get('/refused/report/reviews/{review}', [BooksController::class, 'rereview'])->name('refused.report.review');
+        Route::DELETE('/destroy/reviews/{review}', [BooksController::class, 'reviewdestroy'])->name('destroy.review');
+
     });
     //?end//
 

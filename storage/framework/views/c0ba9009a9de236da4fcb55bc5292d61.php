@@ -13,8 +13,27 @@
                     id="form" enctype="multipart/form-data">
                     <?php echo csrf_field(); ?>
                     <?php echo method_field('PUT'); ?>
-                    <?php $__env->startComponent('components.add-dep', ['department' => $department]); ?>
-                    <?php echo $__env->renderComponent(); ?>
+
+                    <?php if (isset($component)) { $__componentOriginal83ff88799ad0baad98ad4b65fc9477cd = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal83ff88799ad0baad98ad4b65fc9477cd = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.add-dep','data' => ['department' => $department]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>
+<?php $component->withName('add-dep'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag && $constructor = (new ReflectionClass(Illuminate\View\AnonymousComponent::class))->getConstructor()): ?>
+<?php $attributes = $attributes->except(collect($constructor->getParameters())->map->getName()->all()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['department' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($department)]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal83ff88799ad0baad98ad4b65fc9477cd)): ?>
+<?php $attributes = $__attributesOriginal83ff88799ad0baad98ad4b65fc9477cd; ?>
+<?php unset($__attributesOriginal83ff88799ad0baad98ad4b65fc9477cd); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal83ff88799ad0baad98ad4b65fc9477cd)): ?>
+<?php $component = $__componentOriginal83ff88799ad0baad98ad4b65fc9477cd; ?>
+<?php unset($__componentOriginal83ff88799ad0baad98ad4b65fc9477cd); ?>
+<?php endif; ?>
 
                     <button class="login__button" type="submit" style="width: 100%">Save</button>
                 </form>

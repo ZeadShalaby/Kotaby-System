@@ -41,6 +41,19 @@ class Reviews extends Model
     }
 
 
+    //? Define a scope to filter non-null 'report_at' columns
+    public function scopeReported($query)
+    {
+        return $query->whereHas('report'); // Ensure 'reports' is the name of the relationship method in Books model
+    }
+
+
+    //? Define a method to reset the 'report_at' column to null
+    public function resetReportAt($bookid)
+    {
+        $report = Report::where('reportable_id', $bookid)->first();
+        $report->delete();
+    }
 
 
     /**

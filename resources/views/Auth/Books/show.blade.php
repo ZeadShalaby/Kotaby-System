@@ -113,7 +113,7 @@
                         <a href="{{ route('books.pdf', $book->id) }}" class="btn" style="border: 2px solid #1B3764"><i
                                 class="fas fa-book" style="color: #1B3764; margin-left: 2px"></i> تصفح الكتاب</a>
                         <a href="#" class="btn" style="border: 2px solid #1B3764" data-bs-toggle="modal"
-                            data-bs-target="#rateModal"><i class="fas fa-warning"
+                            data-bs-target="#rateModals"><i class="fas fa-warning"
                                 style="color: #1B3764; margin-left: 2px"></i> التبليغ عنه</a>
 
                     </div>
@@ -123,8 +123,10 @@
     </div>
 
     <!--- star commit --->
+
     <x-star-commit :bookid="$book->id" />
 
+    <x-report-book-commit :bookid="$book->id" />
 
     <div class="container mt-5">
         <div class="summary-section">

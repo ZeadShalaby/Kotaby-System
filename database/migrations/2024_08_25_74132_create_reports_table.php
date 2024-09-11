@@ -14,7 +14,7 @@ return new class extends Migration {
             $table->id();
             $table->String("reportable_type");
             $table->bigInteger('reportable_id')->unsigned()->nullable();
-            $table->index('reportable_id')->nullable();
+            $table->index('reportable_id');
             $table->bigInteger('report')->unsigned()->nullable();
             $table->index('report');
             $table->String("comment");

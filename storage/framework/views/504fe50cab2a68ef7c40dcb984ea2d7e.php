@@ -1,11 +1,6 @@
 
 <?php $__env->startSection('content-admin'); ?>
     <!----- content ----->
-
-
-
-
-
     <header>
         <nav>
             <ul>

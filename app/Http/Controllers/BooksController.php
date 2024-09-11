@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Books;
+use App\Models\Report;
 use App\Models\Reviews;
 use App\Events\UserRole;
 use App\Traits\ImageTrait;
@@ -117,9 +118,10 @@ class BooksController extends Controller
     /**
      * todo Display the specified resource.
      */
-    public function report(Books $book)
+    public function report(Request $request, Books $book)
     {
         //
+        $book['comment'] = $request->comment;
         event(new BooksReport($book));
         return back()->with('error', "Report Sent Success .");
 

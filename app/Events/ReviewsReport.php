@@ -40,10 +40,11 @@ class ReviewsReport
 
     function addReport($ReviewReport)
     {
-        if ($ReviewReport->report == 4) {
-            $this->AddReport($ReviewReport, $ReviewReport->comment);
-        }
-        $ReviewReport->report = $ReviewReport->report + 1;
-        $ReviewReport->save();
+        $comment = $ReviewReport->comment;
+        unset($ReviewReport['comment']);  //? Remove the 'comment' key from the object
+        $ReviewReport->report()->create([
+            'comment' => $comment,
+            'report' => 1
+        ]);
     }
 }

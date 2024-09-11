@@ -39,10 +39,11 @@ class AuthorsReport
 
     function addReport($AuthorReport)
     {
-        if ($AuthorReport->report == 4) {
-            $this->AddReport($AuthorReport, $AuthorReport->comment);
-        }
-        $AuthorReport->report = $AuthorReport->report + 1;
-        $AuthorReport->save();
+        $comment = $AuthorReport->comment;
+        unset($AuthorReport['comment']);  //? Remove the 'comment' key from the object
+        $AuthorReport->report()->create([
+            'comment' => $comment,
+            'report' => 1
+        ]);
     }
 }

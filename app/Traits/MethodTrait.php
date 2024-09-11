@@ -66,6 +66,7 @@ trait MethodTrait
             'media' => $media
         ]);
     }
+    //? use in factory
     protected function AddReport($info, $report, $comment)
     {
         $info->report()->create([

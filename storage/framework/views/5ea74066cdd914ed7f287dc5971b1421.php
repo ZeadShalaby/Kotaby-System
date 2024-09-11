@@ -46,7 +46,6 @@
 <?php endif; ?>
 
 
-    <link rel="stylesheet" href="<?php echo e(asset('css/user-dashboard.css')); ?>">
     <link rel="stylesheet" href="<?php echo e(asset('css/author-card.css')); ?>">
 
 
@@ -85,12 +84,43 @@
                                         <span class="span-author"> (<?php echo e($authors->getCountView()); ?> المشاهدات)</span>
 
                                     </p>
+                                    <div class="btn-container d-flex justify-content-center mt-3"
+                                        style="margin-right: 200px">
+
+                                        <a href="#" class="btn" style="border: 2px solid #1B3764"
+                                            data-bs-toggle="modal" data-bs-target="#rateModals"><i class="fas fa-warning"
+                                                style="color: #1B3764; margin-left: 2px"></i>
+                                            التبليغ عنه</a>
+
+                                    </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <!--- Author report --->
+    <?php if (isset($component)) { $__componentOriginal865fab65a95dcf01b26ce3ed0810ddf5 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal865fab65a95dcf01b26ce3ed0810ddf5 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.report-author-commit','data' => ['userid' => $authors->id]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>
+<?php $component->withName('report-author-commit'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag && $constructor = (new ReflectionClass(Illuminate\View\AnonymousComponent::class))->getConstructor()): ?>
+<?php $attributes = $attributes->except(collect($constructor->getParameters())->map->getName()->all()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['userid' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($authors->id)]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal865fab65a95dcf01b26ce3ed0810ddf5)): ?>
+<?php $attributes = $__attributesOriginal865fab65a95dcf01b26ce3ed0810ddf5; ?>
+<?php unset($__attributesOriginal865fab65a95dcf01b26ce3ed0810ddf5); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal865fab65a95dcf01b26ce3ed0810ddf5)): ?>
+<?php $component = $__componentOriginal865fab65a95dcf01b26ce3ed0810ddf5; ?>
+<?php unset($__componentOriginal865fab65a95dcf01b26ce3ed0810ddf5); ?>
+<?php endif; ?>
+
 
     <!--- tape top --->
 

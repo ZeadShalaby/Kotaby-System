@@ -46,7 +46,7 @@
 <?php endif; ?>
 
     <link rel="stylesheet" href="<?php echo e(asset('css/user-dashboard.css')); ?>">
-
+    <!--- card departments --->
     <?php if (isset($component)) { $__componentOriginal33c825a6d7f524f4a70c5232937b18e2 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal33c825a6d7f524f4a70c5232937b18e2 = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.card-department','data' => ['departments' => $departments]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>

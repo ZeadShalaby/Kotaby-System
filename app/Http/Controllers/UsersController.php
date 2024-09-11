@@ -15,6 +15,7 @@ use App\Events\verifyEvent;
 use App\Traits\MethodTrait;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Events\AuthorsReport;
 use App\Traits\ResponseTrait;
 use Illuminate\Support\Carbon;
 use App\Traits\Requests\TestAuth;
@@ -239,6 +240,20 @@ class UsersController extends Controller
         return view('Auth.Users.show', compact('authors', 'title', 'books'));
 
     }
+
+
+    /**
+     * todo Display the specified resource.
+     */
+    public function report(Request $request, User $user)
+    {
+        //
+        $user['comment'] = $request->comment;
+        event(new AuthorsReport($user));
+        return back()->with('error', "Report Sent Success .");
+
+    }
+
 
     // todo logout in account
     function logout()

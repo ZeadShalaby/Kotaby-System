@@ -4,6 +4,7 @@ namespace App\Events;
 
 use Carbon\Carbon;
 use App\Models\Books;
+use App\Models\Report;
 use App\Models\Tweets;
 use App\Traits\MethodTrait;
 use Illuminate\Broadcasting\Channel;
@@ -39,14 +40,16 @@ class BooksReport
 
 
 
-
     function addReport($bookReport)
     {
-        if ($bookReport->report == 4) {
-            $this->AddReport($bookReport, $bookReport->comment);
-        }
-        $bookReport->report = $bookReport->report + 1;
-        $bookReport->save();
+        $comment = $bookReport->comment;
+        unset($bookReport['comment']);  //? Remove the 'comment' key from the object
+        $bookReport->report()->create([
+            'comment' => $comment,
+            'report' => 1
+        ]);
+
     }
+
 
 }

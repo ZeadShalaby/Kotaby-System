@@ -11,8 +11,26 @@
 
 
                             <!--- input login --->
-                            <?php $__env->startComponent('components.input-form'); ?>
-                            <?php echo $__env->renderComponent(); ?>
+                            <?php if (isset($component)) { $__componentOriginald6e37cb99ca45f11643ac5eab1706c36 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginald6e37cb99ca45f11643ac5eab1706c36 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.input-form','data' => []] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>
+<?php $component->withName('input-form'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag && $constructor = (new ReflectionClass(Illuminate\View\AnonymousComponent::class))->getConstructor()): ?>
+<?php $attributes = $attributes->except(collect($constructor->getParameters())->map->getName()->all()); ?>
+<?php endif; ?>
+<?php $component->withAttributes([]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginald6e37cb99ca45f11643ac5eab1706c36)): ?>
+<?php $attributes = $__attributesOriginald6e37cb99ca45f11643ac5eab1706c36; ?>
+<?php unset($__attributesOriginald6e37cb99ca45f11643ac5eab1706c36); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginald6e37cb99ca45f11643ac5eab1706c36)): ?>
+<?php $component = $__componentOriginald6e37cb99ca45f11643ac5eab1706c36; ?>
+<?php unset($__componentOriginald6e37cb99ca45f11643ac5eab1706c36); ?>
+<?php endif; ?>
 
                             <div class="d-flex justify-content-between">
                                 <a href="#" class="text-primary">نسيت كلمة المرور ؟</a>

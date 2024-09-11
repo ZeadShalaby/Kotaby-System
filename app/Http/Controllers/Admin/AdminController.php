@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use Exception;
+use App\Models\User;
 use App\Models\Admin;
 use App\Traits\ImageTrait;
 use App\Models\Departments;
@@ -11,9 +12,9 @@ use Illuminate\Http\Request;
 use App\Traits\ResponseTrait;
 use App\Traits\Requests\TestAuth;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\LoginAdminRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\LoginAdminRequest;
 use App\Traits\validator\ValidatorTrait;
 
 class AdminController extends Controller
@@ -44,6 +45,38 @@ class AdminController extends Controller
     {
         Auth::guard('admin')->logout();
         return redirect()->route('admin.loginindex');
+    }
+
+
+
+    // todo return all authors reported
+    public function reportauthor()
+    {
+        $title = 'التقارير';
+        $authors = User::reported()->with('media_one', 'report_one', )->get();
+        return view('Admin.Users.report', compact('title', 'authors'));
+    }
+
+    // todo refuesd report authors
+    public function reauthor(User $user)
+    {
+        $user->resetReportAt($user->id);
+        return back()->with('success', 'تم الغاء التقرير بنجاح');
+    }
+
+    /**
+     * todo Remove the specified resource from storage.
+     * !  Delete Forever authors
+     */
+    public function authordestroy(Request $request)
+    {
+        try {
+            $user = User::reported()->find($request->user);
+            $user->forceDelete();
+            return back()->with('success', "delete Book Succcessfully");
+        } catch (\Exception $e) {
+            return back()->with('error', 'Some thing Wrong' . $e->getMessage());
+        }
     }
 
 

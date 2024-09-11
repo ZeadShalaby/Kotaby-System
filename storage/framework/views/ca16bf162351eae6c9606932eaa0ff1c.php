@@ -46,53 +46,27 @@
 <?php endif; ?>
 
     <link rel="stylesheet" href="<?php echo e(asset('css/user-dashboard.css')); ?>">
-    <link rel="stylesheet" href="<?php echo e(asset('css/author-card.css')); ?>">
-
-
-
-    <div class="container my-5">
-        <div class="row">
-
-            <?php $__currentLoopData = $authors; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $author): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                <div class="col-xl-3 col-lg-4 col-md-6 mb-4">
-                    <a href="<?php echo e(route('users.show', $author->id)); ?>" style="text-decoration: none">
-                        <div class="profile-card shadow-sm">
-                            <img src="<?php echo e(asset($author->media_one->media)); ?>" alt="<?php echo e($author->name); ?>">
-                            <h5><?php echo e($author->username); ?></h5>
-
-                            <p class="rating">
-                                
-                                <?php for($i = 1; $i <= $author->stars['fullStars']; $i++): ?>
-                                    <?php if($i <= 5): ?>
-                                        <i class="fas fa-star filled"></i>
-                                    <?php else: ?>
-                                    <?php endif; ?>
-                                <?php endfor; ?>
-
-                                
-                                <?php if($author->stars['hasHalfStar']): ?>
-                                    <i class="fas fa-star-half-alt half-filled"></i>
-                                <?php endif; ?>
-
-                                
-                                <?php for($i = 1; $i <= $author->stars['emptyStars']; $i++): ?>
-                                    <img src="<?php echo e(asset('images/img/empty-star.png')); ?>" class="empty-star" alt="Empty Star">
-                                <?php endfor; ?>
-
-                                (<?php echo e(number_format($author->getAverageRating(), 1)); ?> تقييم)
-                            </p>
-                            <p class="book-count">
-                                <i class="fas fa-book"></i> <?php echo e($author->getBookssCount($author->id)); ?> كتاب
-                            </p>
-                        </div>
-                    </a>
-                </div>
-            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-
-
-
-        </div>
-    </div>
+    <!--- author card --->
+    <?php if (isset($component)) { $__componentOriginal0b7f704b3223ba1104810229e3edef71 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal0b7f704b3223ba1104810229e3edef71 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.card-author','data' => ['authors' => $authors]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>
+<?php $component->withName('card-author'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag && $constructor = (new ReflectionClass(Illuminate\View\AnonymousComponent::class))->getConstructor()): ?>
+<?php $attributes = $attributes->except(collect($constructor->getParameters())->map->getName()->all()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['authors' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($authors)]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal0b7f704b3223ba1104810229e3edef71)): ?>
+<?php $attributes = $__attributesOriginal0b7f704b3223ba1104810229e3edef71; ?>
+<?php unset($__attributesOriginal0b7f704b3223ba1104810229e3edef71); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal0b7f704b3223ba1104810229e3edef71)): ?>
+<?php $component = $__componentOriginal0b7f704b3223ba1104810229e3edef71; ?>
+<?php unset($__componentOriginal0b7f704b3223ba1104810229e3edef71); ?>
+<?php endif; ?>
 <?php $__env->stopSection(); ?>
 
 <?php echo $__env->make('layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\my projects\company task\hash-studio\Kotaby-System\resources\views/Auth/Users/authors-card.blade.php ENDPATH**/ ?>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Reviews;
 use App\Traits\MethodTrait;
 use Illuminate\Http\Request;
+use App\Events\ReviewsReport;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreReviewRequest;
 
@@ -24,20 +25,31 @@ class ReviewsController extends Controller
 
 
     /**
+     * todo Display the specified resource.
+     */
+    public function report(Request $request, Reviews $review)
+    {
+        //
+        $review['comment'] = $request->comment;
+        event(new ReviewsReport($review));
+        return back()->with('error', "Report Sent Success .");
+
+    }
+
+
+    /**
      * todo Store a newly created resource in storage.& delete
      */
     public function store(StoreReviewRequest $request)
     {
         try {
-            $check = Reviews::where('user_id', auth()->user()->id)->where("book_id", $request->book_id)->get();
+            $check = Reviews::where('user_id', auth()->user()->id)->where("book_id", $request->bookid)->first();
             if (isset($check) && $check->count() != 0) {
-                foreach ($check as $item)
-                    $book = Reviews::find($item->id);
                 return back()->with('error', "لقد قمت بالتقييم من قبل");
             }
             Reviews::create([
                 'user_id' => auth()->user()->id,
-                'book_id' => $request->book_id,
+                'book_id' => $request->bookid,
                 'comment' => $request->comment,
                 'star' => $request->star,
             ]);

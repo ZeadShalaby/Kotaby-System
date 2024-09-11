@@ -13,6 +13,7 @@ class Report extends Model
         'reportable_type',
         'reportable_id',
         'comment',
+        'report',
         'created_at',
         'updated_at'
     ];

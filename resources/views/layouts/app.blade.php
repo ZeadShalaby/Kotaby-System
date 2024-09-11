@@ -21,6 +21,27 @@
 </head>
 
 <body>
+    <style>
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #000000;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-image: linear-gradient(180deg, #ffc107 0%, #1B3764 99%);
+
+            border-radius: 10px;
+            transition: 0.5s;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+
+        }
+    </style>
 
     @include('layouts.partials.session')
     @include('layouts.partials.nav')

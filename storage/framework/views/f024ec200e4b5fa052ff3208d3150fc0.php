@@ -53,18 +53,29 @@
 
                 <li class="nav-link">
                     <a href="<?php echo e(route('admin.report.index')); ?>">
-                        <i class="bx bx-pie-chart-alt icon"></i>
+                        <i class="fas fa-book -alt icon" style="font-size: 17px"></i>
                         <span class="text nav-text">Report-Books</span>
                     </a>
                 </li>
-
-
+                <li class="nav-link">
+                    <a href="<?php echo e(route('admin.report.review.index')); ?>">
+                        <i class="fas fa-comment -alt icon" style="font-size: 17px"></i>
+                        <span class="text nav-text">Report-Reviews</span>
+                    </a>
+                </li>
+                <li class="nav-link">
+                    <a href="<?php echo e(route('admin.report.author.index')); ?>">
+                        <i class="fas fa-user -alt icon" style="font-size: 17px"></i>
+                        <span class="text nav-text">Report-Authors</span>
+                    </a>
+                </li>
                 <li class="nav-link">
                     <a href="<?php echo e(route('admin.dep.trash')); ?>">
-                        <i class="bx bx-trash icon"></i>
+                        <i class="bx bx-trash  icon"></i>
                         <span class="text nav-text">Trash</span>
                     </a>
                 </li>
+
             </ul>
         </div>
 
