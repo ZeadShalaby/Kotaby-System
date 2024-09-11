@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Models\User;
 use App\Models\Admin;
 use App\Models\Books;
+use App\Models\Reviews;
 use App\Models\Departments;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Relations\Relation;
@@ -26,10 +27,11 @@ class AppServiceProvider extends ServiceProvider
     {
         //?s use in media morph
         Relation::enforceMorphMap([
-            'Books'       => Books::class,
-            'User'        => User::class,
+            'Books' => Books::class,
+            'User' => User::class,
             'Departments' => Departments::class,
-            'Admin'       => Admin::class
+            'Admin' => Admin::class,
+            'Reviews' => Reviews::class
         ]);
     }
 }

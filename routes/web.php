@@ -66,7 +66,6 @@ Route::prefix('users')->name('users.')->group(function (){
     Route::get('/author/show/{user}', [UsersController::class, 'show'])->name('users.show');
     Route::get('/departments/index',[DepartmentsController::class, 'index'])->name('dep.index'); 
     Route::get('/departments/show/{department}',[DepartmentsController::class, 'show'])->name('dep.show'); 
-    Route::get('/show/book/{book}',[BooksController::class, 'show'])->name('books.show'); 
     Route::get('/show/pdf/{book}',[BooksController::class, 'showpdf'])->name('books.pdf'); 
 
     Route::get('/search',[BooksController::class, 'autocompleteSearch'])->name('searchindex');
@@ -74,6 +73,8 @@ Route::prefix('users')->name('users.')->group(function (){
 
 //?start// must be Authenticate
 Route::middleware('Auth','verified')->group(function () {
+    Route::get('/show/book/{book}',[BooksController::class, 'show'])->name('books.show'); 
+
     Route::get('/users/profile',[UsersController::class, 'index'])->name('users.index'); 
     Route::get('/edit-user/{user}', [UsersController::class, 'edit'])->name('users.edit');
     Route::PUT('/edit-user/{user}', [UsersController::class, 'update'])->name('users.update');
@@ -87,9 +88,9 @@ Route::middleware('Auth','verified')->group(function () {
     Route::POST('/add/reviews', [ReviewsController::class, 'store'])->name('reviews.store');
 
     Route::get('/my/books', [BooksController::class, 'index'])->name('books.index');   
-    Route::DELETE('/destroy/books', [ReviewsController::class, 'destroy'])->name('books.delete'); //
-    Route::get('/edit/book', [ReviewsController::class, 'edit'])->name('books.edit');  //
-    Route::PUT('/update/books', [ReviewsController::class, 'update'])->name('books.update');  //
+    Route::DELETE('/destroy/books/{book}', [BooksController::class, 'destroy'])->name('books.destroy'); //
+    Route::get('/edit/book/{book}', [BooksController::class, 'edit'])->name('books.edit');  //
+    Route::PUT('/update/books/{book}', [BooksController::class, 'update'])->name('books.update');  //
 
     Route::get('/favorite', [FavouritesController::class, 'myfav'])->name('favourite.index');
     Route::post('/fav-books', [FavouritesController::class, 'store'])->name('favourite.store');

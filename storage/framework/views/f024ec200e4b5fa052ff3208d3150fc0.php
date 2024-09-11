@@ -30,7 +30,15 @@
                 </li>
 
                 <li class="nav-link">
-                    <a href="<?php echo e(route('dep.index')); ?>">
+                    <a href="<?php echo e(route('admin.dep.create')); ?>">
+                        <i class="fas fa-add icon"></i>
+                        <span class="text nav-text">Add Department</span>
+                    </a>
+                </li>
+
+
+                <li class="nav-link">
+                    <a href="<?php echo e(route('admin.dep.index')); ?>">
                         <i class="bx bx-bar-chart-alt-2 icon"></i>
                         <span class="text nav-text">Departments</span>
                     </a>
@@ -50,12 +58,6 @@
                     </a>
                 </li>
 
-                <li class="nav-link">
-                    <a href="#">
-                        <i class="bx bx-heart icon"></i>
-                        <span class="text nav-text">Likes</span>
-                    </a>
-                </li>
 
                 <li class="nav-link">
                     <a href="<?php echo e(route('admin.dep.trash')); ?>">

@@ -2,9 +2,9 @@
 
 namespace Database\Factories;
 
-use App\Models\Role;
 use App\Models\User;
 use App\Enums\GuardEnums;
+use App\Traits\MethodTrait;
 use Illuminate\Support\Str;
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class UserFactory extends Factory
 {
+    use MethodTrait;
     /**
      * Define the model's default state.
      *
@@ -24,13 +25,13 @@ class UserFactory extends Factory
         return [
             'about' => $this->faker->text(),
             'name' => $this->faker->name(),              //  'name' => substr($this->faker->name(), 0, 50), // Limit name to 30 characters
-            'username' => Str::slug($this->faker->name()) . '_' . strtoupper(Str::random(3)),           
+            'username' => Str::slug($this->faker->name()) . '_' . strtoupper(Str::random(3)),
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => Carbon::now(),
         ];
     }
 
-    
+
     // ? create author fun
     public function author()
     {
@@ -55,7 +56,7 @@ class UserFactory extends Factory
         });
     }
 
-    
+
     /**
      * Configure the factory with relationships.
      *
@@ -63,16 +64,21 @@ class UserFactory extends Factory
      */
     public function configure()
     {
-        
+
         return $this->afterCreating(function (User $user) {
-            $img = ["images/users/users.png","images/users/user1.png","images/users/user2.png","images/users/user3.png","images/users/user5.png"];
-            $increment = random_int(0,3);
-                $user->media()->create([
-                    'media' => $img[$increment],
-                ]);
+            $img = ["images/users/users.png", "images/users/user1.png", "images/users/user2.png", "images/users/user3.png", "images/users/user5.png"];
+            $increment = random_int(0, 3);
+            $user->media()->create([
+                'media' => $img[$increment],
+            ]);
+
+            // if (random_int(0, 1) === 1) { // 50% chance
+            if (random_int(1, 10) <= 4 && $user->role === GuardEnums::AUTHOR) { //? 30% chance
+                $this->AddReport($user, "This is a random report message.");
+            }
         });
     }
-   
+
 
 
     /**
@@ -82,7 +88,7 @@ class UserFactory extends Factory
      */
     public function unverified(): static
     {
-        return $this->state(fn (array $attributes) => [
+        return $this->state(fn(array $attributes) => [
             'email_verified_at' => null,
         ]);
     }

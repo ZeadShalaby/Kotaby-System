@@ -17,9 +17,11 @@ class CheckAuth
     public function handle(Request $request, Closure $next): Response
     {
         $auth = auth()->user();
-        if(!$auth){
-            if(!Auth::guard('admin')->check()){
-            abort(401, 'Unauthentication');}
+        if (!$auth) {
+            if (!Auth::guard('admin')->check()) {
+                // abort(401, 'Unauthentication');
+                return redirect()->route('users.loginindex')->with(['error' => 'Unauthenticated']);
+            }
         }
         return $next($request);
     }

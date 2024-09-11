@@ -10,6 +10,11 @@
 
     <div class="container mt-5">
         <div class="card mb-4" style="max-width: 1040px; margin: 20px auto;">
+            <!-- Dropdown Menu -->
+            <?php $__env->startComponent('components.dropdown-menu', ['book' => $book]); ?>
+            <?php echo $__env->renderComponent(); ?>
+            <!-- / Dropdown Menu -->
+
             <div class="row g-0">
                 <!-- الصورة ناحية اليمين -->
                 <div class="col-md-4 d-flex justify-content-center align-items-center">
@@ -30,7 +35,7 @@
                     </h5>
                     <h5 class="card-title text-left"
                         style="font-family: 'Almarai', sans-serif; color: #EBBB3F; font-weight: 700; font-size: 15px; margin-right: 38px;">
-                        <?php echo e($book->department->name); ?> </h5>
+                        <?php echo e($book->department->name ?? 'not found'); ?> </h5>
 
                     <ul>
                         <li style="display: flex; justify-content: space-between; margin-bottom: 15px;">
@@ -106,14 +111,15 @@
                             data-bs-toggle="modal" data-bs-target="#rateModal"><i class="fas fa-star"
                                 style="color: #1B3764;margin-left: 2px"></i>أضف
                             تقييم</a>
-
+                        
                         <a href="<?php echo e(route('download.pdf', $book->id)); ?>" class="btn me-2"
                             style="border: 2px solid #1B3764"><i class="fas fa-download"
                                 style="color: #1B3764;margin-left: 2px"></i>تحميل الكتاب</a>
                         <a href="<?php echo e(route('books.pdf', $book->id)); ?>" class="btn" style="border: 2px solid #1B3764"><i
                                 class="fas fa-book" style="color: #1B3764; margin-left: 2px"></i> تصفح الكتاب</a>
-                        <a href="<?php echo e(route('reportindex', $book->id)); ?>" class="btn" style="border: 2px solid #1B3764"><i
-                                class="fas fa-warning" style="color: #1B3764; margin-left: 2px"></i> التبليغ عنه</a>
+                        <a href="#" class="btn" style="border: 2px solid #1B3764" data-bs-toggle="modal"
+                            data-bs-target="#rateModal"><i class="fas fa-warning"
+                                style="color: #1B3764; margin-left: 2px"></i> التبليغ عنه</a>
 
                     </div>
                 </div>
@@ -122,11 +128,26 @@
     </div>
 
 
-    <?php $__env->startComponent('components.star-commit', ['book_id' => $book->id]); ?>
-    <?php echo $__env->renderComponent(); ?>
-
-
-
+    <?php if (isset($component)) { $__componentOriginal3081b591c5c0fc447e238f246914a486 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal3081b591c5c0fc447e238f246914a486 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.star-commit','data' => ['bookid' => $book->id]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>
+<?php $component->withName('star-commit'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag && $constructor = (new ReflectionClass(Illuminate\View\AnonymousComponent::class))->getConstructor()): ?>
+<?php $attributes = $attributes->except(collect($constructor->getParameters())->map->getName()->all()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['bookid' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($book->id)]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal3081b591c5c0fc447e238f246914a486)): ?>
+<?php $attributes = $__attributesOriginal3081b591c5c0fc447e238f246914a486; ?>
+<?php unset($__attributesOriginal3081b591c5c0fc447e238f246914a486); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal3081b591c5c0fc447e238f246914a486)): ?>
+<?php $component = $__componentOriginal3081b591c5c0fc447e238f246914a486; ?>
+<?php unset($__componentOriginal3081b591c5c0fc447e238f246914a486); ?>
+<?php endif; ?>
 
 
     <div class="container mt-5">

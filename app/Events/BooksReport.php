@@ -5,6 +5,7 @@ namespace App\Events;
 use Carbon\Carbon;
 use App\Models\Books;
 use App\Models\Tweets;
+use App\Traits\MethodTrait;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Broadcasting\PrivateChannel;
@@ -15,14 +16,12 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
 class BooksReport
 {
-    use Dispatchable, InteractsWithSockets, SerializesModels;
-    
-    public $bookReport;
+    use Dispatchable, InteractsWithSockets, SerializesModels, MethodTrait;
+
     public function __construct(Books $book)
     {
         //
-        $this -> bookReport = $book;
-        $this -> updateVieweer($this -> bookReport);
+        $this->addReport($book);
 
     }
 
@@ -40,12 +39,14 @@ class BooksReport
 
 
 
-    function updateVieweer($bookReport){
-        if($bookReport->report == 4){
-            $bookReport->report_at = Carbon::now();
+
+    function addReport($bookReport)
+    {
+        if ($bookReport->report == 4) {
+            $this->AddReport($bookReport, $bookReport->comment);
         }
-        $bookReport -> report = $bookReport -> report + 1;
-        $bookReport -> save();
+        $bookReport->report = $bookReport->report + 1;
+        $bookReport->save();
     }
-    
+
 }

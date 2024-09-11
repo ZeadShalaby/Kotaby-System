@@ -2,27 +2,47 @@
 <?php $__env->startSection('content-admin'); ?>
     <!----- content ----->
 
-    <style>
-        .container-card {
-            margin-top: 20px;
-            margin-bottom: 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+    <link rel="stylesheet" href="<?php echo e(asset('css/admin-dep.css')); ?>">
 
-        /* Row styling */
-        .row {
-            margin-bottom: 30px;
-            /* Space between rows */
-        }
-    </style>
-    <!--- tape top --->
-    <?php $__env->startComponent('components.section-tape', ['title' => $title]); ?>
-    <?php echo $__env->renderComponent(); ?>
     <div class="container">
-        <div class="row">
-            <?php $__env->startComponent('components.card-department', ['departments' => $departments]); ?>
-            <?php echo $__env->renderComponent(); ?>
+        <div class="card-grid">
+            <?php $__currentLoopData = $departments; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <div class="card">
+                    <a href="<?php echo e(route('admin.dep.show', $item->id)); ?>" style="text-decoration: none;">
+                        <div class="book-card">
+                            <img src="<?php echo e(asset($item->media_one->media)); ?>" alt="<?php echo e($item->media_one->media); ?>">
+                            <div>
+                                <h5 class="book-card-title"><?php echo e($item->name); ?></h5>
+                                <p class="book-card-text">
+                                    <?php echo e($item->getBooksCount($item->id)); ?> كتاب
+                                    <i class="fas fa-book book-card-icon"></i>
+                                </p>
+
+                                <form action="<?php echo e(route('admin.dep.destroy', $item->id)); ?>" method="POST"
+                                    style="margin-top: -23px;">
+                                    <?php echo csrf_field(); ?>
+                                    <?php echo method_field('DELETE'); ?>
+                                    <button type="submit" style="background: none;border: none">
+                                        <a href="#" class="action-link">
+                                            <i class="fas fa-trash"
+                                                style="width: 20px; height: 20px; margin-left: 100px; color: rgb(168, 33, 62)">
+                                            </i>
+                                        </a>
+                                    </button>
+                                </form>
+
+                                <a href="<?php echo e(route('admin.dep.edit', $item->id)); ?>" class="action-link">
+                                    <i class="fas fa-edit"
+                                        style="width: 20px; height: 20px; margin-left: 140px; margin-top: -27px;color: rgb(108, 175, 233)">
+                                    </i>
+
+                                </a>
+
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         </div>
     </div>
 <?php $__env->stopSection(); ?>

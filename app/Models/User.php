@@ -3,9 +3,9 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
-use App\Models\User;
 use App\Models\Books;
 use App\Models\Media;
+use App\Models\Report;
 use App\Models\Reviews;
 use App\Models\Favourites;
 use Laravel\Sanctum\HasApiTokens;
@@ -54,7 +54,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
-    
+
     // User.php
     public function getTotalStarCount()
     {
@@ -86,11 +86,11 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->book()->count();
     }
-    
+
     public function book()
     {
         return $this->hasMany(Books::class, 'user_id');
-    }        
+    }
     // ! //
 
 
@@ -101,11 +101,11 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->fav()->count();
     }
-    
+
     public function fav()
     {
         return $this->hasMany(Favourites::class, 'user_id');
-    }        
+    }
     // ! //
 
     // todo return Type of stars rating
@@ -118,9 +118,9 @@ class User extends Authenticatable implements MustVerifyEmail
         $emptyStars = 5 - ($fullStars + ($hasHalfStar ? 1 : 0));
 
         return [
-            'fullStars'     => $fullStars,
-            'hasHalfStar'   => $hasHalfStar,
-            'emptyStars'    => $emptyStars,
+            'fullStars' => $fullStars,
+            'hasHalfStar' => $hasHalfStar,
+            'emptyStars' => $emptyStars,
             'averageRating' => $averageRating
         ];
 
@@ -142,7 +142,7 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         //? Assuming 'stars' is the rating column in reviews
         $average = $this->reviews()->count('user_id');
-        
+
         //? Round to the nearest decimal
         return $average;
     }
@@ -152,18 +152,18 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         //? Assuming 'stars' is the rating column in reviews
         $average = $this->reviews()->sum('star');
-        
+
         //? Round to the nearest decimal
         return $average;
     }
-    
+
 
     // todo calculate total rating
     public function getAverageRating()
     {
         //? Assuming 'stars' is the rating column in reviews
         $average = $this->reviews()->avg('star');
-        
+
         //? Round to the nearest decimal
         return round($average, 1);
     }
@@ -174,7 +174,7 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Reviews::class, 'user_id'); //? Adjust 'author_id' to your foreign key
     }
 
-     /**
+    /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
@@ -188,6 +188,23 @@ class User extends Authenticatable implements MustVerifyEmail
     public function media_one()
     {
         return $this->morphOne(Media::class, 'mediaable');
+    }
+
+
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    public function report()
+    {
+        return $this->morphMany(Report::class, 'mediaable');
+    }
+
+    public function report_one()
+    {
+        return $this->morphOne(Report::class, 'reportable');
     }
 
 }

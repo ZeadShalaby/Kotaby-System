@@ -10,7 +10,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="mb-3">
-                        <form action="{{ route('reviews.store', ['book_id' => $book_id]) }}" method="POST">
+                        <form action="{{ route('reviews.store', ['book_id' => $bookid]) }}" method="POST">
                             {{ csrf_field() }}
                             <div class="stars">
                                 <input type="radio" name="star" id="star1" value="5">

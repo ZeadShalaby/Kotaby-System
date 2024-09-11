@@ -4,16 +4,15 @@ namespace App\Models;
 
 use App\Models\Books;
 use App\Models\Media;
-use App\Models\Departments;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Departments extends Model
 {
-    use HasFactory , SoftDeletes ;
+    use HasFactory, SoftDeletes;
 
-       /**
+    /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
@@ -36,7 +35,7 @@ class Departments extends Model
 
 
     //! ////////
-    
+
     // todo Method to get the count of books for this department
     public function getBooksCount()
     {
@@ -65,7 +64,7 @@ class Departments extends Model
 
     // ! ///////
 
-     /**
+    /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
@@ -80,4 +79,22 @@ class Departments extends Model
     {
         return $this->morphOne(Media::class, 'mediaable');
     }
+
+
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    public function report()
+    {
+        return $this->morphMany(Report::class, 'mediaable');
+    }
+
+    public function report_one()
+    {
+        return $this->morphOne(Report::class, 'reportable');
+    }
+
 }

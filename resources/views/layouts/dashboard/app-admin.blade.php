@@ -1,6 +1,6 @@
 <!-- Coding by CodingLab | www.codinglabweb.com -->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar">
 
 <head>
     <meta charset="UTF-8" />
@@ -10,7 +10,9 @@
     <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}" />
     <!----===== Boxicons CSS ===== -->
 
+    <link rel="stylesheet" href="{{ asset('css/session.css') }}">
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <link href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css" rel="stylesheet" />
 
@@ -21,6 +23,7 @@
 
 
 
+    @include('layouts.partials.session')
 
     @include('layouts.dashboard.partials.dashboard-left')
 

@@ -5,8 +5,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -22,9 +21,9 @@ return new class extends Migration
             $table->index('num_pages');
             $table->bigInteger('dep_id')->unsigned();  //? departments 
             $table->index('dep_id');
-            $table->bigInteger('user_id')->unsigned(); 
+            $table->bigInteger('user_id')->unsigned();
             $table->index('user_id');
-            $table->bigInteger('star')->unsigned()->nullable(); 
+            $table->bigInteger('star')->unsigned()->nullable();
             $table->index('star');
             $table->bigInteger('view')->unsigned()->nullable();
             $table->index('view');
@@ -33,7 +32,6 @@ return new class extends Migration
             $table->string('locations')->nullable();
             $table->bigInteger('report')->unsigned()->nullable();
             $table->index('report');
-            $table->timestamp('report_at')->nullable()->default(null);
             $table->timestamps();
         });
     }

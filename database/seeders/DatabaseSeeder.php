@@ -22,66 +22,65 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        
+
         $defAdmin = Admin::factory()->create([
             'username' => 'admin',
             'email' => 'admin@gmail.com',
-            'password' => Hash::make('admin'), 
+            'password' => Hash::make('admin'),
             'role' => GuardEnums::ADMIN->value,
-        ]); 
-        
+        ]);
+
         // authors
         $defAuthor = User::factory()->create([
             'username' => 'author',
             'email' => 'author@gmail.com',
-            'password' => Hash::make('author'), 
+            'password' => Hash::make('author'),
             'role' => GuardEnums::AUTHOR->value,
-        ]); 
+        ]);
         // ? users
         $defUser = User::factory()->create([
             'username' => 'user',
             'email' => 'user@gmail.com',
-            'password' => Hash::make('user'), 
+            'password' => Hash::make('user'),
             'role' => GuardEnums::USER->value,
-        ]); 
-  
+        ]);
+
         //? Create 10 Admin
         $admins = Admin::factory()
-        ->admin()
-        ->count(4)
-        ->create();
+            ->admin()
+            ->count(4)
+            ->create();
         $admins->push($defAdmin);
 
         //? Create 10 Author
         $authors = User::factory()
-        ->author()
-        ->count(9)
-        ->create();
+            ->author()
+            ->count(9)
+            ->create();
         $authors->push($defAuthor);
-       
+
         //? Create 10 Users
         $users = User::factory()
-        ->user()
-        ->count(9)
-        ->create();
+            ->user()
+            ->count(9)
+            ->create();
         $users->push($defUser);
 
 
-        //? Create 10 Departments
-        $departments = Departments::factory()->count(10)->create();
+        //? Create 20 Departments
+        Departments::factory()->count(20)->create();
 
- 
-        //? Create 10 Books
-        $books = Books::factory()->count(50)->create();
+        //? Create 50 Books
+        Books::factory()->count(50)->create();
 
-        //? Create 10 Location
-        $location = Locations::factory()->count(20)->create();
+        //? Create 20 Location
+        Locations::factory()->count(20)->create();
 
-        //? Create 10 Reviews
-        $reviews = Reviews::factory()->count(20)->create();
+        //? Create 30 Reviews
+        Reviews::factory()->count(30)->create();
 
         //? create 10 favourite books
-        $favourite = Favourites::factory()->count(10)->create();
+        Favourites::factory()->count(10)->create();
 
     }
 }

@@ -41,8 +41,8 @@ class Reviews extends Model
     }
 
 
-     
-    
+
+
     /**
      * The attributes that are mass assignable.
      *
@@ -52,16 +52,33 @@ class Reviews extends Model
     {
         return $this->belongsTo(User::class, 'user_id')->with('media_one');
     }
-   
-   /*
-    * The attributes that are mass assignable.
-    *
-    * @var array<int, string>
-    */
+
+    /*
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
     public function book()
     {
         return $this->belongsTo(Books::class, 'book_id')->with('media_one');
     }
 
-    
+
+
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    public function report()
+    {
+        return $this->morphMany(Report::class, 'mediaable');
+    }
+
+    public function report_one()
+    {
+        return $this->morphOne(Report::class, 'reportable');
+    }
+
 }

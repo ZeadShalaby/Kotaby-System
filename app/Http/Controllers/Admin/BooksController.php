@@ -23,7 +23,6 @@ class BooksController extends Controller
 
     public function report(Request $request , Books $book)
     {
-        // $report = Report::find($id);  
         $book->resetReportAt();
         return back()->with('success','تم الغاء التقرير بنجاح');    
     }

@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use Exception;
-use App\Models\Role;
 use App\Models\User;
-use App\Models\Admin;
 use App\Models\Books;
+use App\Models\Media;
 use App\Events\MailCode;
 use App\Mail\Codemailer;
 use App\Mail\VerfiyMail;
@@ -23,11 +22,14 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use App\Http\Requests\LoginUserRequest;
 use App\Traits\validator\ValidatorTrait;
+use App\Http\Requests\StoreRegisterRequest;
+use Illuminate\Contracts\Validation\Validator;
 
 class UsersController extends Controller
 {
-    use ImageTrait , ValidatorTrait , TestAuth , ResponseTrait,MethodTrait;
+    use ImageTrait, ValidatorTrait, TestAuth, ResponseTrait, MethodTrait;
 
 
     // todo profile page
@@ -46,12 +48,12 @@ class UsersController extends Controller
     function home()
     {
         $title = 'الشائع';
-        $book = Books::orderBy('view', 'desc')->with('media_one','department','user')->get();
+        $book = Books::orderBy('view', 'desc')->with('media_one', 'department', 'user')->get();
         $books = $book->map(function ($book) {
             $book->stars = $book->getTypeStars();
             return $book;
         });
-        return view('Auth.Users.home',compact('title','books'));
+        return view('Auth.Users.home', compact('title', 'books'));
     }
 
     // todo register page
@@ -66,89 +68,101 @@ class UsersController extends Controller
     public function verfiy(User $user)
     {
         // ? verify the user Email
-        event(new verifyEvent($user)); 
-        return redirect()->route('users.loginindex')->with('success','Hy Sir : '.$user->username.' Verifu Email Succcessfuly');
+        event(new verifyEvent($user));
+        return redirect()->route('users.loginindex')->with('success', 'Hy Sir : ' . $user->username . ' Verifu Email Succcessfuly');
     }
-    
 
 
     // todo Login Users
-    public function login(Request $request){
-        try{
+    public function login(LoginUserRequest $request)
+    {
+        try {
             $infofield = $this->CheckField($request);
-            // ! valditaion
-            $rules = $this->rulesAuthLogin($infofield['fields']);    
-            $validator = $this->validate($request,$rules);
-            if($validator !== true){return back()->with('error', $validator);}
-            $auth = Auth::attempt($infofield['credentials']);
-            return redirect()->route('homeindex');
-            if(!$auth)
-            return $this->AuthAdmin($infofield);
+            $rules = $this->rulesAuthLogin($infofield['fields']);
+            $validator = $this->validate($request, $rules);
+            if ($validator !== true) {
+                return back()->withInput()->withErrors($validator);
             }
-            catch(Exception $ex){
-                return $ex->getMessage();
+
+            if (Auth::attempt($infofield['credentials'])) {
+                return redirect()->route('homeindex');
+            } else {
+                return back()->withInput()->withErrors(['password' => 'Invalid credentials']);
+            }
+        } catch (Exception $ex) {
+            return back()->withInput()->withErrors(['error' => $ex->getMessage()]);
         }
     }
 
+    // create other way
+    // $customerData = $request->all();
+    // $customerData['username'] = Str::slug($request->name) . '_' . strtoupper(Str::random(3));
+    // $customerData['role'] = GuardEnums::USER->value;
+    // $customer = User::create($customerData);
 
     // todo add new account
-    public function register(Request $request){
+    public function register(StoreRegisterRequest $request)
+    {
+        try {
+            //! Determine the password
+            $password = $request->password ? Hash::make($request->password) : null;
+            // todo Register New Account //    
+            $customer = User::create([
+                'name' => $request->name,
+                'username' => Str::slug($request->name) . '_' . strtoupper(Str::random(3)),
+                'email' => $request->email,
+                'password' => $password,
+                'role' => GuardEnums::USER->value
+            ]);
 
-        // ! valditaion
-        $rules = $this->rulesRegist();    
-        $validator = $this->validate($request,$rules);
-        if($validator !== true){return back()->with('error', $validator);}
-        //! Determine the password
-        $password = $request->password ? Hash::make($request->password) : null;
-        
-        // todo Register New Account //    
-        $customer = User::create([
-            'name'     => $request->name,
-            'username' => Str::slug($request->name) . '_' . strtoupper(Str::random(3)),
-            'email'    => $request->email,
-            'password' => $password,
-            'role'     => GuardEnums::USER->value
-        ]);
+            if ($request->has('img')) {
+                $this->Addmedia($customer, $request->img);
+            } else {
+                $this->Addmedia($customer, '/images/users/users.png');
+            }
 
-        if($request->has('img')){$this->Addmedia($customer , $request->img);}
-        else{$this->Addmedia($customer , '/images/users/users.png');}
-
-        // todo send mail to user for verify email
-        Mail::to($request->email)->send(new VerfiyMail($customer));
-        if($customer){
-            return redirect('/users/login')->with('success', "Welcome : ".$customer->username." , check your inpox to verify email");}
-            else{return back()->with('error', "Some Thing Wrong .");}
+            // todo send mail to user for verify email
+            Mail::to($request->email)->send(new VerfiyMail($customer));
+            return redirect('/users/login')->with('success', "Welcome : " . $customer->username . " , check your inpox to verify email");
+        } catch (Exception $ex) {
+            return back()->with('error', "Some Thing Wrong .");
         }
+
+    }
 
     /**
      * todo Show the form for editing the specified resource.
      */
     public function edit(User $user)
     {
-         $user = $user->load('media_one');
-         return view('Auth.Users.edit',compact('user'));
+        $user = $user->load('media_one');
+        return view('Auth.Users.edit', compact('user'));
     }
 
 
     // todo profile page update info
-    public function update(Request $request,User $user)
+    public function update(Request $request, User $user)
     {
-         // ! valditaion
-         $rules = $this->rulesUpdate();    
-         $validator = $this->validate($request,$rules);
-         if($validator !== true){return back()->with('error', $validator);}
-        
-         // todo Register New Account //    
-         $customer = $user->update([
-             'name'     => $request->name,
-             'username' => Str::slug($request->name) . '_' . strtoupper(Str::random(3)),
-             'email'    => $request->email,
-             'about'    => $request->about,
-             'password' => Hash::make($request->password),
-         ]);
-         if($customer){
-             return back()->with('success', "change info : ".$user->username." , success" );}
-             else{return back()->with('error', "Some Thing Wrong .");}
+        // ! valditaion
+        $rules = $this->rulesUpdate();
+        $validator = $this->validate($request, $rules);
+        if ($validator !== true) {
+            return back()->with('error', $validator);
+        }
+
+        // todo Register New Account //    
+        $customer = $user->update([
+            'name' => $request->name,
+            'username' => Str::slug($request->name) . '_' . strtoupper(Str::random(3)),
+            'email' => $request->email,
+            'about' => $request->about,
+            'password' => Hash::make($request->password),
+        ]);
+        if ($customer) {
+            return back()->with('success', "change info : " . $user->username . " , success");
+        } else {
+            return back()->with('error', "Some Thing Wrong .");
+        }
     }
 
 
@@ -156,9 +170,9 @@ class UsersController extends Controller
     public function changeimg(Request $request)
     {
         //? Validate the request if needed
-        $request->validate(['media' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', ]);
+        $request->validate(['media' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',]);
         //? Get the user's media
-        $user_media = Media::where('mediaable_type', 'User')->where('mediaable_id', auth()->user()->id)->first(); 
+        $user_media = Media::where('mediaable_type', 'User')->where('mediaable_id', auth()->user()->id)->first();
         if ($request->hasFile('media')) {
             //? Save the new image
             $path = $this->saveimage($request->file('media'), 'images/users/');
@@ -174,95 +188,108 @@ class UsersController extends Controller
     // todo forget pass of user => send code from mail user 
     public function forget(Request $request)
     {
-         // ! valditaion
-         $rules = ['email'=>'required|email|exists:users,email'];  
-         $validator = $this->validate($request,$rules);
-         if($validator !== true){return back()->with('error', $validator);}
+        // ! valditaion
+        $rules = ['email' => 'required|email|exists:users,email'];
+        $validator = $this->validate($request, $rules);
+        if ($validator !== true) {
+            return back()->with('error', $validator);
+        }
 
-         $request->session()->put('userEmail', $request->input('email'));
-         $user = $this->checkmail($request->email);
-         event(new MailCode($user));
-         $user->date = Carbon::now(); 
-         Mail::to($request->email)->send(new Codemailer($user));
-         return redirect()->route('users.verfiyindex');
+        $request->session()->put('userEmail', $request->input('email'));
+        $user = $this->checkmail($request->email);
+        event(new MailCode($user));
+        $user->date = Carbon::now();
+        Mail::to($request->email)->send(new Codemailer($user));
+        return redirect()->route('users.verfiyindex');
     }
 
-    
+
     // todo resend code for user => send code from mail user again
     public function resend(Request $request)
     {
         $email = $request->session()->get('userEmail');
         $user = $this->checkmail($email);
         event(new MailCode($user));
-        $user->date = Carbon::now(); 
+        $user->date = Carbon::now();
         Mail::to($email)->send(new Codemailer($user));
-        return redirect()->route('users.verfiyindex')->with('success','Check your inbox sir : '.$user->username);
+        return redirect()->route('users.verfiyindex')->with('success', 'Check your inbox sir : ' . $user->username);
 
     }
 
     // todo verify Code for user
-    public function codeverify(Request $request){
+    public function codeverify(Request $request)
+    {
 
         // ! valditaion
-        $rules = ['code'=>'required|exists:users,code'];  
-        $validator = $this->validate($request,$rules);
-        if($validator !== true){return back()->with('error', $validator);}
+        $rules = ['code' => 'required|exists:users,code'];
+        $validator = $this->validate($request, $rules);
+        if ($validator !== true) {
+            return back()->with('error', $validator);
+        }
 
         $email = $request->session()->get('userEmail');
         if ($email) {
-                $user = User::where('email', $email)->where('code', $request->code)->first();
-                if(isset($user)){
-                    $request->session()->forget('userEmail');
-                    return view('Auth.Users.change-pass',compact('user'));
-                } 
+            $user = User::where('email', $email)->where('code', $request->code)->first();
+            if (isset($user)) {
+                $request->session()->forget('userEmail');
+                return view('Auth.Users.change-pass', compact('user'));
             }
-        return back()->with('error','No email found in session');
+        }
+        return back()->with('error', 'No email found in session');
     }
 
     // todo change pass for user 
-    public function Updatepass(Request $request,User $user){
+    public function Updatepass(Request $request, User $user)
+    {
 
         // ! valditaion
-        $rules = ['password' => 'required|confirmed|min:8' ];
-        $validator = $this->validate($request,$rules);
-        if($validator !== true){return back()->with('error', $validator);}
-        
-        $password = Hash::make($request->password); 
+        $rules = ['password' => 'required|confirmed|min:8'];
+        $validator = $this->validate($request, $rules);
+        if ($validator !== true) {
+            return back()->with('error', $validator);
+        }
+
+        $password = Hash::make($request->password);
         $user->update(['password' => $password]);
         //? Authenticate the user
-        $auth = Auth::attempt(['email' => $user->email,'password' => $request->password]);
-        if ($auth) {return redirect()->route('homeindex');} 
-        else {return back()->with('error', 'Authentication failed. Please try again.');}
-            
+        $auth = Auth::attempt(['email' => $user->email, 'password' => $request->password]);
+        if ($auth) {
+            return redirect()->route('homeindex');
+        } else {
+            return back()->with('error', 'Authentication failed. Please try again.');
+        }
+
     }
 
     // todo change pass for user 
-    public function authors(Request $request){
+    public function authors(Request $request)
+    {
         $title = 'المؤلفين';
-        $author = User::where('role',GuardEnums::AUTHOR->value)->get();
+        $author = User::where('role', GuardEnums::AUTHOR->value)->get();
         $authors = $author->map(function ($author) {
             $author->stars = $author->getTypeStars();
             return $author;
         });
-        return view('Auth.Users.authors-card',compact('authors','title'));   
+        return view('Auth.Users.authors-card', compact('authors', 'title'));
     }
 
     // todo show info for user 
-    public function show(Request $request  , User $user){
+    public function show(Request $request, User $user)
+    {
         $title = ' المؤلفين > معلومات الكاتب';
         $authors = $user->load('media_one');
         $authors->stars = $authors->getTypeStars();
-        $book = Books::where('user_id', $user->id)->with('media_one','department','user')->get();
+        $book = Books::where('user_id', $user->id)->with('media_one', 'department', 'user')->get();
         $books = $book->map(function ($book) {
             $book->stars = $book->getTypeStars();
             return $book;
         });
-        return view('Auth.Users.show',compact('authors','title','books'));
-        
+        return view('Auth.Users.show', compact('authors', 'title', 'books'));
+
     }
 
 
-    
+
 
     // todo logout in account
     function logout()

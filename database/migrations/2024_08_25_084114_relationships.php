@@ -14,22 +14,22 @@ return new class extends Migration
        
         // ? books table relation
         Schema::table('books', function (Blueprint $table) {
-            $table->foreign('dep_id')->references('id')->on('departments');                
-            $table->foreign('user_id')->references('id')->on('users');                
+            $table->foreign('dep_id')->references('id')->on('departments')->onDelete('cascade');;                
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');;                
         });
          // ? favourites table relation
          Schema::table('locations', function (Blueprint $table) {
-            $table->foreign('book_id')->references('id')->on('books');                
+            $table->foreign('book_id')->references('id')->on('books')->onDelete('cascade');;                
         });
         // ? favourites table relation
         Schema::table('favourites', function (Blueprint $table) {
-            $table->foreign('book_id')->references('id')->on('books');                
-            $table->foreign('user_id')->references('id')->on('users');                
+            $table->foreign('book_id')->references('id')->on('books')->onDelete('cascade');;                
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');;                
         });
         // ? reviews table relation
         Schema::table('reviews', function (Blueprint $table) {
-            $table->foreign('book_id')->references('id')->on('books');                
-            $table->foreign('user_id')->references('id')->on('users');                
+            $table->foreign('book_id')->references('id')->on('books')->onDelete('cascade');;                
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');;                
         });
 
     }

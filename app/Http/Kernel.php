@@ -72,6 +72,5 @@ class Kernel extends HttpKernel
         'auth.admin'  => CheckAdmin::class,
         'auth.author' => CheckAuthor::class,
         'auth.user'   => Checkuser::class,
-        'verified'    => verified::class
     ];
 }

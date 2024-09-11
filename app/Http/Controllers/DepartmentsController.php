@@ -39,7 +39,7 @@ class DepartmentsController extends Controller
     // todo autocompleteSearch by description
     public function autocompleteSearch(Request $request)
     {
-        $pageTitle = 'Department';
+        $pageTitle = 'Departments';
         $filterResult = Departments::where('name', 'LIKE', '%'.$request->get('query'). '%')
         ->orderBy('created_at', 'desc')->take(8)->get();
         return view('departments.index',compact($filterResult,$pageTitle));

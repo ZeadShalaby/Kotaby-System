@@ -10,6 +10,11 @@
 
     <div class="container mt-5">
         <div class="card mb-4" style="max-width: 1040px; margin: 20px auto;">
+            <!-- Dropdown Menu -->
+            @component('components.dropdown-menu', ['book' => $book])
+            @endcomponent
+            <!-- / Dropdown Menu -->
+
             <div class="row g-0">
                 <!-- الصورة ناحية اليمين -->
                 <div class="col-md-4 d-flex justify-content-center align-items-center">
@@ -28,7 +33,7 @@
                     </h5>
                     <h5 class="card-title text-left"
                         style="font-family: 'Almarai', sans-serif; color: #EBBB3F; font-weight: 700; font-size: 15px; margin-right: 38px;">
-                        {{ $book->department->name }} </h5>
+                        {{ $book->department->name ?? 'not found' }} </h5>
 
                     <ul>
                         <li style="display: flex; justify-content: space-between; margin-bottom: 15px;">
@@ -103,14 +108,15 @@
                             data-bs-toggle="modal" data-bs-target="#rateModal"><i class="fas fa-star"
                                 style="color: #1B3764;margin-left: 2px"></i>أضف
                             تقييم</a>
-
+                        {{-- {{ route('reportindex', $book->id) }} --}}
                         <a href="{{ route('download.pdf', $book->id) }}" class="btn me-2"
                             style="border: 2px solid #1B3764"><i class="fas fa-download"
                                 style="color: #1B3764;margin-left: 2px"></i>تحميل الكتاب</a>
                         <a href="{{ route('books.pdf', $book->id) }}" class="btn" style="border: 2px solid #1B3764"><i
                                 class="fas fa-book" style="color: #1B3764; margin-left: 2px"></i> تصفح الكتاب</a>
-                        <a href="{{ route('reportindex', $book->id) }}" class="btn" style="border: 2px solid #1B3764"><i
-                                class="fas fa-warning" style="color: #1B3764; margin-left: 2px"></i> التبليغ عنه</a>
+                        <a href="#" class="btn" style="border: 2px solid #1B3764" data-bs-toggle="modal"
+                            data-bs-target="#rateModal"><i class="fas fa-warning"
+                                style="color: #1B3764; margin-left: 2px"></i> التبليغ عنه</a>
 
                     </div>
                 </div>
@@ -119,11 +125,7 @@
     </div>
 
 
-    @component('components.star-commit', ['book_id' => $book->id])
-    @endcomponent
-
-
-
+    <x-star-commit :bookid="$book->id" />
 
 
     <div class="container mt-5">

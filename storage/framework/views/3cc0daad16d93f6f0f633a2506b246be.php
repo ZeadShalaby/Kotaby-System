@@ -10,7 +10,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="mb-3">
-                        <form action="<?php echo e(route('reviews.store', ['book_id' => $book_id])); ?>" method="POST">
+                        <form action="<?php echo e(route('reviews.store', ['book_id' => $bookid])); ?>" method="POST">
                             <?php echo e(csrf_field()); ?>
 
                             <div class="stars">

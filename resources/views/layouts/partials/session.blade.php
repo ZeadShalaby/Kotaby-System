@@ -3,13 +3,11 @@
         <div class="alert-warning">
             {{ Session::get('warn') }}
         </div>
-        </div>
     @endif
     <!-- success alert -->
     @if (Session::has('success'))
         <div class="alert-success">
             {{ Session::get('success') }}
-        </div>
         </div>
     @endif
     <!-- error alert -->
@@ -17,9 +15,18 @@
         <div class="alert-error">
             {{ Session::get('error') }}
         </div>
-        </div>
     @endif
-
+    {{-- @if ($errors->any())
+        @foreach ($errors->all() as $error)
+            <div class="alert-error">
+                {{ $error }}
+            </div>
+        @endforeach
+    @endif --}}
+    {{-- @error('author_name')
+        @dd($errors)
+        <span class="text text-danger">{{ $errors }}</span>
+    @enderror --}}
     <!-- delete alert -->
     @if (Session::has('delete'))
         <div class="alert-delete">

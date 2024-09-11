@@ -4,14 +4,12 @@
             <?php echo e(Session::get('warn')); ?>
 
         </div>
-        </div>
     <?php endif; ?>
     <!-- success alert -->
     <?php if(Session::has('success')): ?>
         <div class="alert-success">
             <?php echo e(Session::get('success')); ?>
 
-        </div>
         </div>
     <?php endif; ?>
     <!-- error alert -->
@@ -20,9 +18,9 @@
             <?php echo e(Session::get('error')); ?>
 
         </div>
-        </div>
     <?php endif; ?>
-
+    
+    
     <!-- delete alert -->
     <?php if(Session::has('delete')): ?>
         <div class="alert-delete">

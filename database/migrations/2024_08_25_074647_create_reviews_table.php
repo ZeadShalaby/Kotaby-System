@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -14,12 +13,14 @@ return new class extends Migration
         Schema::create('reviews', function (Blueprint $table) {
             $table->id();
             $table->string('comment');
-            $table->bigInteger('user_id')->unsigned(); 
+            $table->bigInteger('user_id')->unsigned();
             $table->index('user_id');
-            $table->bigInteger('book_id')->unsigned(); 
+            $table->bigInteger('book_id')->unsigned();
             $table->index('book_id');
-            $table->bigInteger('star')->unsigned()->nullable(); 
+            $table->bigInteger('star')->unsigned()->nullable();
             $table->index('star');
+            $table->bigInteger('report')->unsigned()->nullable();
+            $table->index('report');
             $table->timestamps();
         });
     }

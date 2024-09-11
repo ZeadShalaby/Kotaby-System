@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\User;
 use App\Models\Media;
+use App\Models\Report;
 use App\Models\Reviews;
 use App\Models\Departments;
 use Illuminate\Database\Eloquent\Model;
@@ -12,8 +13,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Books extends Model
 {
     use HasFactory;
-      
-   /**
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
@@ -58,11 +59,12 @@ class Books extends Model
     public function resetReportAt()
     {
         $this->report_at = null;
+        $this->report = null;
         $this->save();
     }
 
 
-      // todo return Type of stars rating
+    // todo return Type of stars rating
     public function getTypeStars()
     {
 
@@ -70,11 +72,11 @@ class Books extends Model
         $fullStars = floor($averageRating);
         $halfStar = $averageRating - $fullStars >= 0.5 ? 1 : 0;
         $emptyStars = 5 - ($fullStars + ($halfStar ? 1 : 0));
-        
+
         return [
-            'fullStars'     => $fullStars,
-            'halfStar'      => $halfStar,
-            'emptyStars'    => $emptyStars,
+            'fullStars' => $fullStars,
+            'halfStar' => $halfStar,
+            'emptyStars' => $emptyStars,
             'averageRating' => $averageRating
         ];
 
@@ -86,7 +88,7 @@ class Books extends Model
     {
         //? Assuming 'stars' is the rating column in reviews
         $totalRating = $this->reviews()->sum('star');
-        
+
         return $totalRating;
     }
 
@@ -98,9 +100,9 @@ class Books extends Model
 
     public function stars()
     {
-        return $this->hasMany(Reviews::class,'book_id'); //? Assuming you have a Star model for ratings
+        return $this->hasMany(Reviews::class, 'book_id'); //? Assuming you have a Star model for ratings
     }
-    
+
     /**
      * The attributes that are mass assignable.
      *
@@ -145,9 +147,9 @@ class Books extends Model
     {
         return $this->belongsToMany(User::class, 'favourites', 'book_id')->withTimestamps();
     }
-   // ! //
+    // ! //
 
-     /**
+    /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
@@ -161,6 +163,21 @@ class Books extends Model
     public function media_one()
     {
         return $this->morphOne(Media::class, 'mediaable');
+    }
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    public function report()
+    {
+        return $this->morphMany(Report::class, 'mediaable');
+    }
+
+    public function report_one()
+    {
+        return $this->morphOne(Report::class, 'reportable');
     }
 
 
