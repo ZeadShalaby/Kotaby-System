@@ -41,7 +41,7 @@
             <div class="info">
                 <h2> Description</h2>
                 <ul>
-                    <li><strong>Title : </strong><?php echo e($department->name); ?> </li>
+                    <li><strong>Name : </strong><?php echo e($department->name); ?> </li>
                     <li><strong>Code : </strong><?php echo e($department->code); ?></li>
                     <li><strong>Decoration: </strong>balls and bells</li>
                     <li><strong>Material: </strong>Eco-Friendly</li>

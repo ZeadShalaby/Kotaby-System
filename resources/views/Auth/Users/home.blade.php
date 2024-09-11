@@ -14,18 +14,14 @@
     </div>
 
     <!--- input Edit --->
-    @component('components.setting-right')
-    @endcomponent
+    <x-setting-right />
     <!--- tape top --->
-    @component('components.section-tape', ['title' => $title])
-    @endcomponent
+    <x-section-tape :title="$title" />
 
     <div class="container">
         <div class="row">
             <!--- card books --->
-            @component('components.card-book', ['books' => $books])
-            @endcomponent
-
+            <x-card-book :books="$books" />
         </div>
     </div>
 @endsection

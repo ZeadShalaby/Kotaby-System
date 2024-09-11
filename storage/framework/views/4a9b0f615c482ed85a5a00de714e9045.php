@@ -4,16 +4,52 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <!--- tape section --->
-    <?php $__env->startComponent('components.section-tape', ['title' => $title]); ?>
-    <?php echo $__env->renderComponent(); ?>
+    <?php if (isset($component)) { $__componentOriginalfd56616f4a6dab860ae516f8f1ac7bb1 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginalfd56616f4a6dab860ae516f8f1ac7bb1 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.setting-right','data' => ['title' => $title]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>
+<?php $component->withName('setting-right'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag && $constructor = (new ReflectionClass(Illuminate\View\AnonymousComponent::class))->getConstructor()): ?>
+<?php $attributes = $attributes->except(collect($constructor->getParameters())->map->getName()->all()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['title' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($title)]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginalfd56616f4a6dab860ae516f8f1ac7bb1)): ?>
+<?php $attributes = $__attributesOriginalfd56616f4a6dab860ae516f8f1ac7bb1; ?>
+<?php unset($__attributesOriginalfd56616f4a6dab860ae516f8f1ac7bb1); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginalfd56616f4a6dab860ae516f8f1ac7bb1)): ?>
+<?php $component = $__componentOriginalfd56616f4a6dab860ae516f8f1ac7bb1; ?>
+<?php unset($__componentOriginalfd56616f4a6dab860ae516f8f1ac7bb1); ?>
+<?php endif; ?>
 
 
     <div class="container mt-5">
         <div class="card mb-4" style="max-width: 1040px; margin: 20px auto;">
+
             <!-- Dropdown Menu -->
-            <?php $__env->startComponent('components.dropdown-menu', ['book' => $book]); ?>
-            <?php echo $__env->renderComponent(); ?>
-            <!-- / Dropdown Menu -->
+            <?php if (isset($component)) { $__componentOriginalfd56616f4a6dab860ae516f8f1ac7bb1 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginalfd56616f4a6dab860ae516f8f1ac7bb1 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.setting-right','data' => ['book' => $book]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>
+<?php $component->withName('setting-right'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag && $constructor = (new ReflectionClass(Illuminate\View\AnonymousComponent::class))->getConstructor()): ?>
+<?php $attributes = $attributes->except(collect($constructor->getParameters())->map->getName()->all()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['book' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($book)]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginalfd56616f4a6dab860ae516f8f1ac7bb1)): ?>
+<?php $attributes = $__attributesOriginalfd56616f4a6dab860ae516f8f1ac7bb1; ?>
+<?php unset($__attributesOriginalfd56616f4a6dab860ae516f8f1ac7bb1); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginalfd56616f4a6dab860ae516f8f1ac7bb1)): ?>
+<?php $component = $__componentOriginalfd56616f4a6dab860ae516f8f1ac7bb1; ?>
+<?php unset($__componentOriginalfd56616f4a6dab860ae516f8f1ac7bb1); ?>
+<?php endif; ?>
 
             <div class="row g-0">
                 <!-- الصورة ناحية اليمين -->
@@ -127,7 +163,7 @@
         </div>
     </div>
 
-
+    <!--- star commit --->
     <?php if (isset($component)) { $__componentOriginal3081b591c5c0fc447e238f246914a486 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal3081b591c5c0fc447e238f246914a486 = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.star-commit','data' => ['bookid' => $book->id]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>
@@ -173,10 +209,27 @@
         <div class="reviews-section">
             <h5 class="reviews-title">التقييمات</h5>
 
-
-            <?php $__env->startComponent('components.comment', ['reviews' => $reviews]); ?>
-            <?php echo $__env->renderComponent(); ?>
-
+            <!--- comment reviews--->
+            <?php if (isset($component)) { $__componentOriginalfe4855bb643954c83a0cbd6710da1102 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginalfe4855bb643954c83a0cbd6710da1102 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.comment','data' => ['reviews' => $reviews]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>
+<?php $component->withName('comment'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag && $constructor = (new ReflectionClass(Illuminate\View\AnonymousComponent::class))->getConstructor()): ?>
+<?php $attributes = $attributes->except(collect($constructor->getParameters())->map->getName()->all()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['reviews' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($reviews)]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginalfe4855bb643954c83a0cbd6710da1102)): ?>
+<?php $attributes = $__attributesOriginalfe4855bb643954c83a0cbd6710da1102; ?>
+<?php unset($__attributesOriginalfe4855bb643954c83a0cbd6710da1102); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginalfe4855bb643954c83a0cbd6710da1102)): ?>
+<?php $component = $__componentOriginalfe4855bb643954c83a0cbd6710da1102; ?>
+<?php unset($__componentOriginalfe4855bb643954c83a0cbd6710da1102); ?>
+<?php endif; ?>
 
         </div>
     </div>

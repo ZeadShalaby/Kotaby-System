@@ -41,7 +41,7 @@
             <div class="info">
                 <h2> Description</h2>
                 <ul>
-                    <li><strong>Title : </strong>{{ $department->name }} </li>
+                    <li><strong>Name : </strong>{{ $department->name }} </li>
                     <li><strong>Code : </strong>{{ $department->code }}</li>
                     <li><strong>Decoration: </strong>balls and bells</li>
                     <li><strong>Material: </strong>Eco-Friendly</li>

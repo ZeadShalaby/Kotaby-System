@@ -13,8 +13,8 @@
                     id="form" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
-                    @component('components.add-dep', ['department' => $department])
-                    @endcomponent
+
+                    <x-add-dep :department="$department" />
 
                     <button class="login__button" type="submit" style="width: 100%">Save</button>
                 </form>

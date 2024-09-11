@@ -12,8 +12,9 @@
                 <form action="{{ route('admin.dep.store') }}" method="POST" class="login__registre" id="form"
                     enctype="multipart/form-data">
                     {{ csrf_field() }}
-                    @component('components.add-dep')
-                    @endcomponent
+                    <!--- dep add --->
+                    <x-add-dep />
+
 
                     <button class="login__button" type="submit" style="width: 100%">Save</button>
                 </form>

@@ -4,18 +4,15 @@
 
 
     <!--- tape section --->
-    @component('components.section-tape', ['title' => $title])
-    @endcomponent
+
+    <x-section-tape :title="$title" />
     <!--- setting users --->
-    @component('components.setting-right')
-    @endcomponent
+    <x-setting-right />
 
     <div class="container">
         <div class="row">
             <!--- card books --->
-            @component('components.card-book', ['books' => $books])
-            @endcomponent
-
+            <x-card-book :books="$books" />
         </div>
     </div>
 @endsection

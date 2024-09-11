@@ -30,8 +30,6 @@ return new class extends Migration {
             $table->bigInteger('download')->unsigned()->nullable();
             $table->index('download');
             $table->string('locations')->nullable();
-            $table->bigInteger('report')->unsigned()->nullable();
-            $table->index('report');
             $table->timestamps();
         });
     }

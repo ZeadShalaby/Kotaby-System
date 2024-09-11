@@ -5,20 +5,16 @@
     <link rel="stylesheet" href="{{ asset('css/book-show.css') }}">
 
     <!--- tape section --->
-    @component('components.section-tape', ['title' => $title])
-    @endcomponent
+    <x-section-tape :title="$title" />
+
     <!--- setting users --->
-    @component('components.setting-right')
-    @endcomponent
+    <x-setting-right />
 
     <div class="container mt-5">
         <div class="reviews-section">
             <h5 class="reviews-title">التقييمات</h5>
 
-
-            @component('components.comment', ['reviews' => $reviews])
-            @endcomponent
-
+            <x-comment :reviews="$reviews" />
 
         </div>
     </div>

@@ -1,11 +1,6 @@
 @extends('layouts.dashboard.app-admin')
 @section('content-admin')
     <!----- content ----->
-
-
-
-
-
     <header>
         <nav>
             <ul>

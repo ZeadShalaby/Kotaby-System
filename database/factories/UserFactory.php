@@ -74,7 +74,7 @@ class UserFactory extends Factory
 
             // if (random_int(0, 1) === 1) { // 50% chance
             if (random_int(1, 10) <= 4 && $user->role === GuardEnums::AUTHOR) { //? 30% chance
-                $this->AddReport($user, "This is a random report message.");
+                $this->AddReport($user, 5, "This is a random report message.");
             }
         });
     }

@@ -1,47 +1,12 @@
 @extends('layouts.app')
 @section('content')
-    <style>
-        body {
-            background-color: #f8f9fa;
-        }
-
-        .card {
-            border: none;
-            background-color: #fff;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-        }
-
-        .card-title {
-            font-weight: bold;
-            font-size: 1.25rem;
-        }
-
-        .card-text {
-            color: #666;
-        }
-
-        .rating .stars i {
-            font-size: 1.5rem;
-        }
-
-        .rating .reviews {
-            margin-right: 10px;
-            font-weight: bold;
-            color: #666;
-        }
-
-        .btn {
-            font-size: 1rem;
-            padding: 0.5rem 1.5rem;
-        }
-    </style>
+    <link rel="stylesheet" href="{{ asset('css/user-show.css') }}">
     <!--- setting  --->
-    @component('components.setting-right')
-    @endcomponent
+    <x-setting-right />
+
     <!--- tape top --->
-    @component('components.section-tape', ['title' => $title . ' > ' . $authors->username])
-    @endcomponent
+    <x-section-tape :title="$title" />
+
 
     <link rel="stylesheet" href="{{ asset('css/user-dashboard.css') }}">
     <link rel="stylesheet" href="{{ asset('css/author-card.css') }}">
@@ -89,14 +54,14 @@
     </div>
 
     <!--- tape top --->
-    @component('components.section-tape', ['title' => ' كتب > ' . $authors->username])
-    @endcomponent
+
+    <x-section-tape :title="' كتب > ' . $authors->username" />
+
     <!---- books card ---->
     <div class="container">
         <div class="row">
             <!--- card books --->
-            @component('components.card-book', ['books' => $books])
-            @endcomponent
+            <x-card-book :books="$books" />
 
         </div>
     </div>

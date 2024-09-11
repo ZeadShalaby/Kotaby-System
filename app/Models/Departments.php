@@ -82,19 +82,5 @@ class Departments extends Model
 
 
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
-    public function report()
-    {
-        return $this->morphMany(Report::class, 'mediaable');
-    }
-
-    public function report_one()
-    {
-        return $this->morphOne(Report::class, 'reportable');
-    }
 
 }

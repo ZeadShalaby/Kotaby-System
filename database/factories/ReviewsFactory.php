@@ -45,7 +45,7 @@ class ReviewsFactory extends Factory
 
             // if (random_int(0, 1) === 1) { // 50% chance
             if (random_int(1, 10) <= 3) { // 30% chance
-                $this->AddReport($review, "This is a random report message.");
+                $this->AddReport($review, 15, "This is a random report message.");
             }
         });
     }

@@ -4,16 +4,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <!--- tape section --->
-    @component('components.section-tape', ['title' => $title])
-    @endcomponent
+    <x-setting-right :title="$title" />
 
 
     <div class="container mt-5">
         <div class="card mb-4" style="max-width: 1040px; margin: 20px auto;">
+
             <!-- Dropdown Menu -->
-            @component('components.dropdown-menu', ['book' => $book])
-            @endcomponent
-            <!-- / Dropdown Menu -->
+            <x-setting-right :book="$book" />
 
             <div class="row g-0">
                 <!-- الصورة ناحية اليمين -->
@@ -124,7 +122,7 @@
         </div>
     </div>
 
-
+    <!--- star commit --->
     <x-star-commit :bookid="$book->id" />
 
 
@@ -151,10 +149,8 @@
         <div class="reviews-section">
             <h5 class="reviews-title">التقييمات</h5>
 
-
-            @component('components.comment', ['reviews' => $reviews])
-            @endcomponent
-
+            <!--- comment reviews--->
+            <x-comment :reviews="$reviews" />
 
         </div>
     </div>

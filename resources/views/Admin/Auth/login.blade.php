@@ -10,8 +10,7 @@
                             {{ csrf_field() }}
 
                             <!--- input login --->
-                            @component('components.input-form')
-                            @endcomponent
+                            <x-input-form />
 
                             <div class="d-flex justify-content-between">
                                 <a href="#" class="text-primary">نسيت كلمة المرور ؟</a>

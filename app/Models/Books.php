@@ -52,15 +52,15 @@ class Books extends Model
     //? Define a scope to filter non-null 'report_at' columns
     public function scopeReported($query)
     {
-        return $query->whereNotNull('report_at');
+        return $query->whereHas('report'); // Ensure 'reports' is the name of the relationship method in Books model
     }
 
+
     //? Define a method to reset the 'report_at' column to null
-    public function resetReportAt()
+    public function resetReportAt($bookid)
     {
-        $this->report_at = null;
-        $this->report = null;
-        $this->save();
+        $report = Report::where('reportable_id', $bookid)->first();
+        $report->delete();
     }
 
 
@@ -172,7 +172,7 @@ class Books extends Model
      */
     public function report()
     {
-        return $this->morphMany(Report::class, 'mediaable');
+        return $this->morphMany(Report::class, 'reportable');
     }
 
     public function report_one()

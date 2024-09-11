@@ -10,11 +10,18 @@
                             {{ csrf_field() }}
 
                             <!-- Email Input -->
+
                             <div class="form-group">
                                 <label for="email" class="text-right d-block">البريد الإلكتروني</label>
-                                <input type="email" id="email" name="email" value="{{ old('email') }}"
-                                    class="form-control w-100">
+                                <input type="email" class="form-control w-100 @error('email') is-invalid @enderror"
+                                    @error('email') style="border: 2px solid red" @enderror id="name"
+                                    placeholder="example@example.com" name="email" value="{{ old('email') }}">
+                                @error('email')
+                                    <span class="invalid-feedback d-block text-danger"
+                                        style="font-weight: bold">{{ $message }}</span>
+                                @enderror
                             </div>
+
 
                             <div class="d-flex justify-content-between">
                                 <a href="{{ route('users.loginindex') }}" class="text-primary">الرجوع الي الصفحه

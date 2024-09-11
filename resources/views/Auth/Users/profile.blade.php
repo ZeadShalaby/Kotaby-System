@@ -4,11 +4,10 @@
     <link rel="stylesheet" href="{{ asset('css/user-dashboard.css') }}">
 
     <!--- input Edit --->
-    @component('components.setting-right')
-    @endcomponent
+    <x-setting-right />
+
     <!--- tape top --->
-    @component('components.section-tape')
-    @endcomponent
+    <x-section-tape />
 
 
     <div class="container my-5">

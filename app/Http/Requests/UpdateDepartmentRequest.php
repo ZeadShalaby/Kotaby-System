@@ -23,7 +23,7 @@ class UpdateDepartmentRequest extends FormRequest
     public function rules(): array
     {
         // Get the department being updated
-        $departmentId = $this->route('admin.dep.update'); // Retrieve the department ID from the route
+        $departmentId = $this->route('department')->id;
 
         return [
             'name' => [

@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use App\Traits\ResponseTrait;
 use App\Traits\Requests\TestAuth;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\LoginAdminRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Traits\validator\ValidatorTrait;
@@ -18,17 +19,13 @@ use App\Traits\validator\ValidatorTrait;
 class AdminController extends Controller
 {
     //
-    use ImageTrait , ValidatorTrait , TestAuth , ResponseTrait,MethodTrait;
+    use ImageTrait, ValidatorTrait, TestAuth, ResponseTrait, MethodTrait;
 
     //todo check for other users
-    public function login(Request $request)
+    public function login(LoginAdminRequest $request)
     {
-        try{
+        try {
             $infofield = $this->CheckField($request);
-            // ! valditaion
-            $rules = $this->rulesAdminLogin($infofield['fields']);    
-            $validator = $this->validate($request,$rules);
-            if($validator !== true){return back()->with('error', $validator);}
             $title = 'الصفحه الرائيسية';
             $credentials = $infofield['credentials'];
             $admin = Admin::where('username', $credentials['username'])->first();
@@ -37,9 +34,8 @@ class AdminController extends Controller
                 return view('Admin.home', compact('title'));
             }
             return redirect()->back()->with('error', 'Invalid information, please try again.');
-            }
-            catch(Exception $ex){
-                return $ex->getMessage();
+        } catch (Exception $ex) {
+            return $ex->getMessage();
         }
     }
 

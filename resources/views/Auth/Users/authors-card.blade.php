@@ -2,11 +2,10 @@
 
 @section('content')
     <!--- setting  --->
-    @component('components.setting-right')
-    @endcomponent
+    <x-setting-right />
+
     <!--- tape top --->
-    @component('components.section-tape', ['title' => $title])
-    @endcomponent
+    <x-section-tape :title="$title" />
 
     <link rel="stylesheet" href="{{ asset('css/user-dashboard.css') }}">
     <link rel="stylesheet" href="{{ asset('css/author-card.css') }}">

@@ -12,9 +12,11 @@ return new class extends Migration {
     {
         Schema::create('reports', function (Blueprint $table) {
             $table->id();
-            $table->String("mediaable_type");
-            $table->bigInteger('mediaable_id')->unsigned()->nullable();
-            $table->index('mediaable_id')->nullable();
+            $table->String("reportable_type");
+            $table->bigInteger('reportable_id')->unsigned()->nullable();
+            $table->index('reportable_id')->nullable();
+            $table->bigInteger('report')->unsigned()->nullable();
+            $table->index('report');
             $table->String("comment");
             $table->timestamps();
         });

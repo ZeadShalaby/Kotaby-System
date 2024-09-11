@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use App\Traits\MethodTrait;
 use Illuminate\Foundation\Http\FormRequest;
 
-class LoginUserRequest extends FormRequest
+class LoginAdminRequest extends FormRequest
 {
     use MethodTrait;
     /**
@@ -28,17 +28,15 @@ class LoginUserRequest extends FormRequest
 
         if ($field == "email") {
             return [
-                "field" => "required|exists:users,email",
+                "field" => "required|exists:admins,email",
                 "password" => "required"
             ];
         } else {
             return [
-                "field" => "required|exists:users,username",
+                "field" => "required|exists:admins,username",
                 "password" => "required"
             ];
         }
 
     }
-
-
 }

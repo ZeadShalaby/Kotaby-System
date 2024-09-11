@@ -34,10 +34,8 @@ class DepartmentsController extends Controller
     {
         $title = 'الاقسام >' . $department->code . '> كتب';
         $book = Books::where('dep_id', $department->id)->with('media_one', 'department', 'user')->get();
-        $books = $book->map(function ($book) {
-            $book->stars = $book->getTypeStars();
-            return $book;
-        });
+        $books = $this->getBooks($book);
+
         return view('Admin.Books.book-dep', compact('title', 'books'));
     }
 

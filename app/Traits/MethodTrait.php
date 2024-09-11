@@ -66,10 +66,11 @@ trait MethodTrait
             'media' => $media
         ]);
     }
-    protected function AddReport($info, $comment)
+    protected function AddReport($info, $report, $comment)
     {
         $info->report()->create([
-            'comment' => $comment
+            'comment' => $comment,
+            'report' => $report
         ]);
     }
 
@@ -80,6 +81,16 @@ trait MethodTrait
             'media' => $mediaCover,
             'pdf' => $mediaFile
         ]);
+    }
+
+    // todo add type of star for this book
+    protected function getBooks($book)
+    {
+        $books = $book->map(function ($book) {
+            $book->stars = $book->getTypeStars();
+            return $book;
+        });
+        return $books;
     }
 
 

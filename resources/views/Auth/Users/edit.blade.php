@@ -2,8 +2,7 @@
 @section('content')
     <link rel="stylesheet" href="{{ asset('css/user-dashboard.css') }}">
     <!--- setting users --->
-    @component('components.setting-right')
-    @endcomponent
+    <x-setting-right />
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-12 col-sm-10 col-md-8 col-lg-6">
@@ -18,8 +17,7 @@
                         <img src="{{ asset($user->media_one->media) }}" alt="Profile Image" class="profile-image">
 
                         <!--- input Edit --->
-                        @component('components.edit-regist-input', ['user' => $user])
-                        @endcomponent
+                        <x-edit-regist-input :user="$user" />
 
                         <!-- about textarea -->
                         <div class="form-group">
@@ -39,6 +37,5 @@
     </div>
 
     <!--- input Edit --->
-    @component('components.setting-right')
-    @endcomponent
+    <x-setting-right />
 @endsection

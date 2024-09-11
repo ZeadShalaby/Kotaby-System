@@ -73,7 +73,7 @@ class Reviews extends Model
      */
     public function report()
     {
-        return $this->morphMany(Report::class, 'mediaable');
+        return $this->morphMany(Report::class, 'reportable');
     }
 
     public function report_one()

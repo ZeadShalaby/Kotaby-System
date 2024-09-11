@@ -26,6 +26,7 @@ class BooksFactory extends Factory
 
         return [
             //
+            'author_name' => $this->faker->name,
             'title' => $this->faker->company,
             'description' => $this->faker->text(),
             'user_id' => $this->faker->randomElement($userIds),
@@ -33,7 +34,7 @@ class BooksFactory extends Factory
             'view' => $this->faker->boolean() ? $this->faker->numberBetween(1, 10) : null,
             'star' => $this->faker->boolean() ? $this->faker->numberBetween(1, 5) : null,
             'num_pages' => $this->faker->numberBetween(100, 10000),
-            'language' => $this->faker->languageCode, //? Generates a language code
+            'language' => $this->faker->randomElement(['en', 'ar']),
         ];
     }
 
@@ -58,7 +59,7 @@ class BooksFactory extends Factory
             //? add report
             // if (random_int(0, 1) === 1) { // 50% chance
             if (random_int(1, 10) <= 3) { // 30% chance
-                $this->AddReport($book, "This is a random report message.");
+                $this->AddReport($book, 10, "This is a random report message.");
             }
         });
     }

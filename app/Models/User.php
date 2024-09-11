@@ -199,7 +199,7 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     public function report()
     {
-        return $this->morphMany(Report::class, 'mediaable');
+        return $this->morphMany(Report::class, 'reportable');
     }
 
     public function report_one()

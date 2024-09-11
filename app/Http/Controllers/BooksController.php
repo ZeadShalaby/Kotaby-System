@@ -15,6 +15,7 @@ use App\Events\DownloadBooks;
 use App\Traits\Requests\TestAuth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreBookRequest;
+use App\Http\Requests\UpdateBookRequest;
 use App\Traits\validator\ValidatorTrait;
 
 class BooksController extends Controller
@@ -28,10 +29,7 @@ class BooksController extends Controller
     {
         $title = 'كتبي';
         $book = Books::where('user_id', auth()->user()->id)->with('media_one', 'user', 'department')->get();
-        $books = $book->map(function ($book) {
-            $book->stars = $book->getTypeStars();
-            return $book;
-        });
+        $books = $this->getBooks($book);
         return view('Auth.Books.common', compact('title', 'books'));
     }
 
@@ -41,10 +39,7 @@ class BooksController extends Controller
     {
         $title = 'أفضل الكتب';
         $book = Books::orderBy('star', 'desc')->orderBy('view', 'desc')->with('media_one', 'department', 'user')->get();
-        $books = $book->map(function ($book) {
-            $book->stars = $book->getTypeStars();
-            return $book;
-        });
+        $books = $this->getBooks($book);
         return view('Auth.Books.common', compact('title', 'books'));
     }
 
@@ -73,6 +68,7 @@ class BooksController extends Controller
             $pathCover = $this->saveimage($request->bookCover, 'images/books/img/');
             $pathFile = $this->savePdf($request->bookFile, 'images/books/pdf/');
             $this->AddmediaBook($book, $pathCover, $pathFile);
+
             event(new UserRole(auth()->user())); //? change type user for author
             return redirect('/my/books')->with('success', "تمت الاضافة بنجاح");
         } catch (\Exception $e) {
@@ -118,7 +114,6 @@ class BooksController extends Controller
     }
 
 
-
     /**
      * todo Display the specified resource.
      */
@@ -135,16 +130,32 @@ class BooksController extends Controller
      */
     public function edit(Books $book)
     {
-        return $book;
+        $book->load('user', 'department');
+        $categories = Departments::all(); //? Fetch all categories
+        return view('Auth.Books.edit', compact('book', 'categories'));
     }
 
     /**
      * todo Update the specified resource in storage.
      */
-    public function update(Request $request, Books $book)
+    public function update(UpdateBookRequest $request, Books $book)
     {
-
+        try {
+            $data = $request->all();
+            $data['user_id'] = auth()->user()->id;
+            $book->update($data);
+            if ($request->hasFile('bookCover') && $request->hasFile('bookFile')) {
+                $pathCover = $this->saveImage($request->file('bookCover'), 'images/books/img/');
+                $pathFile = $this->savePdf($request->file('bookFile'), 'images/books/pdf/');
+                $this->AddmediaBook($book, $pathCover, $pathFile);
+            }
+            event(new UserRole(auth()->user()));
+            return redirect('/my/books')->with('success', "تمت الإضافة بنجاح");
+        } catch (\Exception $e) {
+            return back()->with('error', "حدث خطأ غير متوقع: " . $e->getMessage());
+        }
     }
+
 
     // todo autocompleteSearch by description
     public function autocompleteSearch(Request $request)

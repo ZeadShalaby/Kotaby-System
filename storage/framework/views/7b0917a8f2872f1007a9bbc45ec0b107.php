@@ -4,9 +4,8 @@
         <!-- Author Name and Title -->
         <div class="col-md-6 mb-3">
             <label for="author_name" class="form-label text-right d-block">*إسم الكاتب</label>
-            <input type="text" class="form-control <?php echo e($errors->has('author_name') ? 'is-invalid' : ''); ?>"
-                id="author_name" placeholder="إسمك كاملاً" name="author_name"
-                value="<?php echo e(old('author_name', $book->author_name ?? '')); ?>">
+            <input type="text" class="form-control <?php echo e($errors->has('author_name') ? 'is-invalid' : ''); ?>" id="title"
+                placeholder="إسمك كاملاً" name="author_name" value="<?php echo e(old('author_name', $book->author_name ?? '')); ?>">
             <?php $__errorArgs = ['author_name'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -38,14 +37,19 @@ unset($__errorArgs, $__bag); ?>
         <div class="col-md-6 mb-3"> <!-- Adjust the column size for half-width -->
 
             <label for="language" class="form-label text-right d-block">*اللغة</label>
-            <select class="form-control <?php echo e($errors->has('language') ? 'is-invalid' : ''); ?>" id="language"
+            <select class="form-control <?php echo e($errors->has('language') ? 'is-invalid' : ''); ?>" id="title"
                 name="language">
-                <option value="" disabled <?php echo e(old('language') ? '' : 'selected'); ?>>اختر لغةالكتاب</option>
-                <option value="ar" <?php echo e(old('language', $book->language ?? '') == 'ar' ? 'selected' : ''); ?>>عربي
+                <option value="" disabled <?php echo e(old('language') ? '' : 'selected'); ?>>اختر لغة الكتاب</option>
+
+                <option value="ar" <?php echo e(old('language', $book->language ?? '') == 'ar' ? 'selected' : ''); ?>>
+                    عربي
                 </option>
-                <option value="en" <?php echo e(old('language', $book->language ?? '') == 'en' ? 'selected' : ''); ?>>إنجليزي
+
+                <option value="en" <?php echo e(old('language', $book->language ?? '') == 'en' ? 'selected' : ''); ?>>
+                    إنجليزي
                 </option>
             </select>
+
             <?php $__errorArgs = ['language'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -62,7 +66,7 @@ unset($__errorArgs, $__bag); ?>
         <div class="col-md-6 mb-3"> <!-- Adjust the column size for half-width -->
             <label for="num_pages" class="form-label text-right d-block">*عدد الصفح</label>
             <input type="number" class="form-control <?php echo e($errors->has('num_pages') ? 'is-invalid' : ''); ?>"
-                id="num_pages" placeholder="عدد صفح الكتاب" name="num_pages"
+                id="title" placeholder="عدد صفح الكتاب" name="num_pages"
                 value="<?php echo e(old('num_pages', $book->num_pages ?? '')); ?>">
             <?php $__errorArgs = ['num_pages'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -79,7 +83,7 @@ unset($__errorArgs, $__bag); ?>
         <!-- Book Department (Categories) -->
         <div class="col-md-12 mb-3"> <!-- Full width column -->
             <label for="dep_id" class="form-label text-right d-block">*قسم الكتاب</label>
-            <select class="form-control <?php echo e($errors->has('dep_id') ? 'is-invalid' : ''); ?>" id="dep_id"
+            <select class="form-control <?php echo e($errors->has('dep_id') ? 'is-invalid' : ''); ?>" id="title"
                 name="dep_id">
                 <option value="" disabled <?php echo e(old('dep_id') ? '' : 'selected'); ?>>اختر قسم الكتاب</option>
                 <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
@@ -123,7 +127,7 @@ unset($__errorArgs, $__bag); ?>
         <!-- Book Description -->
         <div class="col-md-12 mb-3"> <!-- Full width column -->
             <label for="description" class="form-label text-right d-block">*وصف عن الكتاب</label>
-            <textarea class="form-control <?php echo e($errors->has('description') ? 'is-invalid' : ''); ?>" id="description" rows="3"
+            <textarea class="form-control <?php echo e($errors->has('description') ? 'is-invalid' : ''); ?>" id="title" rows="3"
                 placeholder="وصف عن الكتاب" name="description"><?php echo e(old('description', $book->description ?? '')); ?></textarea>
             <?php $__errorArgs = ['description'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');

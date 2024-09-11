@@ -2,15 +2,12 @@
 
 @section('content')
     <!--- input Edit --->
-    @component('components.setting-right')
-    @endcomponent
+    <x-setting-right />
+
     <!--- tape top --->
-    @component('components.section-tape', ['title' => $title])
-    @endcomponent
+    <x-section-tape :title="$title" />
 
     <link rel="stylesheet" href="{{ asset('css/user-dashboard.css') }}">
-
-
-    @component('components.card-department', ['departments' => $departments])
-    @endcomponent
+    <!--- card departments --->
+    <x-card-department :departments="$departments" />
 @endsection

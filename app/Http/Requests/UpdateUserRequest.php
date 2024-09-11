@@ -2,9 +2,11 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreRegisterRequest extends FormRequest
+class UpdateUserRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,8 +25,8 @@ class StoreRegisterRequest extends FormRequest
     {
         return [
             'name' => 'required|min:4|max:20',
-            'password' => 'nullable|min:4',
-            'email' => 'required|email|unique:users,email',
+            'password' => 'required|min:4',
+            'email' => ['required', 'email', Rule::unique('users', 'email')->ignore(Auth::user()->id),],
         ];
     }
 }
