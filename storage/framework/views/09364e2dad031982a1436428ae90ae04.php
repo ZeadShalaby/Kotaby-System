@@ -9,7 +9,7 @@
     <?php echo $__env->renderComponent(); ?>
 
     <div class="container form-container">
-        <h2 class="text-center mb-4" id="title">أنشر كتابك على مكتبة كتبي</h2>
+        <h2 class="text-center mb-4" id="title"><?php echo app('translator')->get('kotaby.text-top'); ?></h2>
         <form action="<?php echo e(route('books.store')); ?>" method="POST" enctype="multipart/form-data">
             <?php echo e(csrf_field()); ?>
 
@@ -37,19 +37,19 @@
 
             <div class="row mb-3">
                 <div class="col-12 col-md-6">
-                    <label for="bookCover" class="form-label text-right d-block">Book Cover</label>
+                    <label for="bookCover" class="form-label text-right d-block"><?php echo app('translator')->get('kotaby.upload'); ?> </label>
                     <div class="custom-file-upload">
                         <i id="bookCoverIcon" class="fas fa-upload"></i>
-                        <span id="bookCoverText">اختر غلاف الكتاب</span>
+                        <span id="bookCoverText"> <?php echo app('translator')->get('kotaby.upload'); ?></span>
                         <input type="file" id="bookCover" name="bookCover" accept="image/*"
                             onchange="updateCoverIcon('bookCover')">
                     </div>
                 </div>
                 <div class="col-12 col-md-6 mt-3 mt-md-0">
-                    <label for="bookFile" class="form-label text-right d-block">Upload Book</label>
+                    <label for="bookFile" class="form-label text-right d-block"><?php echo app('translator')->get('kotaby.select'); ?></label>
                     <div class="custom-file-upload">
                         <i id="bookFileIcon" class="fas fa-upload"></i>
-                        <span id="bookFileText">اختر ملف الكتاب</span>
+                        <span id="bookFileText"><?php echo app('translator')->get('kotaby.select'); ?></span>
                         <input type="file" id="bookFile" name="bookFile" accept=".pdf,.ppt,.doc,.docx"
                             onchange="updateCoverIcon('bookFile')">
                     </div>
@@ -57,7 +57,7 @@
             </div>
 
             <div class="text-center">
-                <button type="submit" class="btn btn-primary share">أنشر كتابك</button>
+                <button type="submit" class="btn btn-primary share"> <?php echo app('translator')->get('kotaby.sharebook'); ?></button>
             </div>
         </form>
     </div>

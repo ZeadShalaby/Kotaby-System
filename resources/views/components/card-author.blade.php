@@ -29,7 +29,7 @@
                                         alt="Empty Star">
                                 @endfor
 
-                                ({{ number_format($author->getAverageRating(), 1) }} تقييم)
+                                ({{ number_format($author->getAverageRating(), 1) }} @lang('kotaby.review'))
                             </p>
                         @endif
                         @if (isset($report))
@@ -57,7 +57,7 @@
                             </div>
                         @endif
                         <p class="book-count">
-                            <i class="fas fa-book"></i> {{ $author->getBookssCount($author->id) }} كتاب
+                            <i class="fas fa-book"></i> {{ $author->getBookssCount($author->id) }} @lang('kotaby.books')
                         </p>
                     </div>
                 </a>

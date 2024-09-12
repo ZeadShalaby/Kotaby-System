@@ -7,28 +7,28 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav mr-auto" style="margin-right:50px; "> <!-- Align to the right for RTL -->
                 <li class="nav-item active">
-                    <a class="nav-link" href="<?php echo e(route('homeindex')); ?>" id="active">الرئيسية</a>
+                    <a class="nav-link" href="<?php echo e(route('homeindex')); ?>" id="active"><?php echo app('translator')->get('kotaby.home'); ?></a>
                     <div class="cricle"></div>
                 </li>
                 <li class="nav-item" id="nav-item">
-                    <a class="nav-link" href="<?php echo e(route('commonindex')); ?>">الافضل</a>
+                    <a class="nav-link" href="<?php echo e(route('commonindex')); ?>"><?php echo app('translator')->get('kotaby.common'); ?></a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="<?php echo e(route('dep.index')); ?>" role="button">
-                        الأقسام
+                        <?php echo app('translator')->get('kotaby.sections'); ?>
                     </a>
                     
                 </li>
 
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="<?php echo e(route('users.authors')); ?>">المؤلفين</a>
+                    <a class="nav-link" href="<?php echo e(route('users.authors')); ?>"><?php echo app('translator')->get('kotaby.authors'); ?></a>
                 </li>
                 <li class="nav-item">
                     <a href="<?php echo e(route('bookindex')); ?>" class="btn custom-button my-2 my-sm-0"
                         style="border: 2px solid #1B3764" type="button">
                         <img src="<?php echo e(asset('images/img/open-book.png')); ?>" style="width: 20px">
-                        انشر كتابك
+                        <?php echo app('translator')->get('kotaby.share book'); ?>
                     </a>
                 </li>
             </ul>

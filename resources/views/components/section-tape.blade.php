@@ -1,5 +1,5 @@
 <div class="breadcrumb">
-    <a href="#">الرئيسية</a>
+    <a href="#">@lang('kotaby.home')</a>
     <span>&gt;</span>
-    <a href="#">{{ $title ?? 'أفضل الكتب' }}</a>
+    <a href="#">@lang('kotaby.title', ['title' => $title ?? 'أفضل الكتب'])</a>
 </div>

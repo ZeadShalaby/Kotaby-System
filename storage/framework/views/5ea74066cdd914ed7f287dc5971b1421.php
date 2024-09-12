@@ -58,8 +58,8 @@
                 <div class="col-md-9">
                     <div class="card-body">
                         <h5 class="card-title" style="padding: 15px"> <?php echo e($authors->username); ?></h5>
-                        <p class="card-text">كاتب مصري رائد في أدب المغامرات له عدد من سلسل...
-                            <?php echo e($authors->about); ?> <a href="#" class="text-decoration-none">اقرأ المزيد</a></p>
+                        <p class="card-text"><?php echo app('translator')->get('kotaby.info'); ?>
+                            <?php echo e($authors->about); ?> <a href="#" class="text-decoration-none"> <?php echo app('translator')->get('kotaby.read_more'); ?></a></p>
                         <div class="rating d-flex align-items-center"><span class="stars me-2"><i <p class="rating">
                                     <p class="stars" style="color: #fff200; font-size: 29px;">
                                         <?php for($i = 1; $i <= $authors->stars['fullStars']; $i++): ?>
@@ -80,8 +80,8 @@
 
                                         <span class="span-author"> (<?php echo e($authors->getCountStar()); ?>
 
-                                            تقييم)</span>
-                                        <span class="span-author"> (<?php echo e($authors->getCountView()); ?> المشاهدات)</span>
+                                            <?php echo app('translator')->get('kotaby.reviews'); ?>)</span>
+                                        <span class="span-author"> (<?php echo e($authors->getCountView()); ?> <?php echo app('translator')->get('kotaby.views'); ?>)</span>
 
                                     </p>
                                     <div class="btn-container d-flex justify-content-center mt-3"
@@ -90,7 +90,7 @@
                                         <a href="#" class="btn" style="border: 2px solid #1B3764"
                                             data-bs-toggle="modal" data-bs-target="#rateModals"><i class="fas fa-warning"
                                                 style="color: #1B3764; margin-left: 2px"></i>
-                                            التبليغ عنه</a>
+                                            <?php echo app('translator')->get('kotaby.report'); ?></a>
 
                                     </div>
                         </div>

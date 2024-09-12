@@ -29,7 +29,7 @@
                                         alt="Empty Star">
                                 <?php endfor; ?>
 
-                                (<?php echo e(number_format($author->getAverageRating(), 1)); ?> تقييم)
+                                (<?php echo e(number_format($author->getAverageRating(), 1)); ?> <?php echo app('translator')->get('kotaby.review'); ?>)
                             </p>
                         <?php endif; ?>
                         <?php if(isset($report)): ?>
@@ -58,7 +58,7 @@
                             </div>
                         <?php endif; ?>
                         <p class="book-count">
-                            <i class="fas fa-book"></i> <?php echo e($author->getBookssCount($author->id)); ?> كتاب
+                            <i class="fas fa-book"></i> <?php echo e($author->getBookssCount($author->id)); ?> <?php echo app('translator')->get('kotaby.books'); ?>
                         </p>
                     </div>
                 </a>

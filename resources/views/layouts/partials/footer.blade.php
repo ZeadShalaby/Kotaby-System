@@ -7,12 +7,11 @@
                     <div class="d-flex flex-column justify-content-center align-items-center text-center p-4">
                         <div class="d-flex align-items-center justify-content-center"
                             style="max-width: 800px; width: 100%;">
-                            <h1 class="display-4 mb-0 mr-3">انضم الينا لنشر كتاباتك</h1>
+                            <h1 class="display-4 mb-0 mr-3">@lang('kotaby.join')</h1>
                             <div class="input-group">
-                                <input type="text" class="form-control"
-                                    placeholder="ادخل البريد الالكتروني الخاص بك" />
+                                <input type="text" class="form-control" placeholder="@lang('kotaby.placeholder')" />
                                 <div class="input-group-append">
-                                    <button class="btn btn-warning">اشتراك</button>
+                                    <button class="btn btn-warning">@lang('kotaby.subscripe')</button>
                                 </div>
                             </div>
                         </div>
@@ -26,10 +25,10 @@
             <!-- Column -->
             <div class="col-md-10 d-flex justify-content-between align-items-center" id="text-icon">
                 <div class="text-items d-flex">
-                    <span class="text-item">الأقسام</span>
-                    <span class="text-item">المؤلفين</span>
-                    <span class="text-item">الاكثر تقيما</span>
-                    <span class="text-item">عنا</span>
+                    <span class="text-item">@lang('kotaby.sections')</span>
+                    <span class="text-item">@lang('kotaby.authors')</span>
+                    <span class="text-item"> @lang('kotaby.review')</span>
+                    <span class="text-item">@lang('kotaby.about')</span>
                 </div>
                 <ul class="list-inline mb-0">
                     <li class="list-inline-item"><a href="#"><i class="fab fa-youtube"></i></a></li>
@@ -51,7 +50,7 @@
         <div class="row justify-content-center align-items-center legal">
 
             <div class="col-12 col-md-4 text-center legal__links">
-                <span>&copy;2019 كل الحقوق محفوظة</span>
+                <span>&copy;@lang('kotaby.reserve')</span>
             </div>
             <div class="col-12 col-md-4 text-center">
                 <!-- You can add content here if needed -->
@@ -59,8 +58,10 @@
 
             <div class="col-12 col-md-4 text-center">
                 <div class="d-flex justify-content-center">
-                    <p class="mx-2">سياسة الخصوصية</p>
-                    <p class="mx-2">شروط الخدمة</p>
+                    <p class="mx-2">
+                        @lang('kotaby.policy')
+                    </p>
+                    <p class="mx-2">@lang('kotaby.service')</p>
                 </div>
             </div>
         </div>

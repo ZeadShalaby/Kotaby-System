@@ -5,11 +5,11 @@
 
     <!-- Hero Section -->
     <div class="hero d-flex flex-column justify-content-center align-items-center text-center p-4">
-        <h1 class="display-4">كتبي... سافر بكُتبك إلى عالم آخر.</h1>
+        <h1 class="display-4"><?php echo app('translator')->get('kotaby.section'); ?></h1>
         <div class="d-flex">
-            <input type="text" class="form-control custom-input me-2" placeholder="ابحث عن كتاب أو مؤلف أو قسم كتاب"
+            <input type="text" class="form-control custom-input me-2" placeholder="<?php echo app('translator')->get('kotaby.placeholders'); ?>"
                 style="width: 632px;" />
-            <button class="btn btn-warning">ابحث</button>
+            <button class="btn btn-warning"><?php echo app('translator')->get('kotaby.search'); ?></button>
         </div>
     </div>
 

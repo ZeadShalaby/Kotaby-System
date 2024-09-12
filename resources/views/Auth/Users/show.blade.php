@@ -20,8 +20,8 @@
                 <div class="col-md-9">
                     <div class="card-body">
                         <h5 class="card-title" style="padding: 15px"> {{ $authors->username }}</h5>
-                        <p class="card-text">كاتب مصري رائد في أدب المغامرات له عدد من سلسل...
-                            {{ $authors->about }} <a href="#" class="text-decoration-none">اقرأ المزيد</a></p>
+                        <p class="card-text">@lang('kotaby.info')
+                            {{ $authors->about }} <a href="#" class="text-decoration-none"> @lang('kotaby.read_more')</a></p>
                         <div class="rating d-flex align-items-center"><span class="stars me-2"><i <p class="rating">
                                     <p class="stars" style="color: #fff200; font-size: 29px;">
                                         @for ($i = 1; $i <= $authors->stars['fullStars']; $i++)
@@ -41,8 +41,8 @@
                                         @endfor
 
                                         <span class="span-author"> ({{ $authors->getCountStar() }}
-                                            تقييم)</span>
-                                        <span class="span-author"> ({{ $authors->getCountView() }} المشاهدات)</span>
+                                            @lang('kotaby.reviews'))</span>
+                                        <span class="span-author"> ({{ $authors->getCountView() }} @lang('kotaby.views'))</span>
 
                                     </p>
                                     <div class="btn-container d-flex justify-content-center mt-3"
@@ -51,7 +51,7 @@
                                         <a href="#" class="btn" style="border: 2px solid #1B3764"
                                             data-bs-toggle="modal" data-bs-target="#rateModals"><i class="fas fa-warning"
                                                 style="color: #1B3764; margin-left: 2px"></i>
-                                            التبليغ عنه</a>
+                                            @lang('kotaby.report')</a>
 
                                     </div>
                         </div>

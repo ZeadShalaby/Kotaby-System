@@ -44,7 +44,7 @@
                     <?php endfor; ?>
                 </p>
                 
-                <p class="rating"><?php echo e($item->reviews()->count()); ?> تقييم</p>
+                <p class="rating"><?php echo e($item->reviews()->count()); ?> <?php echo app('translator')->get('kotaby.review'); ?></p>
             </div>
 
         </div>

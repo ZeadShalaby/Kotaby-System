@@ -11,7 +11,7 @@
                         <div>
                             <h5 class="book-card-title">{{ $item->name }}</h5>
                             <p class="book-card-text">
-                                {{ $item->getBooksCount($item->id) }} كتاب
+                                {{ $item->getBooksCount($item->id) }} @lang('kotaby.books')
                                 <i class="fas fa-book book-card-icon"></i>
                             </p>
                         </div>

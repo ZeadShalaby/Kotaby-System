@@ -32,33 +32,33 @@
                     <h5 class="card-title text-left"
                         style="font-family: 'Almarai', sans-serif; color: #EBBB3F; font-weight: 700; font-size: 15px; margin-right: 38px;">
                         {{ $book->department->name ?? 'not found' }} </h5>
-
                     <ul>
                         <li style="display: flex; justify-content: space-between; margin-bottom: 15px;">
-                            <strong class="text-left">اللغة:</strong>
-                            <span style="margin-right: 400px"> {{ $book->language }}</span>
+                            <strong class="text-left">@lang('kotaby.language'):</strong>
+                            <span style="margin-right: 400px">{{ $book->language }}</span>
                         </li>
                         <li style="display: flex; justify-content: space-between; margin-bottom: 15px;">
-                            <strong style="flex: 0 0 auto; margin-left: 20px;">تاريخ الإصدار:</strong>
+                            <strong style="flex: 0 0 auto; margin-left: 20px;">@lang('kotaby.release_date'):</strong>
                             <span>{{ $book->creation_date_formatted }}</span>
                         </li>
                         <li style="display: flex; justify-content: space-between; margin-bottom: 15px;">
-                            <strong style="flex: 0 0 auto; margin-left: 20px;">الصفحات:</strong>
+                            <strong style="flex: 0 0 auto; margin-left: 20px;">@lang('kotaby.pages'):</strong>
                             <span>{{ $book->num_pages }}</span>
                         </li>
                         <li style="display: flex; justify-content: space-between; margin-bottom: 15px;">
-                            <strong style="flex: 0 0 auto; margin-left: 20px;">حجم الملف:</strong>
+                            <strong style="flex: 0 0 auto; margin-left: 20px;">@lang('kotaby.file_size'):</strong>
                             <span>148.13 ميجا بايت</span>
                         </li>
                         <li style="display: flex; justify-content: space-between; margin-bottom: 15px;">
-                            <strong style="flex: 0 0 auto; margin-left: 20px;">نوع الملف:</strong>
+                            <strong style="flex: 0 0 auto; margin-left: 20px;">@lang('kotaby.file_type'):</strong>
                             <span>PDF</span>
                         </li>
                         <li style="display: flex; justify-content: space-between;">
-                            <strong style="flex: 0 0 auto; margin-left: 20px;">التحميلات:</strong>
+                            <strong style="flex: 0 0 auto; margin-left: 20px;">@lang('kotaby.downloads'):</strong>
                             <span>{{ $book->download ?? 0 }}</span>
                         </li>
                     </ul>
+
 
                     <div class="d-flex justify-content-right align-items-right mb-7" style="margin-right:34px">
                         <p class="stars" style="color: #fff200; font-size: 30px;">
@@ -81,11 +81,11 @@
                         <span class="mx-3"></span>
                         <span
                             style="color:#EBBB3F;font-weight:bold;font-size: 15px; margin-top: -10px">({{ $book->view }})
-                            مراجعات</span>
+                            @lang('kotaby.views')</span>
                         <span class="mx-3"></span>
                         <span
                             style="color:#EBBB3F;font-weight:bold;font-size: 15px; margin-top: -10px">({{ $book->reviews()->count() }})
-                            تقييم</span>
+                            @lang('kotaby.reviews')</span>
 
                     </div>
 
@@ -97,24 +97,24 @@
                                 <a href="#" class="btn"
                                     style="border: 2px solid #1B3764; color:
                                     {{ $book->isFavoritedBy(auth()->user()) ? '#ff0000' : '#1B3764' }}"><i
-                                        class="fas fa-save" style="margin-left:2px;"></i>حفظ</a>
+                                        class="fas fa-save" style="margin-left:2px;"></i>@lang('kotaby.save')</a>
                             </button>
 
                         </form>
 
                         <a href="#" type="button" class="btn me-2" style="border: 2px solid #1B3764"
                             data-bs-toggle="modal" data-bs-target="#rateModal"><i class="fas fa-star"
-                                style="color: #1B3764;margin-left: 2px"></i>أضف
-                            تقييم</a>
+                                style="color: #1B3764;margin-left: 2px"></i>
+                            @lang('kotaby.rate')</a>
                         {{-- {{ route('reportindex', $book->id) }} --}}
                         <a href="{{ route('download.pdf', $book->id) }}" class="btn me-2"
                             style="border: 2px solid #1B3764"><i class="fas fa-download"
-                                style="color: #1B3764;margin-left: 2px"></i>تحميل الكتاب</a>
+                                style="color: #1B3764;margin-left: 2px"></i> @lang('kotaby.download_pdf')</a>
                         <a href="{{ route('books.pdf', $book->id) }}" class="btn" style="border: 2px solid #1B3764"><i
-                                class="fas fa-book" style="color: #1B3764; margin-left: 2px"></i> تصفح الكتاب</a>
+                                class="fas fa-book" style="color: #1B3764; margin-left: 2px"></i> @lang('kotaby.view_pdf')</a>
                         <a href="#" class="btn" style="border: 2px solid #1B3764" data-bs-toggle="modal"
                             data-bs-target="#rateModals"><i class="fas fa-warning"
-                                style="color: #1B3764; margin-left: 2px"></i> التبليغ عنه</a>
+                                style="color: #1B3764; margin-left: 2px"></i> @lang('kotaby.report')</a>
 
                     </div>
                 </div>
@@ -130,12 +130,12 @@
 
     <div class="container mt-5">
         <div class="summary-section">
-            <h5 class="summary-title">نبذة مختصرة عن الكتاب</h5>
+            <h5 class="summary-title">@lang('kotaby.summary')</h5>
             <p class="summary-text">
-                {{ $book->description }} .. <a href="#">اقرأ المزيد</a>
+                {{ $book->description }} .. <a href="#">@lang('kotaby.read_more') </a>
             </p>
             <div class="share-section">
-                <p class="share-text">شارك الكتاب مع الأصدقاء</p>
+                <p class="share-text">@lang('kotaby.share_with_friends')</p>
                 <div class="share-icons">
                     <a href="#"><i class="fab fa-twitter"></i></a>
                     <a href="#"><i class="fab fa-facebook-f"></i></a>
@@ -149,7 +149,7 @@
 
     <div class="container mt-5">
         <div class="reviews-section">
-            <h5 class="reviews-title">التقييمات</h5>
+            <h5 class="reviews-title">@lang('kotaby.reviewes')</h5>
 
             <!--- comment reviews--->
             <x-comment :reviews="$reviews" />

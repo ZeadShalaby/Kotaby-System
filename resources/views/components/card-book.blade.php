@@ -43,7 +43,7 @@
                     @endfor
                 </p>
                 {{-- {{ $item->stars['averageRating ']'}} / 5 --}}
-                <p class="rating">{{ $item->reviews()->count() }} تقييم</p>
+                <p class="rating">{{ $item->reviews()->count() }} @lang('kotaby.review')</p>
             </div>
 
         </div>

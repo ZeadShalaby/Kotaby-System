@@ -27,11 +27,14 @@ class CodeCommands extends Command
     public function handle()
     {
         //todo collection of Users
-        $users = User::where('code',">","0")->get();
+        $users = User::where('code', '>', '0')->get();
         foreach ($users as $user) {
-            
-            $user -> update(['code' => null]);
+            $updatedAt = auth()->user()->updatedAt->addSeconds(40);
+            //? If the time difference is less than 40 seconds, update the 'code' to null
+            if (!$updatedAt >= now()) {
+                $user->update(['code' => null]);
+            }
         }
-        
+
     }
 }

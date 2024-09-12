@@ -1,5 +1,5 @@
 <div class="form-group">
-    <label for="name" class="text-right d-block">الاسم-البريد الإلكتروني</label>
+    <label for="name" class="text-right d-block"><?php echo app('translator')->get('kotaby.name_or_email'); ?></label>
     <input type="text" class="form-control w-100 <?php $__errorArgs = ['field'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -15,7 +15,7 @@ if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> style="border: 2px solid red" <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?> id="name" placeholder="محمد فتح الله عبدالحميد"
+unset($__errorArgs, $__bag); ?> id="name" placeholder="<?php echo app('translator')->get('kotaby.name_placeholder'); ?>"
         name="field" value="<?php echo e(old('field')); ?>">
     <?php $__errorArgs = ['field'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -29,9 +29,8 @@ endif;
 unset($__errorArgs, $__bag); ?>
 </div>
 
-
 <div class="form-group">
-    <label for="password" class="text-right d-block">كلمة المرور</label>
+    <label for="password" class="text-right d-block"><?php echo app('translator')->get('kotaby.password'); ?></label>
     <input type="password" class="form-control w-100 <?php $__errorArgs = ['password'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -39,16 +38,16 @@ if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" placeholder="*****"
-        id="password" name="password" <?php $__errorArgs = ['password'];
+unset($__errorArgs, $__bag); ?>"
+        placeholder="<?php echo app('translator')->get('kotaby.password_placeholder'); ?>" id="password" name="password"
+        <?php $__errorArgs = ['password'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> style="border: 2px solid red" <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>
-        value=<?php echo e(old('password')); ?>>
+unset($__errorArgs, $__bag); ?> value="<?php echo e(old('password')); ?>">
     <?php $__errorArgs = ['password'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
