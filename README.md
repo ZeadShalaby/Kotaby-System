@@ -6,7 +6,7 @@
   </a>
 
 <h3 align="center"> Kotaby-System </h3>
-<h3 align="center"> it's a project use Events , Login with username || Gmail  </h3>
+<h3 align="center"> it's a project use Events , Login with username | Gmail , Github & Localization </h3>
 
   <p align="center">
      Project Kotaby-System
