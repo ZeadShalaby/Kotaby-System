@@ -23,7 +23,7 @@
 
                     <a href="<?php echo e(route('admin.refused.report', $book->id)); ?>"
                         style="text-decoration: none; font-weight: bold; color: rgb(85, 211, 161);">
-                        Report: <?php echo e($book->report_one->report); ?>
+                        <?php echo app('translator')->get('kotaby.reports'); ?> : <?php echo e($book->report_one->report); ?>
 
                         <i class="fas fa-undo" style="width: 20px; height: 20px; margin-left: 12px;font-size: 20px"></i>
                     </a>

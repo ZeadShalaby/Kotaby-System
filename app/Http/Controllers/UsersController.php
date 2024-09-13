@@ -49,6 +49,18 @@ class UsersController extends Controller
         return view('Auth.Users.login');
     }
 
+    // todo return view forget pass
+    function forgetpass()
+    {
+        return view('Auth.Users.forget-pass');
+    }
+
+    // todo return page verfiy code
+    function verfiycode()
+    {
+        return view('Auth.Users.verfiy-code');
+    }
+
     // todo login page
     function home()
     {
@@ -74,6 +86,11 @@ class UsersController extends Controller
         return redirect()->route('users.loginindex')->with('success', 'Hy Sir : ' . $user->username . ' Verifu Email Succcessfuly');
     }
 
+    // todo return page change pass
+    public function changepass(User $user)
+    {
+        return view('Auth.Users.change-pass', compact('user'));
+    }
 
     // todo Login Users
     public function login(LoginUserRequest $request)
@@ -95,20 +112,14 @@ class UsersController extends Controller
     {
         try {
             //! Determine the password
-            $password = $request->password ? Hash::make($request->password) : null;
             $customer = User::create([
                 'name' => $request->name,
                 'username' => Str::slug($request->name) . '_' . strtoupper(Str::random(3)),
                 'email' => $request->email,
-                'password' => $password,
+                'password' => $request->password,
                 'role' => GuardEnums::USER->value
             ]);
-
-            if ($request->has('img')) {
-                $this->Addmedia($customer, $request->img);
-            } else {
-                $this->Addmedia($customer, '/images/users/users.png');
-            }
+            $this->Addmedia($customer, '/images/users/users.png');
 
             // todo send mail to user for verify email
             Mail::to($request->email)->send(new VerfiyMail($customer));
@@ -116,7 +127,6 @@ class UsersController extends Controller
         } catch (Exception $ex) {
             return back()->with('error', "Some Thing Wrong .");
         }
-
     }
 
     /**
@@ -125,7 +135,7 @@ class UsersController extends Controller
     public function edit(User $user)
     {
         $user = $user->load('media_one');
-        return view('Auth.Users.edit', compact('user'));
+        return view('Auth.Users.edit', compact(var_name: 'user'));
     }
 
 
@@ -151,18 +161,18 @@ class UsersController extends Controller
     // todo change image of users 
     public function changeimg(Request $request)
     {
-        //? Validate the request if needed
-        $request->validate(['media' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',]);
-        //? Get the user's media
-        $user_media = Media::where('mediaable_type', 'User')->where('mediaable_id', auth()->user()->id)->first();
-        if ($request->hasFile('media')) {
+        try {
+            //? Validate the request if needed
+            $request->validate(['media' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',]);
+            //? Get the user's media
+            $user_media = Media::where('mediaable_type', 'User')->where('mediaable_id', auth()->user()->id)->first();
             //? Save the new image
             $path = $this->saveimage($request->file('media'), 'images/users/');
             //? Update the media record
             $user_media->update(['media' => $path]);
             return back()->with('success', "Photo changed successfully.");
-        } else {
-            return back()->with('error', "No image file selected.");
+        } catch (Exception $ex) {
+            return back()->with('error', "No image file selected." . $ex->getMessage());
         }
     }
 
@@ -181,12 +191,20 @@ class UsersController extends Controller
     // todo resend code for user => send code from mail user again
     public function resend(Request $request)
     {
-        $email = $request->session()->get('userEmail');
-        $user = $this->checkmail($email);
-        event(new MailCode($user));
-        $user->date = Carbon::now();
-        Mail::to($email)->send(new Codemailer($user));
-        return redirect()->route('users.verfiyindex')->with('success', 'Check your inbox sir : ' . $user->username);
+        try {
+            $email = $request->session()->get('userEmail');
+            // Check if email exists in session
+            if (!$email) {
+                return redirect()->route('users.forgetpass');
+            }
+            $user = $this->checkmail($email);
+            event(new MailCode($user));
+            $user->date = Carbon::now();
+            Mail::to($email)->send(new Codemailer($user));
+            return redirect()->route('users.verfiyindex')->with('success', 'Check your inbox sir : ' . $user->username);
+        } catch (Exception $ex) {
+            return back()->with('error', 'No email found in session' . $ex->getMessage());
+        }
     }
 
     // todo verify Code for user
@@ -195,8 +213,8 @@ class UsersController extends Controller
         try {
             $email = $request->session()->get('userEmail');
             $user = User::where('email', $email)->where('code', $request->code)->first();
-            $request->session()->forget('userEmail');
-            return view('Auth.Users.change-pass', compact('user'));
+            $request->session()->forget(keys: 'userEmail');
+            return redirect()->route('users.changepass' . $user->id);
         } catch (Exception $ex) {
             return back()->with('error', 'No email found in session' . $ex->getMessage());
         }

@@ -32,7 +32,7 @@ class AdminController extends Controller
             $admin = Admin::where('username', $credentials['username'])->first();
             if ($admin && Hash::check($credentials['password'], $admin->password)) {
                 Auth::guard('admin')->login($admin);
-                return view('Admin.home', compact('title'));
+                return redirect()->route('admin.home', compact('title'));
             }
             return redirect()->back()->with('error', 'Invalid information, please try again.');
         } catch (Exception $ex) {
@@ -45,6 +45,12 @@ class AdminController extends Controller
     {
         Auth::guard('admin')->logout();
         return redirect()->route('admin.loginindex');
+    }
+
+    // todo return Home page
+    public function home()
+    {
+        return view('Admin.home');
     }
 
 

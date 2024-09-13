@@ -50,7 +50,7 @@
 
                                 <a href="{{ route('admin.refused.author.report', $author->id) }}"
                                     style="text-decoration: none; font-weight: bold; color: rgb(85, 211, 161);">
-                                    Report: {{ $author->report_one->report }}
+                                    @lang('kotaby.reports') : {{ $author->report_one->report }}
                                     <i class="fas fa-undo"
                                         style="width: 20px; height: 20px; margin-left: 12px;font-size: 20px"></i>
                                 </a>

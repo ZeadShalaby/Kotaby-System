@@ -87,11 +87,11 @@
                         </li>
                         <li style="display: flex; justify-content: space-between; margin-bottom: 15px;">
                             <strong style="flex: 0 0 auto; margin-left: 20px;"><?php echo app('translator')->get('kotaby.file_size'); ?>:</strong>
-                            <span>148.13 ميجا بايت</span>
+                            <span>148.13 <?php echo app('translator')->get('kotaby.mb'); ?></span>
                         </li>
                         <li style="display: flex; justify-content: space-between; margin-bottom: 15px;">
                             <strong style="flex: 0 0 auto; margin-left: 20px;"><?php echo app('translator')->get('kotaby.file_type'); ?>:</strong>
-                            <span>PDF</span>
+                            <span><?php echo app('translator')->get('kotaby.pdf'); ?></span>
                         </li>
                         <li style="display: flex; justify-content: space-between;">
                             <strong style="flex: 0 0 auto; margin-left: 20px;"><?php echo app('translator')->get('kotaby.downloads'); ?>:</strong>

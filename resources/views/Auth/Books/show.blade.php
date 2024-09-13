@@ -47,11 +47,11 @@
                         </li>
                         <li style="display: flex; justify-content: space-between; margin-bottom: 15px;">
                             <strong style="flex: 0 0 auto; margin-left: 20px;">@lang('kotaby.file_size'):</strong>
-                            <span>148.13 ميجا بايت</span>
+                            <span>148.13 @lang('kotaby.mb')</span>
                         </li>
                         <li style="display: flex; justify-content: space-between; margin-bottom: 15px;">
                             <strong style="flex: 0 0 auto; margin-left: 20px;">@lang('kotaby.file_type'):</strong>
-                            <span>PDF</span>
+                            <span>@lang('kotaby.pdf')</span>
                         </li>
                         <li style="display: flex; justify-content: space-between;">
                             <strong style="flex: 0 0 auto; margin-left: 20px;">@lang('kotaby.downloads'):</strong>

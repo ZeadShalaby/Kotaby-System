@@ -16,12 +16,12 @@ class verified
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(!isset(auth()->user()->email_verified_at) && !auth()->user()->email_verified_at!=null){
+        if (!isset(auth()->user()->email_verified_at) && !auth()->user()->email_verified_at != null) {
 
             abort(403, 'Unauthorized');
         }
         return $next($request);
-        }
     }
+}
 
 

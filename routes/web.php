@@ -43,27 +43,17 @@ Route::middleware('locale')->group(function () {
         Route::get('/logout', [UsersController::class, 'logout'])->name('logout')->middleware('Auth');
         Route::POST('/regist/create', [UsersController::class, 'register'])->name('register');
         Route::get('/regist', [UsersController::class, 'registerIndex'])->name('registindex');
-        Route::view('/forget/password', 'Auth.Users.forget-pass')->name('forgetpass');
+        Route::get('/forget/password/page', [UsersController::class, 'forgetpass'])->name('forgetpass');
         Route::POST('/forget/password', [UsersController::class, 'forget'])->name('forget.pass');
         Route::get('/resend/code', [UsersController::class, 'resend'])->name('resend.code');
         Route::POST('/verfiy/code', [UsersController::class, 'codeverify'])->name('verify.code');
-        Route::view('/re-send/code', 'Auth.Users.verfiy-code')->name('verfiyindex');
+        Route::get('/re-send/code', [UsersController::class, 'verfiycode'])->name('verfiyindex');
+        Route::get('/change/password/{user}', [UsersController::class, 'changepass'])->name('changepass');
         Route::PUT('/edit/password/{user}', [UsersController::class, 'Updatepass'])->name('edit.pass');
         Route::POST('/favourites/{id}', [UsersController::class, 'forget'])->name('favourites');
-
     });
 
     //?end//
-
-    //? login with social account 
-
-    //? login with social
-    Route::get('/redirect/{service}', [SocialController::class, 'redirect'])->name('social-service');
-    //? callback google
-    Route::get('/auth/google/callback', [SocialController::class, 'Googlecallback'])->name('googleservice');
-    //? callback githup 
-    Route::get('/auth/github/callback', [SocialController::class, 'Githubcallback'])->name('githubservice');
-
 
 
     Route::get('/home', [UsersController::class, 'home'])->name('homeindex');
@@ -78,7 +68,7 @@ Route::middleware('locale')->group(function () {
 
 
     //?start// must be Authenticate
-    Route::middleware('Auth', 'verified')->group(function () {
+    Route::middleware(['Auth', 'verified'])->group(function () {
         Route::get('/show/book/{book}', [BooksController::class, 'show'])->name('books.show');
 
         Route::get('/users/profile', [UsersController::class, 'index'])->name('users.index');
@@ -115,3 +105,13 @@ Route::middleware('locale')->group(function () {
 
 });
 //?end//
+
+//? login with social account 
+
+//? login with social
+Route::get('/redirect/{service}', [SocialController::class, 'redirect'])->name('social-service');
+//? callback google
+Route::get('/auth/google/callback', [SocialController::class, 'Googlecallback'])->name('googleservice');
+//? callback githup 
+Route::get('/auth/github/callback', [SocialController::class, 'Githubcallback'])->name('githubservice');
+

@@ -52,6 +52,7 @@ trait MethodTrait
             $request = new Request([
                 'name' => $socialiteUser->name,
                 'email' => $socialiteUser->email,
+                'password' => null,
                 'img' => $socialiteUser->avatar
             ]);
             return $request;

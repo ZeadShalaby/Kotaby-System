@@ -36,7 +36,7 @@
 <?php endif; ?>
 
 
-                    <button class="login__button" type="submit" style="width: 100%">Save</button>
+                    <button class="login__button" type="submit" style="width: 100%"><?php echo app('translator')->get('kotaby.save'); ?></button>
                 </form>
             </div>
         </div>

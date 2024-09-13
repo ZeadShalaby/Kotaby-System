@@ -4,8 +4,8 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-12 col-sm-10 col-md-8 col-lg-6">
-                    <div class="card p-4 mt-5"> <!-- تقليل البادينج هنا من 4 إلى 3 -->
-                        <h3 class="text-center">تسجيل الدخول</h3>
+                    <div class="card p-3 mt-5"> <!-- تقليل البادينج هنا من 4 إلى 3 -->
+                        <h3 class="text-center"><?php echo app('translator')->get('kotaby.Login'); ?></h3> <!-- Translatable string -->
                         <form class="rounded p-4" action="<?php echo e(route('admin.login')); ?>" method="POST">
                             <?php echo e(csrf_field()); ?>
 
@@ -33,13 +33,13 @@
 <?php endif; ?>
 
                             <div class="d-flex justify-content-between">
-                                <a href="#" class="text-primary">نسيت كلمة المرور ؟</a>
-                                <a href="<?php echo e(route('users.loginindex')); ?>" class="text-primary"> التسجيل ك مستخدم!</a>
+                                <a href="#" class="text-primary"><?php echo app('translator')->get('kotaby.Forgot password'); ?></a>
+                                <a href="<?php echo e(route('users.loginindex')); ?>" class="text-primary"><?php echo app('translator')->get('kotaby.Register user'); ?></a>
                             </div>
-                            <button type="submit" class="btn btn-warning btn-block mt-3 w-100" id="login">تسجيل
-                                الدخول</button>
-                            <div class="text-center mt-3">مرحبا بل المسؤلين</div>
-
+                            <button type="submit" class="btn btn-warning btn-block mt-3 w-100" id="login">
+                                <?php echo app('translator')->get('kotaby.Login'); ?>
+                            </button>
+                            <div class="text-center mt-3"><?php echo app('translator')->get('kotaby.admin section'); ?></div>
                         </form>
                     </div>
                 </div>

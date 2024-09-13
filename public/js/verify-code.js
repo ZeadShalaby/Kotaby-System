@@ -1,6 +1,7 @@
 const inputs = document.querySelectorAll("input.code-input"),
     button = document.querySelector("button"),
     hiddenInput = document.getElementById("code");
+var localizedSeconds = window.localizedSeconds || "seconds"; // fallback to 'seconds'
 
 // Handle keyup events for each input
 inputs.forEach((input, index1) => {
@@ -72,7 +73,7 @@ document.addEventListener("DOMContentLoaded", function () {
         timeLeft--;
 
         if (timeLeft >= 0) {
-            countdownElement.textContent = timeLeft + " seconds";
+            countdownElement.textContent = timeLeft + " " + localizedSeconds;
         }
 
         if (timeLeft === 0) {

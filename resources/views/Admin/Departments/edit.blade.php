@@ -16,7 +16,7 @@
 
                     <x-add-dep :department="$department" />
 
-                    <button class="login__button" type="submit" style="width: 100%">Save</button>
+                    <button class="login__button" type="submit" style="width: 100%">@lang('kotaby.save')</button>
                 </form>
             </div>
         </div>

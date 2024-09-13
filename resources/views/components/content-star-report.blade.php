@@ -9,23 +9,22 @@
     <label for="star4">&#9733;</label>
     <input type="radio" name="star" id="star5" value="1">
     <label for="star5">&#9733;</label>
-
 </div>
+
 <label for="rating" class="form-label">
     @if (isset($star))
-        ما رأيك في الكتاب
+        @lang('kotaby.rate_book')
     @else
-        ما هي مشكلتك؟
+        @lang('kotaby.problem')
     @endif
 </label>
-</div>
 
 <div class="mb-3">
-    <textarea class="form-control textarea w-100" id="review" placeholder="أضف رأيك هنا..." name="comment"></textarea>
+    <textarea class="form-control textarea w-100" id="review" placeholder="@lang('kotaby.placeholderes')" name="comment"></textarea>
 </div>
-</div>
-<div class="modal-footer">
-    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إلغاء</button>
 
-    <a href="#"> <button type="submit" class="btn btn-primary">إضافة</button>
-    </a>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">@lang('kotaby.cancel')</button>
+
+    <button type="submit" class="btn btn-primary">@lang('kotaby.add_review')</button>
+</div>

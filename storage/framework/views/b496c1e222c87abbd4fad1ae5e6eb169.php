@@ -46,7 +46,7 @@
                     </a>
                     <!-- Reviews Count -->
                     <div class="reviews-count" style="font-size: 12px; color: #EBBB3F;">
-                        (12 مراجعات)
+                        (12 <?php echo app('translator')->get('kotaby.reviews'); ?>
 
                     </div>
 
@@ -89,7 +89,7 @@
 
                     <a href="<?php echo e(route('admin.refused.report.review', $item->id)); ?>"
                         style="text-decoration: none; font-weight: bold; color: rgb(85, 211, 161);">
-                        Report: <?php echo e($item->report_one->report); ?>
+                        <?php echo app('translator')->get('kotaby.reports'); ?> : <?php echo e($item->report_one->report); ?>
 
                         <i class="fas fa-undo" style="width: 20px; height: 20px; margin-left: 12px;font-size: 20px"></i>
                     </a>
